@@ -1,0 +1,15 @@
+/* Test theme, proving the pluggable-theme mechanism -- not the "real" hosted
+   theme collection (wikiworld-themes.pages.dev doesn't exist yet). Served via
+   raw.githubusercontent.com in the meantime, referenced as a full custom URL. */
+:root {
+  color-scheme: light;
+  --fg: #3b2712;
+  --bg: #f4e8d0;
+  --muted: #8a6d3f;
+  --accent: #b8860b;
+  --border: #c9a876;
+}
+
+body {
+  font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+}

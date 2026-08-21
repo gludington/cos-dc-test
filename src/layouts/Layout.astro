@@ -14,8 +14,16 @@ const themeUrl = resolveThemeUrl(getSiteConfig().theme);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · Wikiworld</title>
-    {themeUrl && <link rel="stylesheet" href={themeUrl} />}
     <style>
+      /* Wrapped in a named layer, not relying on source/injection order --
+         Astro hoists/reinjects <style> blocks using its own internal
+         logic, so where this tag sits in the template doesn't reliably
+         control final output order. Per the CSS spec, ANY unlayered
+         stylesheet (a plain external theme .css, no @layer wrapper) always
+         wins over ANY layered one, regardless of specificity or document
+         order -- so a theme reliably overrides this no matter what Astro
+         does with placement. */
+      @layer base {
       :root {
         color-scheme: light dark;
         --fg: #1a1a1a;
@@ -121,7 +129,12 @@ const themeUrl = resolveThemeUrl(getSiteConfig().theme);
         vertical-align: -0.35em;
         margin-right: 0.4em;
       }
+      } /* end @layer base */
     </style>
+    {/* Overrides the @layer base rules above regardless of where Astro
+        actually places this tag in the built output -- see the comment on
+        @layer base. */}
+    {themeUrl && <link rel="stylesheet" href={themeUrl} />}
   </head>
   <body>
     <main>
