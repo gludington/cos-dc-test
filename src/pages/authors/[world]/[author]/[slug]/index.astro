@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../../../layouts/Layout.astro";
+import { authorRoute, formatDate } from "../../../../../lib/routes";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { world: post.data.world, author: post.data.authorSlug, slug: post.data.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const wasUpdated = post.data.updatedAt !== post.data.publishedAt;
+---
+
+<Layout title={post.data.title}>
+  <nav class="crumbs">
+    <a href="/">Wikiworld</a> / <a href={authorRoute(post.data)}>{post.data.author.name}</a>
+  </nav>
+  <h1>{post.data.title}</h1>
+  <div class="meta">
+    {post.data.author.image && <img class="avatar" src={post.data.author.image} alt="" />}
+    by {post.data.author.name} · published {formatDate(post.data.publishedAt)}
+    {wasUpdated && <> · updated {formatDate(post.data.updatedAt)}</>}
+  </div>
+  <section>
+    <Content />
+  </section>
+</Layout>

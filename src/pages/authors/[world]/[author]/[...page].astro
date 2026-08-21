@@ -1,0 +1,74 @@
+---
+import type { GetStaticPathsOptions, Page } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../../../layouts/Layout.astro";
+import { postRoute, formatDate } from "../../../../lib/routes";
+
+interface AuthorInfo {
+  world: string;
+  authorSlug: string;
+  name: string;
+  image: string | null;
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const PAGE_SIZE = 10;
+  const posts = await getCollection("posts");
+
+  const groups = new Map<string, { author: AuthorInfo; posts: CollectionEntry<"posts">[] }>();
+  for (const post of posts) {
+    const key = `${post.data.world}/${post.data.authorSlug}`;
+    if (!groups.has(key)) {
+      groups.set(key, {
+        author: {
+          world: post.data.world,
+          authorSlug: post.data.authorSlug,
+          name: post.data.author.name,
+          image: post.data.author.image,
+        },
+        posts: [],
+      });
+    }
+    groups.get(key)!.posts.push(post);
+  }
+
+  return Array.from(groups.values()).flatMap(({ author, posts: authorPosts }) => {
+    const sorted = authorPosts.sort((a, b) => b.data.publishedAt - a.data.publishedAt);
+    return paginate(sorted, {
+      params: { world: author.world, author: author.authorSlug },
+      props: { author },
+      pageSize: PAGE_SIZE,
+    });
+  });
+}
+
+const { author } = Astro.props as { author: AuthorInfo };
+const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
+---
+
+<Layout title={author.name}>
+  <nav class="crumbs"><a href="/">Wikiworld</a></nav>
+  {author.image && <img class="avatar" src={author.image} alt="" style="width:3em;height:3em" />}
+  <h1>{author.name}</h1>
+  <ul class="plain">
+    {
+      page.data.map((post) => (
+        <li>
+          <a href={postRoute(post.data)}>{post.data.title}</a>
+          <div class="meta">{formatDate(post.data.publishedAt)}</div>
+        </li>
+      ))
+    }
+  </ul>
+  {
+    page.lastPage > 1 && (
+      <nav class="pagination">
+        {page.url.prev ? <a href={page.url.prev}>&larr; Newer</a> : <span class="ext">&larr; Newer</span>}
+        <span class="ext">
+          Page {page.currentPage} of {page.lastPage}
+        </span>
+        {page.url.next ? <a href={page.url.next}>Older &rarr;</a> : <span class="ext">Older &rarr;</span>}
+      </nav>
+    )
+  }
+</Layout>

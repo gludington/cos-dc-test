@@ -1,0 +1,50 @@
+---
+import type { GetStaticPathsOptions } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { postRoute, authorRoute, formatDate } from "../lib/routes";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const PAGE_SIZE = 10; // must stay inside this function -- see project notes on Astro's paginate()
+  const posts = (await getCollection("posts")).sort((a, b) => b.data.publishedAt - a.data.publishedAt);
+  return paginate(posts, { pageSize: PAGE_SIZE });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="Wikiworld">
+  <h1>Wikiworld</h1>
+  {
+    page.data.length === 0 ? (
+      <p class="ext">
+        No posts yet. Run <code>node sync/ingest.js &lt;payload.json&gt;</code> from the repo
+        root, then restart the dev server.
+      </p>
+    ) : (
+      <ul class="plain">
+        {page.data.map((post) => (
+          <li>
+            <a href={postRoute(post.data)}>{post.data.title}</a>
+            <div class="meta">
+              {post.data.author.image && <img class="avatar" src={post.data.author.image} alt="" />}
+              by <a href={authorRoute(post.data)}>{post.data.author.name}</a> ·{" "}
+              {formatDate(post.data.publishedAt)}
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  {
+    page.lastPage > 1 && (
+      <nav class="pagination">
+        {page.url.prev ? <a href={page.url.prev}>&larr; Newer</a> : <span class="ext">&larr; Newer</span>}
+        <span class="ext">
+          Page {page.currentPage} of {page.lastPage}
+        </span>
+        {page.url.next ? <a href={page.url.next}>Older &rarr;</a> : <span class="ext">Older &rarr;</span>}
+      </nav>
+    )
+  }
+</Layout>
