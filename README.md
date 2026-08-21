@@ -13,12 +13,21 @@ new posts here directly, and your host rebuilds the site automatically.
    picture → **Settings → Developer settings → Personal access tokens → Fine-grained tokens →
    Generate new token**. Restrict it to just this repo, and under Permissions set **Contents** to
    **Read and write**. Copy the token — you won't see it again.
-3. **Connect a host** so the site actually goes live. Either works the same way:
-   - **Cloudflare Pages**: dashboard → Workers & Pages → Create → Pages → Connect to Git → pick
-     this repo → build command `npm run build`, output directory `dist` (leave root directory
-     blank/`.`) → Deploy.
-   - **Netlify**: Add new site → Import an existing project → Deploy with GitHub → pick this repo
-     → build command `npm run build`, publish directory `dist` → Deploy.
+3. **Connect a host** so the site actually goes live. Netlify is the more straightforward of the
+   two; Cloudflare works too but currently has one extra step (a second, unrelated token) that's
+   worth knowing about upfront.
+   - **Netlify** (simpler): Add new site → Import an existing project → Deploy with GitHub → pick
+     this repo → build command `npm run build`, publish directory `dist` → Deploy. Netlify handles
+     its own deploy authentication behind the scenes — nothing further to configure.
+   - **Cloudflare**: dashboard → **Compute → Workers & Pages → Create Application** → connect
+     GitHub → pick this repo → build command `npm run build`, deploy command `npx wrangler
+     deploy` (this repo already includes the `wrangler.jsonc` that command needs). You'll also
+     be asked for an **API token** — this is a *second*, separate token from the GitHub one in
+     step 2 (it authenticates Cloudflare's own build system, not GitHub access). If you don't
+     already have a suitable one: **My Profile → API Tokens → Create Token → "Edit Cloudflare
+     Workers" → Use template** → Continue to summary → Create Token → copy it. If Cloudflare
+     offers you an existing token from another project instead, that's fine to reuse as long as
+     it has Workers edit permission — no need to make a new one just for this.
 4. **Tell the Foundry module about this repo**: in Foundry, **Configure Settings → Wikiworld
    Sync**, fill in your GitHub username, this repo's name, the branch your host builds from
    (usually `main`), and the token from step 2.
