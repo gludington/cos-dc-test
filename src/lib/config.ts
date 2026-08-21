@@ -39,7 +39,14 @@ const THEMES_BASE_URL = "https://wikiworld-themes.pages.dev/themes";
  * A theme value that's already a full URL is used as-is, for anyone who'd
  * rather host their own custom CSS than pick from the shared collection --
  * same publish mechanism either way, no code difference between "named
- * theme" and "custom URL" beyond this one check. */
+ * theme" and "custom URL" beyond this one check.
+ *
+ * Whatever hosts a custom URL's CSS must serve it with a real `text/css`
+ * Content-Type. raw.githubusercontent.com does NOT (sends text/plain with
+ * X-Content-Type-Options: nosniff), which makes browsers silently refuse to
+ * apply it as a stylesheet at all -- confirmed live. jsDelivr's GitHub
+ * proxy (cdn.jsdelivr.net/gh/<owner>/<repo>@<branch>/<path>) serves the
+ * same file with the correct MIME type. */
 export function resolveThemeUrl(theme: string): string | null {
   if (!theme || theme === "default") return null;
   if (/^https?:\/\//i.test(theme)) return theme;

@@ -1,6 +1,11 @@
 /* Test theme, proving the pluggable-theme mechanism -- not the "real" hosted
-   theme collection (wikiworld-themes.pages.dev doesn't exist yet). Served via
-   raw.githubusercontent.com in the meantime, referenced as a full custom URL. */
+   theme collection (wikiworld-themes.pages.dev doesn't exist yet). Serve via
+   jsDelivr's GitHub proxy in the meantime (cdn.jsdelivr.net/gh/<owner>/<repo>@<branch>/<path>),
+   NOT raw.githubusercontent.com directly -- confirmed live that GitHub's raw
+   file server sends Content-Type: text/plain (not text/css) with
+   X-Content-Type-Options: nosniff, which makes browsers silently refuse to
+   apply it as a stylesheet at all. jsDelivr serves the correct text/css
+   MIME type for the same file. */
 :root {
   color-scheme: light;
   --fg: #3b2712;
