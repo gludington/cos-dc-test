@@ -5,7 +5,8 @@ interface Props {
   title: string;
 }
 const { title } = Astro.props;
-const themeUrl = resolveThemeUrl(getSiteConfig().theme);
+const siteConfig = getSiteConfig();
+const themeUrl = resolveThemeUrl(siteConfig.theme);
 ---
 
 <!doctype html>
@@ -13,7 +14,7 @@ const themeUrl = resolveThemeUrl(getSiteConfig().theme);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} · Wikiworld</title>
+    <title>{title} · {siteConfig.siteName}</title>
     <style>
       /* Wrapped in a named layer, not relying on source/injection order --
          Astro hoists/reinjects <style> blocks using its own internal
@@ -80,6 +81,25 @@ const themeUrl = resolveThemeUrl(getSiteConfig().theme);
         border-radius: 999px;
         padding: 0.15rem 0.6rem;
         margin-bottom: 1rem;
+        text-decoration: none;
+      }
+      a.tag:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .tag-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .tag-cloud .tag {
+        margin-bottom: 0;
+      }
+      .tag-count {
+        color: var(--muted);
+        opacity: 0.7;
+        font-size: 0.9em;
       }
       section {
         margin-top: 2.5rem;

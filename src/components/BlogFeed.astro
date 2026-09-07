@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { postRoute, blogRoute, authorRoute, formatDate } from "../lib/routes";
+
+// One section per blog (grouped by blogUuid, a stable per-journal-entry
+// identifier -- see content.config.ts/routes.ts for why this is kept
+// distinct from author identity), newest-active blog first, each showing
+// only its most recent posts -- full history lives on the blog's own page
+// (pages/[world]/[section]/[...blog].astro), linked below the cutoff.
+interface Props {
+  posts: CollectionEntry<"posts">[];
+  recentCount?: number;
+}
+const { posts, recentCount = 5 } = Astro.props;
+
+interface BlogGroup {
+  world: string;
+  blogSlug: string;
+  authorSlug: string;
+  blogTitle: string;
+  authorName: string;
+  authorImage: string | null;
+  posts: CollectionEntry<"posts">[];
+}
+
+const groups = new Map<string, BlogGroup>();
+for (const post of posts) {
+  const key = post.data.blogUuid;
+  if (!groups.has(key)) {
+    groups.set(key, {
+      world: post.data.world,
+      blogSlug: post.data.blogSlug,
+      authorSlug: post.data.authorSlug,
+      blogTitle: post.data.blogTitle,
+      authorName: post.data.author.name,
+      authorImage: post.data.author.image,
+      posts: [],
+    });
+  }
+  groups.get(key)!.posts.push(post);
+}
+
+const blogs = Array.from(groups.values())
+  .map((blog) => ({ ...blog, posts: blog.posts.sort((a, b) => b.data.publishedAt - a.data.publishedAt) }))
+  .sort((a, b) => b.posts[0].data.publishedAt - a.posts[0].data.publishedAt);
+---
+
+{
+  blogs.map((blog) => {
+    const blogRef = { world: blog.world, blogSlug: blog.blogSlug };
+    const authorRef = { world: blog.world, authorSlug: blog.authorSlug };
+    return (
+      <section>
+        <h2>
+          <a href={blogRoute(blogRef)}>{blog.blogTitle}</a>
+        </h2>
+        <div class="meta">
+          {blog.authorImage && <img class="avatar" src={blog.authorImage} alt="" />}
+          by <a href={authorRoute(authorRef)}>{blog.authorName}</a>
+        </div>
+        <ul class="plain">
+          {blog.posts.slice(0, recentCount).map((post) => (
+            <li>
+              <a href={postRoute(post.data)}>{post.data.title}</a>
+              <div class="meta">{formatDate(post.data.publishedAt)}</div>
+            </li>
+          ))}
+        </ul>
+        {blog.posts.length > recentCount && (
+          <div class="meta">
+            <a href={blogRoute(blogRef)}>All {blog.posts.length} posts &rarr;</a>
+          </div>
+        )}
+      </section>
+    );
+  })
+}
