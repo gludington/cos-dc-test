@@ -95,7 +95,13 @@ export function worldIndexRoute(world: string): string {
 }
 
 export function formatDate(ms: number): string {
-  return new Date(ms).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+  return new Date(ms).toLocaleString(undefined, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
 }
 
 /** Best-effort display label for a world slug -- slugs are all we have per
