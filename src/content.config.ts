@@ -52,7 +52,11 @@ export const collections = {
   // "**" rather than a single "*" between blogs/ and the filename, to match
   // any depth there, not just exactly one directory.
   posts: defineCollection({
-    loader: glob({ pattern: "*/blogs/**/*.md", base: "../content/worlds", generateId }),
+    // Relative to the project root (this repo), not to this file's own
+    // src/ directory -- content/ now lives inside this same repo
+    // (wikiworld-site-template), not as a sibling one level up like it did
+    // when the site was still developed inside the wikiworld dev repo.
+    loader: glob({ pattern: "*/blogs/**/*.md", base: "content/worlds", generateId }),
     schema: postSchema,
   }),
 };
