@@ -39,6 +39,9 @@ editing, ever.
 ## What's in here
 
 - `src/` — the Astro site (pages, layout, content collection config)
+- `src/styles/` — the design system (colors, fonts, spacing, every reusable CSS class) and how
+  theming works — see [`src/styles/README.md`](src/styles/README.md) if you're customizing the
+  look
 - `content/` — generated markdown, one file per published post. Written by the Foundry module,
   not by hand.
 
