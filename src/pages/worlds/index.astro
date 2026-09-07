@@ -17,12 +17,12 @@ const worlds = [...new Set(posts.map((post) => post.data.world))].sort();
   <h1>Worlds</h1>
   {
     worlds.length === 0 ? (
-      <p class="ext">No posts yet.</p>
+      <p class="empty-state">No posts yet.</p>
     ) : (
-      <ul class="plain">
+      <ul class="entry-list">
         {worlds.map((world) => (
-          <li>
-            <a href={worldIndexRoute(world)}>{worldLabel(world)}</a>
+          <li class="entry">
+            <a class="entry-title" href={worldIndexRoute(world)}>{worldLabel(world)}</a>
           </li>
         ))}
       </ul>

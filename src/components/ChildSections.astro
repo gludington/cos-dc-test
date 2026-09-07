@@ -14,12 +14,12 @@ const { sections } = Astro.props;
 
 {
   sections.length > 0 && (
-    <section>
-      <h2>Sections</h2>
-      <ul class="plain">
+    <section class="panel">
+      <h2 class="panel-title">Sections</h2>
+      <ul class="entry-list">
         {sections.map((s) => (
-          <li>
-            <a href={sectionRoute(s.world, s.slug)}>{s.label}</a>
+          <li class="entry">
+            <a class="entry-title" href={sectionRoute(s.world, s.slug)}>{s.label}</a>
           </li>
         ))}
       </ul>

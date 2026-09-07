@@ -41,8 +41,8 @@ const sortedTags = Array.from(tags.values()).sort((a, b) => a.name.localeCompare
 
 {
   sortedTags.length > 0 && (
-    <section>
-      <h2>Tags</h2>
+    <section class="panel">
+      <h2 class="panel-title">Tags</h2>
       <div class="tag-cloud">
         {sortedTags.map((tag) => (
           <a class="tag" href={tagRoute(tag)}>

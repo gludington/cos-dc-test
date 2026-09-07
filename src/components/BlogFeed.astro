@@ -50,18 +50,18 @@ const blogs = Array.from(groups.values())
     const blogRef = { world: blog.world, blogSlug: blog.blogSlug };
     const authorRef = { world: blog.world, authorSlug: blog.authorSlug };
     return (
-      <section>
-        <h2>
+      <section class="panel">
+        <h2 class="panel-title">
           <a href={blogRoute(blogRef)}>{blog.blogTitle}</a>
         </h2>
         <div class="meta">
           {blog.authorImage && <img class="avatar" src={blog.authorImage} alt="" />}
           by <a href={authorRoute(authorRef)}>{blog.authorName}</a>
         </div>
-        <ul class="plain">
+        <ul class="entry-list">
           {blog.posts.slice(0, recentCount).map((post) => (
-            <li>
-              <a href={postRoute(post.data)}>{post.data.title}</a>
+            <li class="entry">
+              <a class="entry-title" href={postRoute(post.data)}>{post.data.title}</a>
               <div class="meta">{formatDate(post.data.publishedAt)}</div>
             </li>
           ))}

@@ -1,5 +1,7 @@
 ---
 import { getSiteConfig, resolveThemeUrl } from "../lib/config";
+import "../styles/tokens.css";
+import "../styles/base.css";
 
 interface Props {
   title: string;
@@ -15,149 +17,28 @@ const themeUrl = resolveThemeUrl(siteConfig.theme);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · {siteConfig.siteName}</title>
-    <style>
-      /* Wrapped in a named layer, not relying on source/injection order --
-         Astro hoists/reinjects <style> blocks using its own internal
-         logic, so where this tag sits in the template doesn't reliably
-         control final output order. Per the CSS spec, ANY unlayered
-         stylesheet (a plain external theme .css, no @layer wrapper) always
-         wins over ANY layered one, regardless of specificity or document
-         order -- so a theme reliably overrides this no matter what Astro
-         does with placement. */
-      @layer base {
-      :root {
-        color-scheme: light dark;
-        --fg: #1a1a1a;
-        --bg: #fdfdfb;
-        --muted: #666;
-        --accent: #6b4fbb;
-        --border: #ddd;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --fg: #e8e6e3;
-          --bg: #17161a;
-          --muted: #9a978f;
-          --accent: #b39ddb;
-          --border: #333;
-        }
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--fg);
-        font-family: system-ui, -apple-system, sans-serif;
-        line-height: 1.6;
-      }
-      main {
-        max-width: 46rem;
-        margin: 0 auto;
-        padding: 2.5rem 1.5rem 6rem;
-      }
-      a {
-        color: var(--accent);
-      }
-      nav.crumbs {
-        font-size: 0.9rem;
-        color: var(--muted);
-        margin-bottom: 1.5rem;
-      }
-      nav.crumbs a {
-        color: var(--muted);
-      }
-      h1 {
-        margin-top: 0;
-      }
-      .tag {
-        display: inline-block;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: var(--muted);
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        padding: 0.15rem 0.6rem;
-        margin-bottom: 1rem;
-        text-decoration: none;
-      }
-      a.tag:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-      .tag-cloud {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-      .tag-cloud .tag {
-        margin-bottom: 0;
-      }
-      .tag-count {
-        color: var(--muted);
-        opacity: 0.7;
-        font-size: 0.9em;
-      }
-      section {
-        margin-top: 2.5rem;
-      }
-      section h2 {
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        color: var(--muted);
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 0.4rem;
-      }
-      ul.plain {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      ul.plain li {
-        padding: 0.35rem 0;
-        border-bottom: 1px dotted var(--border);
-      }
-      .ext {
-        color: var(--muted);
-      }
-      .meta {
-        font-size: 0.85rem;
-        color: var(--muted);
-        margin-top: 0.15rem;
-      }
-      .meta a {
-        color: var(--muted);
-      }
-      nav.pagination {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
-        font-size: 0.9rem;
-      }
-      .avatar {
-        width: 1.4em;
-        height: 1.4em;
-        border-radius: 50%;
-        object-fit: cover;
-        vertical-align: -0.35em;
-        margin-right: 0.4em;
-      }
-      } /* end @layer base */
-    </style>
-    {/* Overrides the @layer base rules above regardless of where Astro
-        actually places this tag in the built output -- see the comment on
-        @layer base. */}
+    {/* The built-in default look's two type families -- an inscriptional
+        display face for headings, an old-style serif for body text. Both
+        have a same-era system-font fallback in styles/tokens.css, so
+        nothing renders unstyled while these load, and a theme that
+        overrides --font-heading/--font-body entirely never pays for this
+        request having mattered at all. */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
+    />
+    {/* Overrides styles/base.css's @layer base rules regardless of where
+        Astro actually places this tag in the built output: per the CSS
+        spec, ANY unlayered stylesheet (a plain external theme .css, no
+        @layer wrapper) always wins over ANY layered one, regardless of
+        specificity or document order -- so a theme reliably overrides the
+        built-in default no matter what Astro does with tag placement. */}
     {themeUrl && <link rel="stylesheet" href={themeUrl} />}
   </head>
   <body>
-    <main>
+    <main class="site">
       <slot />
     </main>
   </body>
