@@ -158,21 +158,21 @@ const nextUrl =
         {props.blog.authorImage && <img class="avatar" src={props.blog.authorImage} alt="" />}
         by <a href={authorRoute(props.blog)}>{props.blog.authorName}</a>
       </div>
-      <ul class="plain">
+      <ul class="entry-list">
         {props.pagePosts.map((post) => (
-          <li>
-            <a href={postRoute(post.data)}>{post.data.title}</a>
+          <li class="entry">
+            <a class="entry-title" href={postRoute(post.data)}>{post.data.title}</a>
             <div class="meta">{formatDate(post.data.publishedAt)}</div>
           </li>
         ))}
       </ul>
       {props.totalPages > 1 && (
         <nav class="pagination">
-          {prevUrl ? <a href={prevUrl}>&larr; Newer</a> : <span class="ext">&larr; Newer</span>}
-          <span class="ext">
+          {prevUrl ? <a href={prevUrl}>&larr; Newer</a> : <span class="disabled">&larr; Newer</span>}
+          <span class="pagination-status">
             Page {props.pageNum} of {props.totalPages}
           </span>
-          {nextUrl ? <a href={nextUrl}>Older &rarr;</a> : <span class="ext">Older &rarr;</span>}
+          {nextUrl ? <a href={nextUrl}>Older &rarr;</a> : <span class="disabled">Older &rarr;</span>}
         </nav>
       )}
     </Layout>
@@ -190,7 +190,9 @@ const nextUrl =
       <h1>{props.label}</h1>
       <BlogsInSection entries={props.blogEntries} />
       <ChildSections sections={props.childSections} />
-      {props.childSections.length === 0 && props.blogEntries.length === 0 && <p class="ext">Nothing here yet.</p>}
+      {props.childSections.length === 0 && props.blogEntries.length === 0 && (
+        <p class="empty-state">Nothing here yet.</p>
+      )}
     </Layout>
   )
 }

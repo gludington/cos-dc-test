@@ -19,17 +19,17 @@ const worlds = [...new Set(posts.map((post) => post.data.world))].sort();
 ---
 
 <Layout title={siteName}>
-  <h1>{siteName}</h1>
+  <h1 class="site-title">{siteName}</h1>
   {
     worlds.length <= 1 ? (
       <WorldIndex world={worlds[0] ?? ""} />
     ) : (
-      <section>
-        <h2>Worlds</h2>
-        <ul class="plain">
+      <section class="panel">
+        <h2 class="panel-title">Worlds</h2>
+        <ul class="entry-list">
           {worlds.map((world) => (
-            <li>
-              <a href={worldIndexRoute(world)}>{worldLabel(world)}</a>
+            <li class="entry">
+              <a class="entry-title" href={worldIndexRoute(world)}>{worldLabel(world)}</a>
             </li>
           ))}
         </ul>

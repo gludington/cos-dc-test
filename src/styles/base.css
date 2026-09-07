@@ -1,0 +1,250 @@
+/* Base layer: resets, typography, and every reusable component class.
+   Wrapped in @layer base so a theme's plain, unlayered <link> stylesheet
+   (see layouts/Layout.astro) always wins outright, per the cascade rule
+   that any unlayered rule beats any layered one regardless of specificity
+   or source order. Selectors use :where() wherever possible so they carry
+   zero specificity themselves -- a theme (or a one-off override) never
+   needs !important to beat something in here.
+
+   Every value below comes from styles/tokens.css. If it isn't a var(--...),
+   it's structural (layout, not look) and shouldn't need theme overrides at
+   all. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse at top, hsl(var(--shadow-tint) / 0.12), transparent 55%),
+      radial-gradient(ellipse at bottom, hsl(var(--shadow-tint) / 0.14), transparent 60%);
+    background-attachment: fixed;
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: var(--font-size-base);
+    line-height: 1.65;
+  }
+
+  .site {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: var(--space-5) var(--space-3) var(--space-6);
+  }
+
+  :where(h1, h2, h3, h4) {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 0 0 var(--space-2);
+  }
+
+  :where(a) {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  :where(a:hover) {
+    color: var(--accent-strong);
+    text-decoration: underline;
+  }
+
+  code {
+    font-size: 0.9em;
+  }
+
+  /* Masthead -- only the homepage's own <h1> gets this (see
+     pages/index.astro); every other page's <h1> is a page title, not the
+     site's own name, so it stays at the plain heading style above. */
+  .site-title {
+    text-align: center;
+    font-size: 2.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin: 0 0 var(--space-5);
+    padding-bottom: var(--space-4);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+  .site-title::after {
+    content: "\2766";
+    display: block;
+    margin-top: var(--space-2);
+    font-size: 1rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--accent);
+  }
+
+  .crumbs {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: var(--space-4);
+  }
+  .crumbs a {
+    color: var(--muted);
+  }
+
+  /* One of these per grouped block of content (a blog's posts, recent
+     posts, tag cloud, etc.) -- the class-based replacement for what used
+     to be bare `section`/`section h2` tag selectors, so a theme can target
+     "a panel" without also catching unrelated <section> elements
+     elsewhere. */
+  .panel {
+    margin-top: var(--space-5);
+  }
+  .panel-title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    border-bottom: var(--border-width) solid var(--border);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .entry-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entry {
+    padding: var(--space-2) 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .entry:last-child {
+    border-bottom: none;
+  }
+  .entry-title {
+    font-weight: 600;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+  .meta a {
+    color: var(--muted);
+  }
+
+  .avatar {
+    width: 1.4em;
+    height: 1.4em;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: -0.35em;
+    margin-right: 0.4em;
+    border: var(--border-width) solid var(--border);
+  }
+  .avatar-lg {
+    width: 3.5em;
+    height: 3.5em;
+    display: block;
+    margin-bottom: var(--space-2);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    background: var(--surface);
+    border: var(--border-width) solid var(--border);
+    border-radius: 999px;
+    padding: 0.2rem 0.75rem;
+    margin-bottom: var(--space-2);
+    text-decoration: none;
+  }
+  a.tag:hover {
+    border-color: var(--accent);
+    color: var(--accent-strong);
+    text-decoration: none;
+  }
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+  .tag-cloud .tag {
+    margin-bottom: 0;
+  }
+  .tag-count {
+    color: var(--muted);
+    opacity: 0.75;
+    font-size: 0.9em;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: var(--border-width) solid var(--border);
+    font-size: 0.9rem;
+  }
+  .pagination-status {
+    color: var(--muted);
+  }
+  .pagination .disabled {
+    color: var(--muted);
+    opacity: 0.5;
+  }
+
+  .empty-state {
+    color: var(--muted);
+    font-style: italic;
+  }
+  .empty-state code {
+    font-style: normal;
+  }
+
+  /* Post body -- raw HTML passthrough from Foundry's ProseMirror editor
+     (see foundry-module's collector.js), so these rules need to cover
+     whatever a journal page's rich-text editor can produce, not just what
+     this site's own templates emit. Zero-specificity :where() throughout,
+     same reasoning as the rest of this file. */
+  .prose {
+    margin-top: var(--space-4);
+  }
+  .prose :where(h1, h2, h3, h4) {
+    margin-top: var(--space-5);
+  }
+  .prose :where(p, ul, ol, blockquote, table, figure) {
+    margin: 0 0 var(--space-3);
+  }
+  .prose img {
+    max-width: 100%;
+    border-radius: var(--radius-sm);
+  }
+  .prose blockquote {
+    margin-inline: 0;
+    padding: var(--space-2) var(--space-3);
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-style: italic;
+    color: var(--muted);
+  }
+  .prose hr {
+    border: none;
+    border-top: var(--border-width) solid var(--border);
+    margin: var(--space-4) 0;
+  }
+  .prose table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  .prose :where(th, td) {
+    border: var(--border-width) solid var(--border);
+    padding: var(--space-1) var(--space-2);
+    text-align: left;
+  }
+}

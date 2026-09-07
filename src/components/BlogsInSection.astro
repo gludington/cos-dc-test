@@ -16,12 +16,12 @@ const sorted = entries.slice().sort((a, b) => a.blog.blogTitle.localeCompare(b.b
 
 {
   sorted.length > 0 && (
-    <section>
-      <h2>Blogs</h2>
-      <ul class="plain">
+    <section class="panel">
+      <h2 class="panel-title">Blogs</h2>
+      <ul class="entry-list">
         {sorted.map(({ blog, subPath }) => (
-          <li>
-            <a href={blogRoute(blog)}>{blog.blogTitle}</a>
+          <li class="entry">
+            <a class="entry-title" href={blogRoute(blog)}>{blog.blogTitle}</a>
             <div class="meta">
               {blog.authorImage && <img class="avatar" src={blog.authorImage} alt="" />}
               by <a href={authorRoute(blog)}>{blog.authorName}</a>

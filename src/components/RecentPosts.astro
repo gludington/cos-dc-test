@@ -21,12 +21,12 @@ const recent = posts
 
 {
   recent.length > 0 && (
-    <section>
-      <h2>Recent Posts</h2>
-      <ul class="plain">
+    <section class="panel">
+      <h2 class="panel-title">Recent Posts</h2>
+      <ul class="entry-list">
         {recent.map((post) => (
-          <li>
-            <a href={postRoute(post.data)}>{post.data.title}</a>
+          <li class="entry">
+            <a class="entry-title" href={postRoute(post.data)}>{post.data.title}</a>
             <div class="meta">
               by <a href={authorRoute(post.data)}>{post.data.author.name}</a> in{" "}
               <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> · {formatDate(post.data.publishedAt)}

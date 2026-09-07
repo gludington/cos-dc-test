@@ -57,13 +57,13 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
 
 <Layout title={author.name}>
   <nav class="crumbs"><a href="/">{siteName}</a></nav>
-  {author.image && <img class="avatar" src={author.image} alt="" style="width:3em;height:3em" />}
+  {author.image && <img class="avatar avatar-lg" src={author.image} alt="" />}
   <h1>{author.name}</h1>
-  <ul class="plain">
+  <ul class="entry-list">
     {
       page.data.map((post) => (
-        <li>
-          <a href={postRoute(post.data)}>{post.data.title}</a>
+        <li class="entry">
+          <a class="entry-title" href={postRoute(post.data)}>{post.data.title}</a>
           <div class="meta">
             <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> · {formatDate(post.data.publishedAt)}
           </div>
@@ -74,11 +74,11 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
   {
     page.lastPage > 1 && (
       <nav class="pagination">
-        {page.url.prev ? <a href={page.url.prev}>&larr; Newer</a> : <span class="ext">&larr; Newer</span>}
-        <span class="ext">
+        {page.url.prev ? <a href={page.url.prev}>&larr; Newer</a> : <span class="disabled">&larr; Newer</span>}
+        <span class="pagination-status">
           Page {page.currentPage} of {page.lastPage}
         </span>
-        {page.url.next ? <a href={page.url.next}>Older &rarr;</a> : <span class="ext">Older &rarr;</span>}
+        {page.url.next ? <a href={page.url.next}>Older &rarr;</a> : <span class="disabled">Older &rarr;</span>}
       </nav>
     )
   }
