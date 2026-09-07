@@ -9,7 +9,11 @@ import { fileURLToPath } from "node:url";
 // invoked from (`cd site && npm run build` vs. running from the repo root
 // give different answers), not fixed to this project's root. Baking the
 // absolute path in via Vite's `define` sidesteps both problems.
-const CONTENT_DIR = fileURLToPath(new URL("../content", import.meta.url));
+//
+// This file lives at the project root, so "./content" (not "../content")
+// -- content/ is a child of this repo now, not a sibling one level up like
+// it was when the site was developed inside the wikiworld dev repo.
+const CONTENT_DIR = fileURLToPath(new URL("./content", import.meta.url));
 
 // Minimal config: static output only, no integrations yet. Pagefind search
 // and the eventual GM-vs-player build split (CLAUDE.md open question 4)
