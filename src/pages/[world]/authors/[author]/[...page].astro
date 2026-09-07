@@ -1,9 +1,18 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import Layout from "../../../../layouts/Layout.astro";
-import { postRoute, formatDate } from "../../../../lib/routes";
+import { getSiteConfig } from "../../../../lib/config";
+import { getPublishedPosts } from "../../../../lib/posts";
+import { postRoute, blogRoute, formatDate } from "../../../../lib/routes";
 
+const siteName = getSiteConfig().siteName;
+
+// Every post by a given author identity, across every blog (journal entry)
+// published under that display name -- grouped by authorSlug, which is
+// deliberately shared (not disambiguated) across blogs with the same
+// author name, unlike blogSlug. See routes.ts and render.js's assignSlugs.
+// The single-blog archive lives at pages/[world]/[section]/[...blog].astro.
 interface AuthorInfo {
   world: string;
   authorSlug: string;
@@ -13,7 +22,7 @@ interface AuthorInfo {
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const PAGE_SIZE = 10;
-  const posts = await getCollection("posts");
+  const posts = await getPublishedPosts();
 
   const groups = new Map<string, { author: AuthorInfo; posts: CollectionEntry<"posts">[] }>();
   for (const post of posts) {
@@ -47,7 +56,7 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
 ---
 
 <Layout title={author.name}>
-  <nav class="crumbs"><a href="/">Wikiworld</a></nav>
+  <nav class="crumbs"><a href="/">{siteName}</a></nav>
   {author.image && <img class="avatar" src={author.image} alt="" style="width:3em;height:3em" />}
   <h1>{author.name}</h1>
   <ul class="plain">
@@ -55,7 +64,9 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
       page.data.map((post) => (
         <li>
           <a href={postRoute(post.data)}>{post.data.title}</a>
-          <div class="meta">{formatDate(post.data.publishedAt)}</div>
+          <div class="meta">
+            <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> · {formatDate(post.data.publishedAt)}
+          </div>
         </li>
       ))
     }

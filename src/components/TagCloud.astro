@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { tagRoute } from "../lib/routes";
+import { slugifyTag } from "../lib/tags";
+
+// Every tag that currently has at least one post within whatever scope the
+// caller hands in -- "active" in the sense that its /<world>/tags/<tag>/
+// archive page (see pages/[world]/tags/[tag]/[...page].astro) actually
+// exists and has content, as opposed to listing every tag anyone's ever
+// typed. Tags are world-scoped (two worlds can each have their own
+// "combat" tag, landing on two different pages), so the dedup key is
+// world+tagSlug, not just the tag text -- same reasoning as the tag
+// archive page's own getStaticPaths. Takes posts as a prop, same reasoning
+// as RecentPosts: the caller decides the scope.
+interface TagEntry {
+  name: string;
+  world: string;
+  tagSlug: string;
+  count: number;
+}
+
+interface Props {
+  posts: CollectionEntry<"posts">[];
+}
+const { posts } = Astro.props;
+
+const tags = new Map<string, TagEntry>();
+for (const post of posts) {
+  for (const tagName of post.data.tags) {
+    const tagSlug = slugifyTag(tagName);
+    const key = `${post.data.world}/${tagSlug}`;
+    if (!tags.has(key)) {
+      tags.set(key, { name: tagName, world: post.data.world, tagSlug, count: 0 });
+    }
+    tags.get(key)!.count += 1;
+  }
+}
+
+const sortedTags = Array.from(tags.values()).sort((a, b) => a.name.localeCompare(b.name));
+---
+
+{
+  sortedTags.length > 0 && (
+    <section>
+      <h2>Tags</h2>
+      <div class="tag-cloud">
+        {sortedTags.map((tag) => (
+          <a class="tag" href={tagRoute(tag)}>
+            {tag.name} <span class="tag-count">{tag.count}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}

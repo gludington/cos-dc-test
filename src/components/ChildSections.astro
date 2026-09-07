@@ -1,0 +1,28 @@
+---
+import type { SectionInfo } from "../lib/sections";
+import { sectionRoute } from "../lib/routes";
+
+// Links one level down from the current root level -- e.g. on the
+// homepage, the top-level sections; inside "PCs/Act 1", any sections
+// registered directly beneath it (there are none until a blog roots itself
+// there, e.g. "PCs/Act 1/Something").
+interface Props {
+  sections: SectionInfo[];
+}
+const { sections } = Astro.props;
+---
+
+{
+  sections.length > 0 && (
+    <section>
+      <h2>Sections</h2>
+      <ul class="plain">
+        {sections.map((s) => (
+          <li>
+            <a href={sectionRoute(s.world, s.slug)}>{s.label}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

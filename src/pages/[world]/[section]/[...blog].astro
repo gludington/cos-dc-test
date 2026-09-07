@@ -1,0 +1,196 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { getSiteConfig } from "../../../lib/config";
+import { getPublishedPosts } from "../../../lib/posts";
+import {
+  postRoute,
+  authorRoute,
+  blogRoute,
+  rootCrumbs,
+  sectionRoute,
+  type Crumb,
+  formatDate,
+} from "../../../lib/routes";
+import {
+  toBlogInfos,
+  buildSectionTree,
+  blogsInSubtree,
+  type BlogInfo,
+  type SectionInfo,
+  type BlogWithSubPath,
+} from "../../../lib/sections";
+import BlogsInSection from "../../../components/BlogsInSection.astro";
+import ChildSections from "../../../components/ChildSections.astro";
+
+// This one route file generates two different kinds of page, both living
+// under /<world>/<blogsSegment>/<...arbitrary-depth-path>/ -- world-first,
+// with blogsSegment a configurable literal (the "Blogs URL Segment"
+// Foundry setting, default "journals"; same value on every single
+// generated path in one build, since it's one site-wide setting -- see
+// lib/config.ts's getSiteConfig()):
+//
+//  - "blog": a specific journal entry's own paginated post archive, at its
+//    full blogSlug (which already carries its root prefix, if any).
+//  - "section": an intermediate root level itself, e.g.
+//    /<world>/<blogsSegment>/pcs/ for a blog rooted at "PCs/Act 1" -- lists
+//    every blog anywhere under that level, recursively (BlogsInSection --
+//    a section with real sub-sections often has little or nothing sitting
+//    directly on it, so the exact-level-only list would mostly come up
+//    empty) plus links to the next level of sub-sections (ChildSections),
+//    so root path segments are real, browsable pages, not just inert URL
+//    prefixes. The homepage's root level (depth 0, no root prefix at all)
+//    uses the narrower BlogsAtLevel instead -- see pages/index.astro for
+//    why.
+//
+// Both need a REST parameter ([...blog], not [blog]) since either kind's
+// path can be more than one segment deep -- which in turn rules out Astro's
+// paginate()/[...page].astro convention for the "blog" case (that needs the
+// LAST rest segment in the route for itself, and a route can't have two
+// rest segments in the same position). Pagination is hand-rolled instead:
+// page 1 lives at the blog's own slug, page N at "<blogSlug>/<N>", matching
+// paginate()'s own URL convention. Section pages aren't paginated -- a
+// world has far fewer blogs than posts.
+type PageProps =
+  | { kind: "blog"; blog: BlogInfo; pagePosts: CollectionEntry<"posts">[]; pageNum: number; totalPages: number }
+  | {
+      kind: "section";
+      label: string;
+      ancestorCrumbs: Crumb[];
+      childSections: SectionInfo[];
+      blogEntries: BlogWithSubPath[];
+    };
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 10; // must stay inside this function -- see project notes on Astro's paginate()
+  const { blogsSegment } = getSiteConfig();
+  const posts = await getPublishedPosts();
+  const blogs = toBlogInfos(posts);
+  const blogByUuid = new Map(blogs.map((b) => [b.blogUuid, b] as const));
+
+  const postsByBlogUuid = new Map<string, CollectionEntry<"posts">[]>();
+  for (const post of posts) {
+    if (!postsByBlogUuid.has(post.data.blogUuid)) postsByBlogUuid.set(post.data.blogUuid, []);
+    postsByBlogUuid.get(post.data.blogUuid)!.push(post);
+  }
+
+  // Every full blogSlug, so a section entry can be skipped if it would
+  // collide with an actual blog living at that exact path (e.g. a blog
+  // titled "PCs" with no root, and a different blog rooted at "PCs/x") --
+  // the blog wins; this is a rare edge case, not one worth its own UI.
+  const blogSlugs = new Set(blogs.map((b) => b.blogSlug));
+  const sectionsByWorld = buildSectionTree(blogs);
+
+  const paths: { params: { world: string; section: string; blog: string }; props: PageProps }[] = [];
+
+  for (const [blogUuid, blogPosts] of postsByBlogUuid) {
+    const blog = blogByUuid.get(blogUuid)!;
+    const sorted = blogPosts.sort((a, b) => b.data.publishedAt - a.data.publishedAt);
+    const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+    for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+      const pagePosts = sorted.slice((pageNum - 1) * PAGE_SIZE, pageNum * PAGE_SIZE);
+      paths.push({
+        params: {
+          world: blog.world,
+          section: blogsSegment,
+          blog: pageNum === 1 ? blog.blogSlug : `${blog.blogSlug}/${pageNum}`,
+        },
+        props: { kind: "blog", blog, pagePosts, pageNum, totalPages },
+      });
+    }
+  }
+
+  for (const [world, sections] of sectionsByWorld) {
+    for (const [prefixSlug, info] of sections) {
+      if (blogSlugs.has(prefixSlug)) continue; // an actual blog owns this exact path -- it wins
+
+      const slugParts = prefixSlug.split("/");
+      const ancestorCrumbs: Crumb[] = slugParts.slice(0, -1).map((_, i) => {
+        const slug = slugParts.slice(0, i + 1).join("/");
+        return { label: sections.get(slug)?.label ?? slug, href: sectionRoute(world, slug) };
+      });
+      const childSections: SectionInfo[] = Array.from(info.childSlugs).map((slug) => ({
+        world,
+        slug,
+        label: sections.get(slug)?.label ?? slug.split("/").pop()!,
+      }));
+      const blogEntries = blogsInSubtree(sections, prefixSlug);
+
+      paths.push({
+        params: { world, section: blogsSegment, blog: prefixSlug },
+        props: { kind: "section", label: info.label, ancestorCrumbs, childSections, blogEntries },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const props = Astro.props as PageProps;
+const siteName = getSiteConfig().siteName;
+
+const blogCrumbs = props.kind === "blog" ? rootCrumbs(props.blog) : [];
+const blogBase = props.kind === "blog" ? blogRoute(props.blog) : "";
+const prevUrl =
+  props.kind === "blog" && props.pageNum > 1
+    ? props.pageNum === 2
+      ? blogBase
+      : `${blogBase}${props.pageNum - 1}/`
+    : null;
+const nextUrl =
+  props.kind === "blog" && props.pageNum < props.totalPages ? `${blogBase}${props.pageNum + 1}/` : null;
+---
+
+{
+  props.kind === "blog" ? (
+    <Layout title={props.blog.blogTitle}>
+      <nav class="crumbs">
+        <a href="/">{siteName}</a>
+        {blogCrumbs.map((c) => (
+          <>
+            {" / "}
+            <a href={c.href}>{c.label}</a>
+          </>
+        ))}
+      </nav>
+      <h1>{props.blog.blogTitle}</h1>
+      <div class="meta">
+        {props.blog.authorImage && <img class="avatar" src={props.blog.authorImage} alt="" />}
+        by <a href={authorRoute(props.blog)}>{props.blog.authorName}</a>
+      </div>
+      <ul class="plain">
+        {props.pagePosts.map((post) => (
+          <li>
+            <a href={postRoute(post.data)}>{post.data.title}</a>
+            <div class="meta">{formatDate(post.data.publishedAt)}</div>
+          </li>
+        ))}
+      </ul>
+      {props.totalPages > 1 && (
+        <nav class="pagination">
+          {prevUrl ? <a href={prevUrl}>&larr; Newer</a> : <span class="ext">&larr; Newer</span>}
+          <span class="ext">
+            Page {props.pageNum} of {props.totalPages}
+          </span>
+          {nextUrl ? <a href={nextUrl}>Older &rarr;</a> : <span class="ext">Older &rarr;</span>}
+        </nav>
+      )}
+    </Layout>
+  ) : (
+    <Layout title={props.label}>
+      <nav class="crumbs">
+        <a href="/">{siteName}</a>
+        {props.ancestorCrumbs.map((c) => (
+          <>
+            {" / "}
+            <a href={c.href}>{c.label}</a>
+          </>
+        ))}
+      </nav>
+      <h1>{props.label}</h1>
+      <BlogsInSection entries={props.blogEntries} />
+      <ChildSections sections={props.childSections} />
+      {props.childSections.length === 0 && props.blogEntries.length === 0 && <p class="ext">Nothing here yet.</p>}
+    </Layout>
+  )
+}

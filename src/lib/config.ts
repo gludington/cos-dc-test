@@ -10,25 +10,55 @@ import path from "node:path";
 // any git action: it rides the same publish button that's already pushing
 // posts, not a separate step.
 //
-// Anchored on process.cwd(), not import.meta.url -- Astro's build bundles
-// this module into a relocated chunk file (dist/.prerender/chunks/...), so
-// import.meta.url doesn't reflect this file's real source location at
-// build time. process.cwd() is reliably the project root Astro always
-// builds from (confirmed against a real `astro build` run).
-const CONFIG_PATH = path.join(process.cwd(), "content", "site-config.json");
+// __WIKIWORLD_CONTENT_DIR__ is injected by astro.config.mjs via Vite's
+// `define` -- neither process.cwd() (depends on the invoking shell's
+// working directory when the build command runs, not this project's root)
+// nor this module's own import.meta.url (Astro relocates this into a build
+// chunk under dist/.prerender/chunks/, losing its real source location) is
+// reliable here. See astro.config.mjs for why its own import.meta.url is.
+declare const __WIKIWORLD_CONTENT_DIR__: string;
+const CONFIG_PATH = path.join(__WIKIWORLD_CONTENT_DIR__, "site-config.json");
+
+const DEFAULT_SITE_NAME = "Wikiworld";
+const DEFAULT_BLOGS_SEGMENT = "journals";
+
+/** The configured URL segment name gets slugified here, once, regardless
+ * of what the GM actually typed into the Foundry setting -- unlike
+ * siteName/theme (plain text, never embedded in a URL), this one becomes a
+ * literal path segment on every blog/post URL, so it has to be URL-safe no
+ * matter what. */
+function slugifySegment(value: string, fallback: string): string {
+  const slug = value
+    .normalize("NFKD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return slug || fallback;
+}
 
 export interface SiteConfig {
   theme: string;
+  siteName: string;
+  blogsSegment: string;
 }
 
 export function getSiteConfig(): SiteConfig {
-  if (!existsSync(CONFIG_PATH)) return { theme: "default" };
+  if (!existsSync(CONFIG_PATH)) {
+    return { theme: "default", siteName: DEFAULT_SITE_NAME, blogsSegment: DEFAULT_BLOGS_SEGMENT };
+  }
   try {
     const raw = JSON.parse(readFileSync(CONFIG_PATH, "utf-8"));
     const theme = typeof raw.theme === "string" && raw.theme.trim() ? raw.theme.trim() : "default";
-    return { theme };
+    const siteName = typeof raw.siteName === "string" && raw.siteName.trim() ? raw.siteName.trim() : DEFAULT_SITE_NAME;
+    const blogsSegment =
+      typeof raw.blogsSegment === "string" && raw.blogsSegment.trim()
+        ? slugifySegment(raw.blogsSegment, DEFAULT_BLOGS_SEGMENT)
+        : DEFAULT_BLOGS_SEGMENT;
+    return { theme, siteName, blogsSegment };
   } catch {
-    return { theme: "default" };
+    return { theme: "default", siteName: DEFAULT_SITE_NAME, blogsSegment: DEFAULT_BLOGS_SEGMENT };
   }
 }
 

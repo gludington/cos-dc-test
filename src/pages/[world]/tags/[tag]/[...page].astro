@@ -1,0 +1,83 @@
+---
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../../../layouts/Layout.astro";
+import { getSiteConfig } from "../../../../lib/config";
+import { getPublishedPosts } from "../../../../lib/posts";
+import { postRoute, blogRoute, formatDate } from "../../../../lib/routes";
+import { slugifyTag } from "../../../../lib/tags";
+
+const siteName = getSiteConfig().siteName;
+
+// Every post tagged with a given tag, within one world. Tags aren't
+// pre-slugged in frontmatter (they're a freeform list, unlike
+// blogSlug/authorSlug) so slugifyTag() is applied here and, identically, on
+// each post page's tag links -- see lib/tags.ts. A post can carry more than
+// one tag, so unlike the blog/author archives, one post fans out into
+// multiple groups here.
+interface TagInfo {
+  world: string;
+  tagSlug: string;
+  name: string;
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const PAGE_SIZE = 10;
+  const posts = await getPublishedPosts();
+
+  const groups = new Map<string, { tag: TagInfo; posts: CollectionEntry<"posts">[] }>();
+  for (const post of posts) {
+    for (const tagName of post.data.tags) {
+      const key = `${post.data.world}/${slugifyTag(tagName)}`;
+      if (!groups.has(key)) {
+        groups.set(key, {
+          tag: { world: post.data.world, tagSlug: slugifyTag(tagName), name: tagName },
+          posts: [],
+        });
+      }
+      groups.get(key)!.posts.push(post);
+    }
+  }
+
+  return Array.from(groups.values()).flatMap(({ tag, posts: tagPosts }) => {
+    const sorted = tagPosts.sort((a, b) => b.data.publishedAt - a.data.publishedAt);
+    return paginate(sorted, {
+      params: { world: tag.world, tag: tag.tagSlug },
+      props: { tag },
+      pageSize: PAGE_SIZE,
+    });
+  });
+}
+
+const { tag } = Astro.props as { tag: TagInfo };
+const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
+---
+
+<Layout title={`Tag: ${tag.name}`}>
+  <nav class="crumbs"><a href="/">{siteName}</a></nav>
+  <span class="tag">Tag</span>
+  <h1>{tag.name}</h1>
+  <ul class="plain">
+    {
+      page.data.map((post) => (
+        <li>
+          <a href={postRoute(post.data)}>{post.data.title}</a>
+          <div class="meta">
+            <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> · {formatDate(post.data.publishedAt)}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+  {
+    page.lastPage > 1 && (
+      <nav class="pagination">
+        {page.url.prev ? <a href={page.url.prev}>&larr; Newer</a> : <span class="ext">&larr; Newer</span>}
+        <span class="ext">
+          Page {page.currentPage} of {page.lastPage}
+        </span>
+        {page.url.next ? <a href={page.url.next}>Older &rarr;</a> : <span class="ext">Older &rarr;</span>}
+      </nav>
+    )
+  }
+</Layout>
