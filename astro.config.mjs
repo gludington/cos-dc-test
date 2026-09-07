@@ -20,9 +20,23 @@ const CONTENT_DIR = fileURLToPath(new URL("./content", import.meta.url));
 // are later additions, not part of this scaffold.
 export default defineConfig({
   output: "static",
+  // host: true -- listen on every network interface, not just localhost,
+  // so the dev server is reachable from another device on the LAN at all.
+  server: {
+    host: true,
+  },
   vite: {
     define: {
       __WIKIWORLD_CONTENT_DIR__: JSON.stringify(CONTENT_DIR),
+    },
+    server: {
+      // Vite's DNS-rebinding protection rejects any request whose Host
+      // header isn't localhost/127.0.0.1/the bound IP -- true disables
+      // that check entirely, accepting any hostname. Fine for local dev
+      // on a trusted LAN; don't carry this into a publicly reachable
+      // deployment (Netlify/Cloudflare's own build output isn't affected
+      // either way -- this only governs `astro dev`).
+      allowedHosts: true,
     },
   },
 });
