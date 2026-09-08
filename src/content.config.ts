@@ -18,7 +18,9 @@ const postSchema = z.object({
   // single-blog archive/permalink identity. authorSlug: shared across every
   // blog with the same displayed author name, deliberately NOT
   // disambiguated -- the cross-blog author archive identity. See
-  // render.js/sync/ingest.js's assignSlugs for why these are kept distinct.
+  // assignSlugs() in the Foundry module's render.js or this repo's
+  // scripts/ingest.js (both implement it identically) for why these are
+  // kept distinct.
   blogSlug: z.string(),
   // Raw (unslugified) root text, e.g. "PCs/Act 1" -- the slugified version
   // is already folded into blogSlug's prefix; this is kept separately for

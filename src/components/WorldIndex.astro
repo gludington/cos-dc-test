@@ -25,7 +25,7 @@ const rootLevelSections = topLevelSections(buildSectionTree(blogInfos));
 {
   allPosts.length === 0 ? (
     <p class="empty-state">
-      No posts yet. Run <code>node sync/ingest.js &lt;payload.json&gt;</code> from the repo root,
+      No posts yet. Run <code>node scripts/ingest.js &lt;payload.json&gt;</code> from the repo root,
       then restart the dev server.
     </p>
   ) : (

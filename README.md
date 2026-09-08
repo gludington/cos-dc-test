@@ -42,6 +42,9 @@ editing, ever.
 - `src/styles/` — the design system (colors, fonts, spacing, every reusable CSS class) and how
   theming works — see [`src/styles/README.md`](src/styles/README.md) if you're customizing the
   look
+- `scripts/ingest.js` — local dev tool: turns a "Dev Sync" payload (downloaded from Foundry) into
+  `content/` markdown, no GitHub involved — see [`scripts/README.md`](scripts/README.md). For
+  working on the Astro templates themselves, not for normal use.
 - `content/` — generated markdown, one file per published post. Written by the Foundry module,
   not by hand.
 
@@ -51,3 +54,8 @@ editing, ever.
 npm install
 npm run dev
 ```
+
+To test with real content without touching GitHub: in Foundry, check "Enable Dev Mode" in the
+module's settings, click **Dev Sync** instead of **Publish to Web**, then run
+`node scripts/ingest.js ~/Downloads/world2web-....json` here — `astro dev` picks up the result
+immediately.
