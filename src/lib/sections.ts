@@ -14,7 +14,7 @@ export interface BlogInfo {
   authorName: string;
   authorImage: string | null;
   root: string | null;
-  postOrder: "newest" | "oldest";
+  postOrder: "newest" | "oldest" | "manual";
 }
 
 export interface SectionInfo {
