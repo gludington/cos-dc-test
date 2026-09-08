@@ -1,5 +1,5 @@
 // Matches the slugify() in foundry-module/scripts/render.js and
-// sync/ingest.js, but tags aren't pre-slugged in frontmatter (unlike
+// scripts/ingest.js, but tags aren't pre-slugged in frontmatter (unlike
 // blogSlug/authorSlug) since they're a freeform, editable list -- slugify
 // on the site side instead, at both the link-out (post page) and
 // link-target (tag archive's getStaticPaths) ends, so they always agree.
