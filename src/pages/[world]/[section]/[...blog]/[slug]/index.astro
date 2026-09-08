@@ -16,19 +16,19 @@ export async function getStaticPaths() {
   const posts = await getPublishedPosts();
   // Built once here, not per post -- see buildContentLinkMap()'s doc
   // comment.
-  const uuidToUrl = buildContentLinkMap(posts);
+  const uuidToTarget = buildContentLinkMap(posts);
   return posts.map((post) => ({
     params: { world: post.data.world, section: blogsSegment, blog: post.data.blogSlug, slug: post.data.slug },
-    props: { post, uuidToUrl },
+    props: { post, uuidToTarget },
   }));
 }
 
-const { post, uuidToUrl } = Astro.props;
+const { post, uuidToTarget } = Astro.props;
 // post.html is raw HTML passthrough already (see repo-root CLAUDE.md) --
 // nothing here is really "markdown" needing Astro's render()/<Content />
 // pipeline, so resolving Foundry's @UUID[] content-links is a plain string
 // rewrite on the body before injecting it directly.
-const resolvedHtml = resolveContentLinks(post.body ?? "", post.data.world, uuidToUrl);
+const resolvedHtml = resolveContentLinks(post.body ?? "", post.data.world, uuidToTarget);
 const wasUpdated = post.data.updatedAt !== post.data.publishedAt;
 const crumbs = rootCrumbs(post.data);
 ---
