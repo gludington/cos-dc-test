@@ -2,9 +2,7 @@
 import { getPublishedPosts } from "../lib/posts";
 import { toBlogInfos, buildSectionTree, topLevelSections } from "../lib/sections";
 import RecentPosts from "./RecentPosts.astro";
-import BlogFeed from "./BlogFeed.astro";
-import BlogsAtLevel from "./BlogsAtLevel.astro";
-import ChildSections from "./ChildSections.astro";
+import BrowseLevel from "./BrowseLevel.astro";
 import TagCloud from "./TagCloud.astro";
 
 // One world's worth of the homepage's own content -- reused by both the
@@ -33,9 +31,7 @@ const rootLevelSections = topLevelSections(buildSectionTree(blogInfos));
   ) : (
     <>
       <RecentPosts posts={allPosts} count={5} />
-      <BlogFeed posts={allPosts} />
-      <BlogsAtLevel blogs={rootLevelBlogs} />
-      <ChildSections sections={rootLevelSections} />
+      <BrowseLevel sections={rootLevelSections} blogs={rootLevelBlogs} />
       <TagCloud posts={allPosts} />
     </>
   )
