@@ -1,0 +1,38 @@
+---
+import { getPublishedPosts } from "../lib/posts";
+import { toBlogInfos, buildSectionTree, topLevelSections } from "../lib/sections";
+import RecentPosts from "./RecentPosts.astro";
+import BrowseLevel from "./BrowseLevel.astro";
+import TagCloud from "./TagCloud.astro";
+
+// One world's worth of the homepage's own content -- reused by both the
+// homepage itself (when there's only one world total, see pages/index.astro)
+// and every world's own index page (pages/[world]/[section]/index.astro,
+// always generated regardless of how many worlds exist). Root-level blogs
+// and sections here mean *this world's* root level, not the whole site's --
+// each world gets its own independent root/section hierarchy.
+interface Props {
+  world: string;
+}
+const { world } = Astro.props;
+
+const allPosts = (await getPublishedPosts()).filter((post) => post.data.world === world);
+const blogInfos = toBlogInfos(allPosts);
+const rootLevelBlogs = blogInfos.filter((b) => !b.root);
+const rootLevelSections = topLevelSections(buildSectionTree(blogInfos));
+---
+
+{
+  allPosts.length === 0 ? (
+    <p class="empty-state">
+      No posts yet. Run <code>node sync/ingest.js &lt;payload.json&gt;</code> from the repo root,
+      then restart the dev server.
+    </p>
+  ) : (
+    <>
+      <RecentPosts posts={allPosts} count={5} />
+      <BrowseLevel sections={rootLevelSections} blogs={rootLevelBlogs} />
+      <TagCloud posts={allPosts} />
+    </>
+  )
+}
