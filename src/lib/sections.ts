@@ -14,6 +14,7 @@ export interface BlogInfo {
   authorName: string;
   authorImage: string | null;
   root: string | null;
+  postOrder: "newest" | "oldest";
 }
 
 export interface SectionInfo {
@@ -43,6 +44,7 @@ export function toBlogInfos(posts: CollectionEntry<"posts">[]): BlogInfo[] {
       authorName: post.data.author.name,
       authorImage: post.data.author.image,
       root: post.data.root,
+      postOrder: post.data.postOrder,
     });
   }
   return Array.from(byUuid.values());

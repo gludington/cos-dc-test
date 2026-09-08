@@ -86,7 +86,12 @@ export async function getStaticPaths() {
 
   for (const [blogUuid, blogPosts] of postsByBlogUuid) {
     const blog = blogByUuid.get(blogUuid)!;
-    const sorted = blogPosts.sort((a, b) => b.data.publishedAt - a.data.publishedAt);
+    // Only this blog's own archive listing respects postOrder -- every
+    // other listing site-wide (RecentPosts, author/tag archives) always
+    // sorts newest-first regardless, see BlogInfo's postOrder doc comment.
+    const sorted = blogPosts.sort((a, b) =>
+      blog.postOrder === "oldest" ? a.data.publishedAt - b.data.publishedAt : b.data.publishedAt - a.data.publishedAt,
+    );
     const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
     for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
       const pagePosts = sorted.slice((pageNum - 1) * PAGE_SIZE, pageNum * PAGE_SIZE);

@@ -34,6 +34,11 @@ const postSchema = z.object({
   }),
   authorSlug: z.string(),
   tags: z.array(z.string()),
+  // This blog's own post-archive listing order -- every other listing
+  // site-wide (recent posts, author/tag archives) always shows
+  // newest-published-first regardless of this value. .default("newest")
+  // so posts published before this field existed still validate.
+  postOrder: z.enum(["newest", "oldest"]).default("newest"),
   publishedAt: z.number(),
   updatedAt: z.number(),
   // Soft-delete tombstone: true once a previously-published post is
