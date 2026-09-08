@@ -37,8 +37,16 @@ const postSchema = z.object({
   // This blog's own post-archive listing order -- every other listing
   // site-wide (recent posts, author/tag archives) always shows
   // newest-published-first regardless of this value. .default("newest")
-  // so posts published before this field existed still validate.
-  postOrder: z.enum(["newest", "oldest"]).default("newest"),
+  // so posts published before this field existed still validate. "manual"
+  // means the exact order pages appear in Foundry's own page list --
+  // see sortIndex below.
+  postOrder: z.enum(["newest", "oldest", "manual"]).default("newest"),
+  // Foundry's own page.sort -- only meaningful when postOrder is "manual".
+  // .default(0) so posts published before this field existed still
+  // validate (they'll all tie at 0 under "manual", falling back to
+  // whatever order Array.sort leaves them in -- harmless, since "manual"
+  // has to be deliberately chosen per blog anyway).
+  sortIndex: z.number().default(0),
   publishedAt: z.number(),
   updatedAt: z.number(),
   // Soft-delete tombstone: true once a previously-published post is
