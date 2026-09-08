@@ -1,5 +1,5 @@
 /* Test theme, proving the pluggable-theme mechanism -- not the "real" hosted
-   theme collection (wikiworld-themes.pages.dev doesn't exist yet). Serve via
+   theme collection (world2web-themes.pages.dev doesn't exist yet). Serve via
    jsDelivr's GitHub proxy in the meantime (cdn.jsdelivr.net/gh/<owner>/<repo>@<branch>/<path>),
    NOT raw.githubusercontent.com directly -- confirmed live that GitHub's raw
    file server sends Content-Type: text/plain (not text/css) with

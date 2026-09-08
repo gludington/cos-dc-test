@@ -10,16 +10,16 @@ import path from "node:path";
 // any git action: it rides the same publish button that's already pushing
 // posts, not a separate step.
 //
-// __WIKIWORLD_CONTENT_DIR__ is injected by astro.config.mjs via Vite's
+// __WORLD2WEB_CONTENT_DIR__ is injected by astro.config.mjs via Vite's
 // `define` -- neither process.cwd() (depends on the invoking shell's
 // working directory when the build command runs, not this project's root)
 // nor this module's own import.meta.url (Astro relocates this into a build
 // chunk under dist/.prerender/chunks/, losing its real source location) is
 // reliable here. See astro.config.mjs for why its own import.meta.url is.
-declare const __WIKIWORLD_CONTENT_DIR__: string;
-const CONFIG_PATH = path.join(__WIKIWORLD_CONTENT_DIR__, "site-config.json");
+declare const __WORLD2WEB_CONTENT_DIR__: string;
+const CONFIG_PATH = path.join(__WORLD2WEB_CONTENT_DIR__, "site-config.json");
 
-const DEFAULT_SITE_NAME = "Wikiworld";
+const DEFAULT_SITE_NAME = "World2Web";
 const DEFAULT_BLOGS_SEGMENT = "journals";
 
 /** The configured URL segment name gets slugified here, once, regardless
@@ -62,7 +62,7 @@ export function getSiteConfig(): SiteConfig {
   }
 }
 
-const THEMES_BASE_URL = "https://wikiworld-themes.pages.dev/themes";
+const THEMES_BASE_URL = "https://world2web-themes.pages.dev/themes";
 
 /** null means "no external stylesheet at all -- use the site's built-in
  * look" (the "default" case, and the safe fallback for anything unset).

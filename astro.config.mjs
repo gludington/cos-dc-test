@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 //
 // This file lives at the project root, so "./content" (not "../content")
 // -- content/ is a child of this repo now, not a sibling one level up like
-// it was when the site was developed inside the wikiworld dev repo.
+// it was when the site was developed inside the world2web dev repo.
 const CONTENT_DIR = fileURLToPath(new URL("./content", import.meta.url));
 
 // Minimal config: static output only, no integrations yet. Pagefind search
@@ -27,7 +27,7 @@ export default defineConfig({
   },
   vite: {
     define: {
-      __WIKIWORLD_CONTENT_DIR__: JSON.stringify(CONTENT_DIR),
+      __WORLD2WEB_CONTENT_DIR__: JSON.stringify(CONTENT_DIR),
     },
     server: {
       // Vite's DNS-rebinding protection rejects any request whose Host
