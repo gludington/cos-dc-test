@@ -1,10 +1,10 @@
 ---
-import { render } from "astro:content";
 import Layout from "../../../../../layouts/Layout.astro";
 import { getSiteConfig } from "../../../../../lib/config";
 import { getPublishedPosts } from "../../../../../lib/posts";
 import { blogRoute, authorRoute, tagRoute, rootCrumbs, formatDate } from "../../../../../lib/routes";
 import { slugifyTag } from "../../../../../lib/tags";
+import { buildContentLinkMap, resolveContentLinks } from "../../../../../lib/relationships";
 
 const siteName = getSiteConfig().siteName;
 
@@ -14,14 +14,21 @@ export async function getStaticPaths() {
   // means it gets no generated page at all, so its old URL 404s on the
   // next deploy rather than staying reachable by direct link.
   const posts = await getPublishedPosts();
+  // Built once here, not per post -- see buildContentLinkMap()'s doc
+  // comment.
+  const uuidToUrl = buildContentLinkMap(posts);
   return posts.map((post) => ({
     params: { world: post.data.world, section: blogsSegment, blog: post.data.blogSlug, slug: post.data.slug },
-    props: { post },
+    props: { post, uuidToUrl },
   }));
 }
 
-const { post } = Astro.props;
-const { Content } = await render(post);
+const { post, uuidToUrl } = Astro.props;
+// post.html is raw HTML passthrough already (see repo-root CLAUDE.md) --
+// nothing here is really "markdown" needing Astro's render()/<Content />
+// pipeline, so resolving Foundry's @UUID[] content-links is a plain string
+// rewrite on the body before injecting it directly.
+const resolvedHtml = resolveContentLinks(post.body ?? "", post.data.world, uuidToUrl);
 const wasUpdated = post.data.updatedAt !== post.data.publishedAt;
 const crumbs = rootCrumbs(post.data);
 ---
@@ -59,7 +66,5 @@ const crumbs = rootCrumbs(post.data);
       </div>
     )
   }
-  <section class="prose">
-    <Content />
-  </section>
+  <section class="prose" set:html={resolvedHtml} />
 </Layout>
