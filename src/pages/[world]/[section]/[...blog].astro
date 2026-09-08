@@ -39,9 +39,10 @@ import ChildSections from "../../../components/ChildSections.astro";
 //    directly on it, so the exact-level-only list would mostly come up
 //    empty) plus links to the next level of sub-sections (ChildSections),
 //    so root path segments are real, browsable pages, not just inert URL
-//    prefixes. The homepage's root level (depth 0, no root prefix at all)
-//    uses the narrower BlogsAtLevel instead -- see pages/index.astro for
-//    why.
+//    prefixes. The homepage's own root level (depth 0, no root prefix at
+//    all) is handled by WorldIndex.astro's BrowseLevel instead, which only
+//    needs the exact-level list (root-level blogs are always few, unlike
+//    the recursive case here).
 //
 // Both need a REST parameter ([...blog], not [blog]) since either kind's
 // path can be more than one segment deep -- which in turn rules out Astro's
