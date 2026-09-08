@@ -1,0 +1,35 @@
+---
+import { blogRoute, authorRoute } from "../lib/routes";
+import type { BlogWithSubPath } from "../lib/sections";
+
+// Every blog under a section, recursively -- see blogsInSubtree() in
+// lib/sections.ts for why this (not just the blogs directly at that exact
+// level) is what a section page shows: a section with real sub-sections
+// often has little or nothing sitting directly on it. Each entry notes
+// which sub-section it actually lives in when it's not directly here.
+interface Props {
+  entries: BlogWithSubPath[];
+}
+const { entries } = Astro.props;
+const sorted = entries.slice().sort((a, b) => a.blog.blogTitle.localeCompare(b.blog.blogTitle));
+---
+
+{
+  sorted.length > 0 && (
+    <section class="panel">
+      <h2 class="panel-title">Blogs</h2>
+      <ul class="entry-list">
+        {sorted.map(({ blog, subPath }) => (
+          <li class="entry">
+            <a class="entry-title" href={blogRoute(blog)}>{blog.blogTitle}</a>
+            <div class="meta">
+              {blog.authorImage && <img class="avatar" src={blog.authorImage} alt="" />}
+              by <a href={authorRoute(blog)}>{blog.authorName}</a>
+              {subPath.length > 0 && <> · in {subPath.join(" / ")}</>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
