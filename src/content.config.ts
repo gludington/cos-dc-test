@@ -67,8 +67,8 @@ export const collections = {
   posts: defineCollection({
     // Relative to the project root (this repo), not to this file's own
     // src/ directory -- content/ now lives inside this same repo
-    // (wikiworld-site-template), not as a sibling one level up like it did
-    // when the site was still developed inside the wikiworld dev repo.
+    // (world2web-site-template), not as a sibling one level up like it did
+    // when the site was still developed inside the world2web dev repo.
     loader: glob({ pattern: "*/blogs/**/*.md", base: "content/worlds", generateId }),
     schema: postSchema,
   }),
