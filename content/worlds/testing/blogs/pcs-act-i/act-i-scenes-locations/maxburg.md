@@ -10,14 +10,18 @@
   "slug": "maxburg",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838245668,
-  "updatedAt": 1788838245668,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 100000,
+  "publishedAt": 1788882542454,
+  "updatedAt": 1788882542454,
   "unpublished": false
 }
 ---
