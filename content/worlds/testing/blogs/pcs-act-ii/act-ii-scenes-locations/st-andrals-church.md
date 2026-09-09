@@ -10,14 +10,18 @@
   "slug": "st-andrals-church",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838338061,
-  "updatedAt": 1788838338061,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 650000,
+  "publishedAt": 1788929172112,
+  "updatedAt": 1788929172112,
   "unpublished": false
 }
 ---
