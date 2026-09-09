@@ -10,14 +10,18 @@
   "slug": "vallaki-vistani-camp",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838340261,
-  "updatedAt": 1788838340261,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 825000,
+  "publishedAt": 1788929173658,
+  "updatedAt": 1788929173658,
   "unpublished": false
 }
 ---
