@@ -10,18 +10,18 @@
   "slug": "later-vallaki-vistani-the-guardian-of-ghakis",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788795233085,
-  "updatedAt": 1788795233085,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 650000,
+  "publishedAt": 1788883413628,
+  "updatedAt": 1788883413628,
   "unpublished": false
 }
 ---
