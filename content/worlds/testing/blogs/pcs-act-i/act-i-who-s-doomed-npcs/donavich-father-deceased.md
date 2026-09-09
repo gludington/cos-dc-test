@@ -10,14 +10,18 @@
   "slug": "donavich-father-deceased",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838296707,
-  "updatedAt": 1788838296707,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 121875,
+  "publishedAt": 1788929135598,
+  "updatedAt": 1788929135598,
   "unpublished": false
 }
 ---
