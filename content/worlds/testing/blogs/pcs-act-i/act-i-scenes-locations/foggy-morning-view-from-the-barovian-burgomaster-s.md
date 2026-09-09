@@ -10,14 +10,18 @@
   "slug": "foggy-morning-view-from-the-barovian-burgomaster-s",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838252843,
-  "updatedAt": 1788838252843,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1300000,
+  "publishedAt": 1788929110780,
+  "updatedAt": 1788929110780,
   "unpublished": false
 }
 ---
