@@ -10,14 +10,18 @@
   "slug": "lookout-point-2",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838248661,
-  "updatedAt": 1788838248661,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 700000,
+  "publishedAt": 1788929107384,
+  "updatedAt": 1788929107384,
   "unpublished": false
 }
 ---
