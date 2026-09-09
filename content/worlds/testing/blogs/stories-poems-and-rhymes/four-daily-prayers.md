@@ -10,18 +10,18 @@
   "slug": "four-daily-prayers",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788794847226,
-  "updatedAt": 1788794847226,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 50000,
+  "publishedAt": 1788883401807,
+  "updatedAt": 1788883401807,
   "unpublished": false
 }
 ---
