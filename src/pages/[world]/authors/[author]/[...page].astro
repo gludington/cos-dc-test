@@ -6,6 +6,8 @@ import { getSiteConfig } from "../../../../lib/config";
 import { getPublishedPosts } from "../../../../lib/posts";
 import { postRoute, blogRoute, formatDate } from "../../../../lib/routes";
 import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
+import ContentPanel from "../../../../components/ContentPanel.astro";
+import Pagination from "../../../../components/Pagination.astro";
 
 const siteName = getSiteConfig().siteName;
 
@@ -61,44 +63,61 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
 const { author } = Astro.props as { author: AuthorInfo };
 const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
+
+// Same {title, href, subLabels, dateLabel} shape ContentPanel already
+// renders for the tag archive page, so both archive kinds look and behave
+// identically.
+const authorItems = page.data.map((post) => ({
+  title: post.data.title,
+  href: postRoute(post.data),
+  subLabels: [post.data.blogTitle],
+  dateLabel: formatDate(post.data.publishedAt),
+}));
 ---
 
 <Layout title={author.name}>
-  <Breadcrumbs siteName={siteName} crumbs={[]} />
+  <Breadcrumbs siteName={siteName} crumbs={[]} currentLabel={author.name} />
+
   {author.image && <img class="avatar avatar-lg" src={author.image} alt="" />}
-  <h1>{author.name}</h1>
-  <ul class="entry-list">
-    {
-      page.data.map((post) => (
-        <li class="entry">
-          <a class="entry-title" href={postRoute(post.data)}>
-            {post.data.title}
-          </a>
-          <div class="meta">
-            <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> ·{" "}
-            {formatDate(post.data.publishedAt)}
-          </div>
-        </li>
-      ))
-    }
-  </ul>
+  <h1>{author.name} <span class="header-count">({page.total})</span></h1>
+
+  <ContentPanel title="" items={authorItems} />
+
   {
     page.lastPage > 1 && (
-      <nav class="pagination">
-        {page.url.prev ? (
-          <a href={page.url.prev}>&larr; Newer</a>
-        ) : (
-          <span class="disabled">&larr; Newer</span>
-        )}
-        <span class="pagination-status">
-          Page {page.currentPage} of {page.lastPage}
-        </span>
-        {page.url.next ? (
-          <a href={page.url.next}>Older &rarr;</a>
-        ) : (
-          <span class="disabled">Older &rarr;</span>
-        )}
-      </nav>
+      <Pagination
+        prevUrl={page.url.prev ?? null}
+        nextUrl={page.url.next ?? null}
+        pageNum={page.currentPage}
+        totalPages={page.lastPage}
+      />
     )
   }
 </Layout>
+
+<style>
+  h1 {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .header-count {
+    font-family: var(--color-font-body);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  .avatar-lg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+  }
+
+  /* Structural selector to mask double borders directly below the main page title */
+  :global(h1 + .panel > .panel-title) {
+    display: none;
+  }
+</style>
