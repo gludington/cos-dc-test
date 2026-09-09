@@ -10,14 +10,18 @@
   "slug": "the-locket",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838371362,
-  "updatedAt": 1788838371362,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 650000,
+  "publishedAt": 1788929196801,
+  "updatedAt": 1788929196801,
   "unpublished": false
 }
 ---
