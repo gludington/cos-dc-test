@@ -10,18 +10,18 @@
   "slug": "the-tragedy-of-regina-d-ghiaccio",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788795224665,
-  "updatedAt": 1788795224665,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 400000,
+  "publishedAt": 1788883411488,
+  "updatedAt": 1788883411488,
   "unpublished": false
 }
 ---
