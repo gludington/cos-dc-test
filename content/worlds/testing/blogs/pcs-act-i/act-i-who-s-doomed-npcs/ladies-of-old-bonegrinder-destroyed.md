@@ -10,14 +10,18 @@
   "slug": "ladies-of-old-bonegrinder-destroyed",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838302135,
-  "updatedAt": 1788838302135,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 137500,
+  "publishedAt": 1788929141721,
+  "updatedAt": 1788929141721,
   "unpublished": false
 }
 ---
