@@ -10,16 +10,20 @@
   "slug": "a-crest",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797582247,
-  "updatedAt": 1788797582247,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 200000,
+  "publishedAt": 1788929084304,
+  "updatedAt": 1788929084304,
   "unpublished": false
 }
 ---
 
-<figure><img src="ddb-images/adventures/Curse_of_Strahd/assets/cos19-10.png" alt="Crest of Your Petitioner"><figcaption>Crest of Your Petitioner</figcaption></figure>
+<figure><img src="http://localhost:30000/ddb-images/adventures/Curse_of_Strahd/assets/cos19-10.png" alt="Crest of Your Petitioner"><figcaption>Crest of Your Petitioner</figcaption></figure>
