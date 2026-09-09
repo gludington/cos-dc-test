@@ -10,14 +10,18 @@
   "slug": "stanimir-s-tale",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838246163,
-  "updatedAt": 1788838246163,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 200000,
+  "publishedAt": 1788882543218,
+  "updatedAt": 1788882543218,
   "unpublished": false
 }
 ---
