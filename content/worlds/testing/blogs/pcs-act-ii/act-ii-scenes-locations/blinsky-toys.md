@@ -10,14 +10,18 @@
   "slug": "blinsky-toys",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838329545,
-  "updatedAt": 1788838329545,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": -51562,
+  "publishedAt": 1788929163454,
+  "updatedAt": 1788929163454,
   "unpublished": false
 }
 ---
