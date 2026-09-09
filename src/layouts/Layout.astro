@@ -1,22 +1,42 @@
 ---
-import { getSiteConfig, resolveThemeUrl } from "../lib/config";
+import { getSiteConfig, resolveDataTheme } from "../lib/config";
 import "../styles/tokens.css";
 import "../styles/base.css";
+import ThemeSelector from "../components/ThemeSelector.astro";
 
 interface Props {
   title: string;
 }
 const { title } = Astro.props;
 const siteConfig = getSiteConfig();
-const themeUrl = resolveThemeUrl(siteConfig.theme);
+// Selects a :root[data-theme="..."] block already compiled into
+// styles/tokens.css -- see resolveDataTheme()'s doc comment in lib/config.ts.
+const dataTheme = resolveDataTheme(siteConfig.theme);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={dataTheme ?? undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · {siteConfig.siteName}</title>
+    {/* Visitor override is opt-in (Foundry's "Allow Visitor Theme
+        Override" setting) -- when it's off, Site Theme is authoritative
+        for everyone and neither this script nor the picker below ships at
+        all, not just hidden. */}
+    {siteConfig.allowThemeOverride && (
+      <script is:inline>
+        try {
+          const savedTheme = localStorage.getItem("site-theme");
+          if (savedTheme) {
+            document.documentElement.setAttribute("data-theme", savedTheme);
+          }
+        } catch {
+          // Storage inaccessible (e.g. some private-browsing modes) -- fall
+          // back to whatever Site Theme baked into the page at build time.
+        }
+      </script>
+    )}
     {/* The built-in default look's two type families -- an inscriptional
         display face for headings, an old-style serif for body text. Both
         have a same-era system-font fallback in styles/tokens.css, so
@@ -29,16 +49,10 @@ const themeUrl = resolveThemeUrl(siteConfig.theme);
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"
     />
-    {/* Overrides styles/base.css's @layer base rules regardless of where
-        Astro actually places this tag in the built output: per the CSS
-        spec, ANY unlayered stylesheet (a plain external theme .css, no
-        @layer wrapper) always wins over ANY layered one, regardless of
-        specificity or document order -- so a theme reliably overrides the
-        built-in default no matter what Astro does with tag placement. */}
-    {themeUrl && <link rel="stylesheet" href={themeUrl} />}
   </head>
   <body>
-    <main class="site">
+    <main>
+      {siteConfig.allowThemeOverride && <ThemeSelector />}
       <slot />
     </main>
   </body>

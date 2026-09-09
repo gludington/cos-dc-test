@@ -10,16 +10,16 @@ import path from "node:path";
 // any git action: it rides the same publish button that's already pushing
 // posts, not a separate step.
 //
-// __WIKIWORLD_CONTENT_DIR__ is injected by astro.config.mjs via Vite's
+// __WORLD2WEB_CONTENT_DIR__ is injected by astro.config.mjs via Vite's
 // `define` -- neither process.cwd() (depends on the invoking shell's
 // working directory when the build command runs, not this project's root)
 // nor this module's own import.meta.url (Astro relocates this into a build
 // chunk under dist/.prerender/chunks/, losing its real source location) is
 // reliable here. See astro.config.mjs for why its own import.meta.url is.
-declare const __WIKIWORLD_CONTENT_DIR__: string;
-const CONFIG_PATH = path.join(__WIKIWORLD_CONTENT_DIR__, "site-config.json");
+declare const __WORLD2WEB_CONTENT_DIR__: string;
+const CONFIG_PATH = path.join(__WORLD2WEB_CONTENT_DIR__, "site-config.json");
 
-const DEFAULT_SITE_NAME = "Wikiworld";
+const DEFAULT_SITE_NAME = "World2Web";
 const DEFAULT_BLOGS_SEGMENT = "journals";
 
 /** The configured URL segment name gets slugified here, once, regardless
@@ -42,11 +42,19 @@ export interface SiteConfig {
   theme: string;
   siteName: string;
   blogsSegment: string;
+  allowThemeOverride: boolean;
 }
+
+const DEFAULT_SITE_CONFIG: SiteConfig = {
+  theme: "default",
+  siteName: DEFAULT_SITE_NAME,
+  blogsSegment: DEFAULT_BLOGS_SEGMENT,
+  allowThemeOverride: false,
+};
 
 export function getSiteConfig(): SiteConfig {
   if (!existsSync(CONFIG_PATH)) {
-    return { theme: "default", siteName: DEFAULT_SITE_NAME, blogsSegment: DEFAULT_BLOGS_SEGMENT };
+    return DEFAULT_SITE_CONFIG;
   }
   try {
     const raw = JSON.parse(readFileSync(CONFIG_PATH, "utf-8"));
@@ -56,29 +64,27 @@ export function getSiteConfig(): SiteConfig {
       typeof raw.blogsSegment === "string" && raw.blogsSegment.trim()
         ? slugifySegment(raw.blogsSegment, DEFAULT_BLOGS_SEGMENT)
         : DEFAULT_BLOGS_SEGMENT;
-    return { theme, siteName, blogsSegment };
+    const allowThemeOverride = raw.allowThemeOverride === true;
+    return { theme, siteName, blogsSegment, allowThemeOverride };
   } catch {
-    return { theme: "default", siteName: DEFAULT_SITE_NAME, blogsSegment: DEFAULT_BLOGS_SEGMENT };
+    return DEFAULT_SITE_CONFIG;
   }
 }
 
-const THEMES_BASE_URL = "https://wikiworld-themes.pages.dev/themes";
-
-/** null means "no external stylesheet at all -- use the site's built-in
- * look" (the "default" case, and the safe fallback for anything unset).
- * A theme value that's already a full URL is used as-is, for anyone who'd
- * rather host their own custom CSS than pick from the shared collection --
- * same publish mechanism either way, no code difference between "named
- * theme" and "custom URL" beyond this one check.
+/** A plain theme name (not "default", not blank) selects a built-in theme
+ * -- a `:root[data-theme="<name>"]` block already compiled into this
+ * site's own styles/tokens.css. This is deliberately NOT a separate file
+ * loaded externally (an earlier version of this project had exactly that,
+ * via themes/parchment.css, removed after it silently went stale following
+ * a token rename): baking named themes into this repo's own build means a
+ * rename has to touch every theme block in the same commit, so drift is
+ * caught immediately instead of silently, months later.
  *
- * Whatever hosts a custom URL's CSS must serve it with a real `text/css`
- * Content-Type. raw.githubusercontent.com does NOT (sends text/plain with
- * X-Content-Type-Options: nosniff), which makes browsers silently refuse to
- * apply it as a stylesheet at all -- confirmed live. jsDelivr's GitHub
- * proxy (cdn.jsdelivr.net/gh/<owner>/<repo>@<branch>/<path>) serves the
- * same file with the correct MIME type. */
-export function resolveThemeUrl(theme: string): string | null {
-  if (!theme || theme === "default") return null;
-  if (/^https?:\/\//i.test(theme)) return theme;
-  return `${THEMES_BASE_URL}/${encodeURIComponent(theme)}.css`;
+ * No external-URL escape hatch right now (self-hosting a fully custom
+ * theme outside this repo's build) -- deliberately deferred as aspirational
+ * until something actually needs it; straightforward to add back later
+ * alongside this if it comes up. Returns the name to set as
+ * `<html data-theme="...">` in Layout.astro, or null for "default"/unset. */
+export function resolveDataTheme(theme: string): string | null {
+  return theme && theme !== "default" ? theme : null;
 }
