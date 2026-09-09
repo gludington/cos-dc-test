@@ -10,14 +10,18 @@
   "slug": "gertruda-s-doll",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797587312,
-  "updatedAt": 1788797587312,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 400000,
+  "publishedAt": 1788929085721,
+  "updatedAt": 1788929085721,
   "unpublished": false
 }
 ---
