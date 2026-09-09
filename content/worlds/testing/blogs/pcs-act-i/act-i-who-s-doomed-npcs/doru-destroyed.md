@@ -10,14 +10,18 @@
   "slug": "doru-destroyed",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838297463,
-  "updatedAt": 1788838297463,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 124219,
+  "publishedAt": 1788929138151,
+  "updatedAt": 1788929138151,
   "unpublished": false
 }
 ---
