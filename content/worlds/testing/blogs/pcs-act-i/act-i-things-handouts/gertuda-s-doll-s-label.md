@@ -10,14 +10,18 @@
   "slug": "gertuda-s-doll-s-label",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797589823,
-  "updatedAt": 1788797589823,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 500000,
+  "publishedAt": 1788929086290,
+  "updatedAt": 1788929086290,
   "unpublished": false
 }
 ---
