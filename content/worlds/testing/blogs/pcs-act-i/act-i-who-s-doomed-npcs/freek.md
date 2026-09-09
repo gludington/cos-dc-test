@@ -10,14 +10,18 @@
   "slug": "freek",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838298509,
-  "updatedAt": 1788838298509,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 124415,
+  "publishedAt": 1788929138620,
+  "updatedAt": 1788929138620,
   "unpublished": false
 }
 ---
