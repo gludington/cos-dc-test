@@ -10,14 +10,18 @@
   "slug": "gertruda-s-bedtime-book",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838268646,
-  "updatedAt": 1788838268646,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 600000,
+  "publishedAt": 1788929087016,
+  "updatedAt": 1788929087016,
   "unpublished": false
 }
 ---
