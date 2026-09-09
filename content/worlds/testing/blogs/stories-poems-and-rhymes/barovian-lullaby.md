@@ -10,18 +10,18 @@
   "slug": "barovian-lullaby",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788794909407,
-  "updatedAt": 1788794909407,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 100000,
+  "publishedAt": 1788883409118,
+  "updatedAt": 1788883409118,
   "unpublished": false
 }
 ---

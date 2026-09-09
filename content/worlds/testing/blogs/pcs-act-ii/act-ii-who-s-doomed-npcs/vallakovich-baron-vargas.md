@@ -10,14 +10,18 @@
   "slug": "vallakovich-baron-vargas",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838427145,
-  "updatedAt": 1788838427145,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 3300000,
+  "publishedAt": 1788929242079,
+  "updatedAt": 1788929242079,
   "unpublished": false
 }
 ---

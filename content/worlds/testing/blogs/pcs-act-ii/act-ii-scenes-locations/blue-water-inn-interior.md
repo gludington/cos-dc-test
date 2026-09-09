@@ -10,14 +10,18 @@
   "slug": "blue-water-inn-interior",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838330955,
-  "updatedAt": 1788838330955,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": -47656,
+  "publishedAt": 1788929164593,
+  "updatedAt": 1788929164593,
   "unpublished": false
 }
 ---

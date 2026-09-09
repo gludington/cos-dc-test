@@ -10,14 +10,18 @@
   "slug": "martikov-urwin",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838412364,
-  "updatedAt": 1788838412364,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2400000,
+  "publishedAt": 1788929230324,
+  "updatedAt": 1788929230324,
   "unpublished": false
 }
 ---

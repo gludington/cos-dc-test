@@ -10,14 +10,18 @@
   "slug": "ravens-roost",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838247699,
-  "updatedAt": 1788838247699,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 500000,
+  "publishedAt": 1788929106147,
+  "updatedAt": 1788929106147,
   "unpublished": false
 }
 ---

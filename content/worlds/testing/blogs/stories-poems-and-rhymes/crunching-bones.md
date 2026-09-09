@@ -10,18 +10,18 @@
   "slug": "crunching-bones",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788801496710,
-  "updatedAt": 1788801496710,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 93750,
+  "publishedAt": 1788883406437,
+  "updatedAt": 1788883406437,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "a-fire-is-list-at-the-tser-pool",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838255992,
-  "updatedAt": 1788838255992,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1450000,
+  "publishedAt": 1788929112048,
+  "updatedAt": 1788929112048,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "ismark-s-map",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797686465,
-  "updatedAt": 1788797686465,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1300000,
+  "publishedAt": 1788929091780,
+  "updatedAt": 1788929091780,
   "unpublished": false
 }
 ---

@@ -12,12 +12,19 @@
     "userId": null,
     "name": "Madame Eva",
     "image": null,
-    "isGM": false
+    "isGM": false,
+    "bio": ""
   },
   "authorSlug": "madame-eva",
-  "tags": [],
-  "publishedAt": 1788803441189,
-  "updatedAt": 1788803441189,
+  "tags": [
+    "spooky",
+    "lore"
+  ],
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 500000,
+  "publishedAt": 1788912386616,
+  "updatedAt": 1788912386616,
   "unpublished": false
 }
 ---

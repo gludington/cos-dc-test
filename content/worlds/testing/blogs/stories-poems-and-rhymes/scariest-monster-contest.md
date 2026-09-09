@@ -10,18 +10,18 @@
   "slug": "scariest-monster-contest",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788795236503,
-  "updatedAt": 1788795236503,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 600000,
+  "publishedAt": 1788883413015,
+  "updatedAt": 1788883413015,
   "unpublished": false
 }
 ---

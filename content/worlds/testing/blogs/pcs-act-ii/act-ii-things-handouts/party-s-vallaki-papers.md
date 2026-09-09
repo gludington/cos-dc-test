@@ -10,14 +10,18 @@
   "slug": "party-s-vallaki-papers",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838365493,
-  "updatedAt": 1788838365493,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 212500,
+  "publishedAt": 1788929191503,
+  "updatedAt": 1788929191503,
   "unpublished": false
 }
 ---

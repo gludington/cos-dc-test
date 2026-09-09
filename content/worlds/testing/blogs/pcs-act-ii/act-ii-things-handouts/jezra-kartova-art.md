@@ -10,14 +10,18 @@
   "slug": "jezra-kartova-art",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838380588,
-  "updatedAt": 1788838380588,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1850000,
+  "publishedAt": 1788929207046,
+  "updatedAt": 1788929207046,
   "unpublished": false
 }
 ---

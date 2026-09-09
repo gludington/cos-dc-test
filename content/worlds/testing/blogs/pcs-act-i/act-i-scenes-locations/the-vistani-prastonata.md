@@ -10,14 +10,18 @@
   "slug": "the-vistani-prastonata",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838255445,
-  "updatedAt": 1788838255445,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1500000,
+  "publishedAt": 1788929112447,
+  "updatedAt": 1788929112447,
   "unpublished": false
 }
 ---

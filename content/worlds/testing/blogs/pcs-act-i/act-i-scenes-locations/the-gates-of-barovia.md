@@ -10,14 +10,18 @@
   "slug": "the-gates-of-barovia",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838246764,
-  "updatedAt": 1788838246764,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 300000,
+  "publishedAt": 1788882544150,
+  "updatedAt": 1788882544150,
   "unpublished": false
 }
 ---

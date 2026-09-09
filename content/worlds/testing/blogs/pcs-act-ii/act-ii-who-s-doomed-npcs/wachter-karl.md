@@ -10,14 +10,18 @@
   "slug": "wachter-karl",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838437757,
-  "updatedAt": 1788838437757,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 4200000,
+  "publishedAt": 1788929259281,
+  "updatedAt": 1788929259281,
   "unpublished": false
 }
 ---

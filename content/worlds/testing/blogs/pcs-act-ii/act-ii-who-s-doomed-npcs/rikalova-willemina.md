@@ -10,14 +10,18 @@
   "slug": "rikalova-willemina",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838419763,
-  "updatedAt": 1788838419763,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2900000,
+  "publishedAt": 1788929236241,
+  "updatedAt": 1788929236241,
   "unpublished": false
 }
 ---

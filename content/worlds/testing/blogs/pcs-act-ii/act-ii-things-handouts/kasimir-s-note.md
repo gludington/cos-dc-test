@@ -10,14 +10,18 @@
   "slug": "kasimir-s-note",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838379776,
-  "updatedAt": 1788838379776,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1800000,
+  "publishedAt": 1788929206350,
+  "updatedAt": 1788929206350,
   "unpublished": false
 }
 ---

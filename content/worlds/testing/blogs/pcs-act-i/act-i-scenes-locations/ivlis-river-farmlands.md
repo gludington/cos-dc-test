@@ -10,14 +10,18 @@
   "slug": "ivlis-river-farmlands",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838247167,
-  "updatedAt": 1788838247167,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 400000,
+  "publishedAt": 1788882544842,
+  "updatedAt": 1788882544842,
   "unpublished": false
 }
 ---

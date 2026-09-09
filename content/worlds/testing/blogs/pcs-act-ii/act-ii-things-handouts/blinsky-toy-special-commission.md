@@ -10,14 +10,18 @@
   "slug": "blinsky-toy-special-commission",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838376509,
-  "updatedAt": 1788838376509,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1150000,
+  "publishedAt": 1788929200400,
+  "updatedAt": 1788929200400,
   "unpublished": false
 }
 ---

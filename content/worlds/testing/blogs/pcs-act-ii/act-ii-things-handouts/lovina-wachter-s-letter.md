@@ -10,14 +10,18 @@
   "slug": "lovina-wachter-s-letter",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838377725,
-  "updatedAt": 1788838377725,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1300000,
+  "publishedAt": 1788929201650,
+  "updatedAt": 1788929201650,
   "unpublished": false
 }
 ---

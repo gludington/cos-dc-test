@@ -10,14 +10,18 @@
   "slug": "von-holtz-heirloom-armor",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838368605,
-  "updatedAt": 1788838368605,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 375000,
+  "publishedAt": 1788929194099,
+  "updatedAt": 1788929194099,
   "unpublished": false
 }
 ---

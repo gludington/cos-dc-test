@@ -10,14 +10,18 @@
   "slug": "moar-blinsky-toys-and-more-to-come",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838375905,
-  "updatedAt": 1788838375905,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1100000,
+  "publishedAt": 1788929199513,
+  "updatedAt": 1788929199513,
   "unpublished": false
 }
 ---

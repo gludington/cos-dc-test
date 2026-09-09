@@ -10,14 +10,18 @@
   "slug": "view-of-castle-ravenloft-from-the-svalich-road-up-the-balinoks",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838257099,
-  "updatedAt": 1788838257099,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1800000,
+  "publishedAt": 1788929113847,
+  "updatedAt": 1788929113847,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "yeska-deceased",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838439212,
-  "updatedAt": 1788838439212,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 4400000,
+  "publishedAt": 1788929262892,
+  "updatedAt": 1788929262892,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "von-holtz-vasili-strahd-alias",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838434977,
-  "updatedAt": 1788838434977,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 3800000,
+  "publishedAt": 1788929251612,
+  "updatedAt": 1788929251612,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "szoldarovich-szoldar",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838423814,
-  "updatedAt": 1788838423814,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 3100000,
+  "publishedAt": 1788929240812,
+  "updatedAt": 1788929240812,
   "unpublished": false
 }
 ---
