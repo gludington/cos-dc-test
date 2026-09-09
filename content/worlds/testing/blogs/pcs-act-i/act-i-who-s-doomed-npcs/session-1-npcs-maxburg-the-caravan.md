@@ -10,14 +10,18 @@
   "slug": "session-1-npcs-maxburg-the-caravan",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838292775,
-  "updatedAt": 1788838292775,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 100000,
+  "publishedAt": 1788929132635,
+  "updatedAt": 1788929132635,
   "unpublished": false
 }
 ---
