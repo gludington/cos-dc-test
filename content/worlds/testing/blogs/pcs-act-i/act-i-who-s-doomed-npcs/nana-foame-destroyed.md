@@ -10,14 +10,18 @@
   "slug": "nana-foame-destroyed",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838305816,
-  "updatedAt": 1788838305816,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 500000,
+  "publishedAt": 1788929145086,
+  "updatedAt": 1788929145086,
   "unpublished": false
 }
 ---
