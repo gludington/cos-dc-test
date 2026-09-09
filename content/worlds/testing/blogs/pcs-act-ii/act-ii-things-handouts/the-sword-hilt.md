@@ -10,14 +10,18 @@
   "slug": "the-sword-hilt",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838369369,
-  "updatedAt": 1788838369369,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 500000,
+  "publishedAt": 1788929194696,
+  "updatedAt": 1788929194696,
   "unpublished": false
 }
 ---

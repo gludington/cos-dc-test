@@ -10,14 +10,18 @@
   "slug": "kolyan-s-letter-to-ismark",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797672790,
-  "updatedAt": 1788797672790,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1200000,
+  "publishedAt": 1788929091145,
+  "updatedAt": 1788929091145,
   "unpublished": false
 }
 ---

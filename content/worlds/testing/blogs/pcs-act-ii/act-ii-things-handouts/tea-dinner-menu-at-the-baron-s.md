@@ -10,14 +10,18 @@
   "slug": "tea-dinner-menu-at-the-baron-s",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838370009,
-  "updatedAt": 1788838370009,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 600000,
+  "publishedAt": 1788929195312,
+  "updatedAt": 1788929195312,
   "unpublished": false
 }
 ---

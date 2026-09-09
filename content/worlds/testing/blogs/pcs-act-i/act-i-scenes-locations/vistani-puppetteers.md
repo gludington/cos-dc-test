@@ -10,14 +10,18 @@
   "slug": "vistani-puppetteers",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838256647,
-  "updatedAt": 1788838256647,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1700000,
+  "publishedAt": 1788929113280,
+  "updatedAt": 1788929113280,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "map-of-barovia",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797693411,
-  "updatedAt": 1788797693411,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1400000,
+  "publishedAt": 1788929092630,
+  "updatedAt": 1788929092630,
   "unpublished": false
 }
 ---

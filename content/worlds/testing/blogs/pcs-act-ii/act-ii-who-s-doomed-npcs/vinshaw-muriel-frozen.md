@@ -10,14 +10,18 @@
   "slug": "vinshaw-muriel-frozen",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838434221,
-  "updatedAt": 1788838434221,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 3700000,
+  "publishedAt": 1788929249469,
+  "updatedAt": 1788929249469,
   "unpublished": false
 }
 ---

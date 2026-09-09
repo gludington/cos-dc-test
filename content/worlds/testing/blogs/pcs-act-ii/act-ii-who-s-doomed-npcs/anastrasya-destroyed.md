@@ -10,14 +10,18 @@
   "slug": "anastrasya-destroyed",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838395253,
-  "updatedAt": 1788838395253,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 100000,
+  "publishedAt": 1788883683188,
+  "updatedAt": 1788883683188,
   "unpublished": false
 }
 ---

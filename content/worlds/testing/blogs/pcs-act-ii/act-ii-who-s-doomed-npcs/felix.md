@@ -10,14 +10,18 @@
   "slug": "felix",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838402014,
-  "updatedAt": 1788838402014,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1100000,
+  "publishedAt": 1788883690052,
+  "updatedAt": 1788883690052,
   "unpublished": false
 }
 ---

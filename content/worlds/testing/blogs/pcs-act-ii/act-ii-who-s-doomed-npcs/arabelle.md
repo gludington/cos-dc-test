@@ -10,14 +10,18 @@
   "slug": "arabelle",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838396033,
-  "updatedAt": 1788838396033,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 200000,
+  "publishedAt": 1788883684038,
+  "updatedAt": 1788883684038,
   "unpublished": false
 }
 ---

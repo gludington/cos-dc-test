@@ -10,18 +10,18 @@
   "slug": "later-leyla-strahd-eva-at-the-tser-pool-encampament",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788795242346,
-  "updatedAt": 1788795242346,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 662500,
+  "publishedAt": 1788883414856,
+  "updatedAt": 1788883414856,
   "unpublished": false
 }
 ---

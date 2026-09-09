@@ -10,14 +10,18 @@
   "slug": "montarri-jacqueline-purple-vardo-traders",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838416164,
-  "updatedAt": 1788838416164,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2600000,
+  "publishedAt": 1788929233064,
+  "updatedAt": 1788929233064,
   "unpublished": false
 }
 ---

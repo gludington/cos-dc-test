@@ -10,14 +10,18 @@
   "slug": "baron-s-mansion",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838328176,
-  "updatedAt": 1788838328176,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": -71093,
+  "publishedAt": 1788929162158,
+  "updatedAt": 1788929162158,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "petrovich-father-lucian-deceased",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838418320,
-  "updatedAt": 1788838418320,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2700000,
+  "publishedAt": 1788929233697,
+  "updatedAt": 1788929233697,
   "unpublished": false
 }
 ---

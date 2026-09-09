@@ -10,14 +10,18 @@
   "slug": "untitled",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838439847,
-  "updatedAt": 1788838439847,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 4500000,
+  "publishedAt": 1788929263567,
+  "updatedAt": 1788929263567,
   "unpublished": false
 }
 ---

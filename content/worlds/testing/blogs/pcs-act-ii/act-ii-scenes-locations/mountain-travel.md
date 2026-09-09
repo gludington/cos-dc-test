@@ -10,14 +10,18 @@
   "slug": "mountain-travel",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838344431,
-  "updatedAt": 1788838344431,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1600000,
+  "publishedAt": 1788929178755,
+  "updatedAt": 1788929178755,
   "unpublished": false
 }
 ---

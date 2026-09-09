@@ -10,14 +10,18 @@
   "slug": "markings-on-the-cabin-door",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797585190,
-  "updatedAt": 1788797585190,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 300000,
+  "publishedAt": 1788929085246,
+  "updatedAt": 1788929085246,
   "unpublished": false
 }
 ---

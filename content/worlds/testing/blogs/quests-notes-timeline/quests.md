@@ -12,12 +12,16 @@
     "userId": null,
     "name": "Cobb",
     "image": null,
-    "isGM": false
+    "isGM": false,
+    "bio": ""
   },
   "authorSlug": "cobb",
   "tags": [],
-  "publishedAt": 1788803415388,
-  "updatedAt": 1788803415388,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 100000,
+  "publishedAt": 1788929291862,
+  "updatedAt": 1788929291862,
   "unpublished": false
 }
 ---

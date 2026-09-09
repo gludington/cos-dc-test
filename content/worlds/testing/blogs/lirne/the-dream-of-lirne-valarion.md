@@ -11,13 +11,19 @@
   "author": {
     "userId": null,
     "name": "Lirne",
-    "image": null,
-    "isGM": false
+    "image": "/assets/6c9187963c8fc1bd33b11e5d5b08286a1842590a340f694385d6be9a40dd8e8e.svg",
+    "isGM": false,
+    "bio": "<h2>im a bio</h2><p></p><p>asdfasdf</p>"
   },
   "authorSlug": "lirne",
-  "tags": [],
-  "publishedAt": 1788803428144,
-  "updatedAt": 1788803428144,
+  "tags": [
+    "cool guy"
+  ],
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 525000,
+  "publishedAt": 1788922907197,
+  "updatedAt": 1788922907197,
   "unpublished": false
 }
 ---

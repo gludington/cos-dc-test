@@ -10,14 +10,18 @@
   "slug": "village-of-barovia-cemetary-view-up",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838251745,
-  "updatedAt": 1788838251745,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1200000,
+  "publishedAt": 1788929110106,
+  "updatedAt": 1788929110106,
   "unpublished": false
 }
 ---

@@ -10,14 +10,18 @@
   "slug": "vallakovich-baroness-lydia-petrovna-deceased",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838428904,
-  "updatedAt": 1788838428904,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 3400000,
+  "publishedAt": 1788929242671,
+  "updatedAt": 1788929242671,
   "unpublished": false
 }
 ---

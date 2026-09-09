@@ -10,14 +10,18 @@
   "slug": "kjurls-lars",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838404158,
-  "updatedAt": 1788838404158,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1400000,
+  "publishedAt": 1788883691810,
+  "updatedAt": 1788883691810,
   "unpublished": false
 }
 ---

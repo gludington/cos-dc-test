@@ -10,14 +10,18 @@
   "slug": "j-m-s-ledger",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838381362,
-  "updatedAt": 1788838381362,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1875000,
+  "publishedAt": 1788929208979,
+  "updatedAt": 1788929208979,
   "unpublished": false
 }
 ---

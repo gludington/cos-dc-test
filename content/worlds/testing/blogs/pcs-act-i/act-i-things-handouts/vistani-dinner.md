@@ -10,14 +10,18 @@
   "slug": "vistani-dinner",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797697315,
-  "updatedAt": 1788797697315,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1500000,
+  "publishedAt": 1788929093162,
+  "updatedAt": 1788929093162,
   "unpublished": false
 }
 ---

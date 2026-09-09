@@ -10,14 +10,18 @@
   "slug": "brigit",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838293806,
-  "updatedAt": 1788838293806,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 102735,
+  "publishedAt": 1788929133597,
+  "updatedAt": 1788929133597,
   "unpublished": false
 }
 ---

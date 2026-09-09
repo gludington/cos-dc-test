@@ -10,14 +10,18 @@
   "slug": "wachter-nikolai-ii",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838437145,
-  "updatedAt": 1788838437145,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 4100000,
+  "publishedAt": 1788929256929,
+  "updatedAt": 1788929256929,
   "unpublished": false
 }
 ---

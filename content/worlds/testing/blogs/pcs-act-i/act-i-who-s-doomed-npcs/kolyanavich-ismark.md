@@ -10,14 +10,18 @@
   "slug": "kolyanavich-ismark",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838300842,
-  "updatedAt": 1788838300842,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 124805,
+  "publishedAt": 1788929140343,
+  "updatedAt": 1788929140343,
   "unpublished": false
 }
 ---

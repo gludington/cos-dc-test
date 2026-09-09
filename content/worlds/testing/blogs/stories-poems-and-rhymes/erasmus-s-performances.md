@@ -10,18 +10,18 @@
   "slug": "erasmus-s-performances",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788795313886,
-  "updatedAt": 1788795313886,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 700000,
+  "publishedAt": 1788883415553,
+  "updatedAt": 1788883415553,
   "unpublished": false
 }
 ---

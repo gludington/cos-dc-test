@@ -12,12 +12,19 @@
     "userId": null,
     "name": "Madame Eva",
     "image": null,
-    "isGM": false
+    "isGM": false,
+    "bio": ""
   },
   "authorSlug": "madame-eva",
-  "tags": [],
-  "publishedAt": 1788803438991,
-  "updatedAt": 1788803438991,
+  "tags": [
+    "spooky",
+    "lore"
+  ],
+  "frontImage": "http://localhost:30000/systems/dnd5e/icons/svg/actors/npc.svg",
+  "postOrder": "newest",
+  "sortIndex": 150000,
+  "publishedAt": 1788912384660,
+  "updatedAt": 1788927727463,
   "unpublished": false
 }
 ---

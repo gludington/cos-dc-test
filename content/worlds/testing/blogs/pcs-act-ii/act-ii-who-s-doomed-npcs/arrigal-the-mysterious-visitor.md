@@ -10,14 +10,18 @@
   "slug": "arrigal-the-mysterious-visitor",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838397977,
-  "updatedAt": 1788838397977,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 500000,
+  "publishedAt": 1788883685927,
+  "updatedAt": 1788883685927,
   "unpublished": false
 }
 ---

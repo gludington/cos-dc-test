@@ -10,14 +10,18 @@
   "slug": "martikov-brom",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838411121,
-  "updatedAt": 1788838411121,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2200000,
+  "publishedAt": 1788929228559,
+  "updatedAt": 1788929228559,
   "unpublished": false
 }
 ---

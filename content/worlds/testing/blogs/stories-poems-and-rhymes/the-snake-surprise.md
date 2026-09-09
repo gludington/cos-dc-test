@@ -10,18 +10,18 @@
   "slug": "the-snake-surprise",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788795319702,
-  "updatedAt": 1788795319702,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 800000,
+  "publishedAt": 1788883416409,
+  "updatedAt": 1788883416409,
   "unpublished": false
 }
 ---

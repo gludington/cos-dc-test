@@ -10,14 +10,18 @@
   "slug": "wachter-nikolai-sr-deceased",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838436488,
-  "updatedAt": 1788838436488,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 4000000,
+  "publishedAt": 1788929254239,
+  "updatedAt": 1788929254239,
   "unpublished": false
 }
 ---

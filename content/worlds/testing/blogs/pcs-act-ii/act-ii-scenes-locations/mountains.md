@@ -10,14 +10,18 @@
   "slug": "mountains",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838342033,
-  "updatedAt": 1788838342033,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1200000,
+  "publishedAt": 1788929174779,
+  "updatedAt": 1788929174779,
   "unpublished": false
 }
 ---
