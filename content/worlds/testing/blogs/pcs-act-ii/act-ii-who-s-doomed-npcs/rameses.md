@@ -10,14 +10,18 @@
   "slug": "rameses",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838419075,
-  "updatedAt": 1788838419075,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2800000,
+  "publishedAt": 1788929234386,
+  "updatedAt": 1788929234386,
   "unpublished": false
 }
 ---
