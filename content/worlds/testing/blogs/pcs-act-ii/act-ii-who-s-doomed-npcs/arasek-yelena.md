@@ -10,14 +10,18 @@
   "slug": "arasek-yelena",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838397422,
-  "updatedAt": 1788838397422,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 400000,
+  "publishedAt": 1788883685360,
+  "updatedAt": 1788883685360,
   "unpublished": false
 }
 ---
