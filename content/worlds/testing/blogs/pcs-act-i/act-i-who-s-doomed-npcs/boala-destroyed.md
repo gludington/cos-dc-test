@@ -10,14 +10,18 @@
   "slug": "boala-destroyed",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838294605,
-  "updatedAt": 1788838294605,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 105469,
+  "publishedAt": 1788929134141,
+  "updatedAt": 1788929134141,
   "unpublished": false
 }
 ---
