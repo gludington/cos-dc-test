@@ -10,14 +10,18 @@
   "slug": "luvash",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838408389,
-  "updatedAt": 1788838408389,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2050000,
+  "publishedAt": 1788929223612,
+  "updatedAt": 1788929223612,
   "unpublished": false
 }
 ---
