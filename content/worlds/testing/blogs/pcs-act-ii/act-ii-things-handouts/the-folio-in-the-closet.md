@@ -10,14 +10,18 @@
   "slug": "the-folio-in-the-closet",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838377126,
-  "updatedAt": 1788838377126,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1200000,
+  "publishedAt": 1788929201096,
+  "updatedAt": 1788929201096,
   "unpublished": false
 }
 ---
