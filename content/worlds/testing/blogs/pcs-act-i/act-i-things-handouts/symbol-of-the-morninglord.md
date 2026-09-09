@@ -10,14 +10,18 @@
   "slug": "symbol-of-the-morninglord",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797662465,
-  "updatedAt": 1788797662465,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 800000,
+  "publishedAt": 1788929088440,
+  "updatedAt": 1788929088440,
   "unpublished": false
 }
 ---
