@@ -10,14 +10,18 @@
   "slug": "bluto-s-residence",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838331891,
-  "updatedAt": 1788838331891,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": -42187,
+  "publishedAt": 1788929165453,
+  "updatedAt": 1788929165453,
   "unpublished": false
 }
 ---
