@@ -10,14 +10,18 @@
   "slug": "wachterhaus",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838341015,
-  "updatedAt": 1788838341015,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1000000,
+  "publishedAt": 1788929174217,
+  "updatedAt": 1788929174217,
   "unpublished": false
 }
 ---
