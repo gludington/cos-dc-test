@@ -10,14 +10,18 @@
   "slug": "lancelot",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838302732,
-  "updatedAt": 1788838302732,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 175000,
+  "publishedAt": 1788929142681,
+  "updatedAt": 1788929142681,
   "unpublished": false
 }
 ---
