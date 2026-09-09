@@ -10,14 +10,18 @@
   "slug": "mad-mary",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838304500,
-  "updatedAt": 1788838304500,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 181250,
+  "publishedAt": 1788929144027,
+  "updatedAt": 1788929144027,
   "unpublished": false
 }
 ---
