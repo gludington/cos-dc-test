@@ -10,14 +10,18 @@
   "slug": "arasek-stockyards",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838327148,
-  "updatedAt": 1788838327148,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": -75000,
+  "publishedAt": 1788929161332,
+  "updatedAt": 1788929161332,
   "unpublished": false
 }
 ---
