@@ -10,14 +10,18 @@
   "slug": "ivlis-river-bridge-sunny-day",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838254443,
-  "updatedAt": 1788838254443,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1400000,
+  "publishedAt": 1788929111366,
+  "updatedAt": 1788929111366,
   "unpublished": false
 }
 ---
