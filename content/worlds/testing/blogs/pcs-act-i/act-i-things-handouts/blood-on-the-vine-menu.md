@@ -10,14 +10,18 @@
   "slug": "blood-on-the-vine-menu",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797595971,
-  "updatedAt": 1788797595971,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 700000,
+  "publishedAt": 1788929087735,
+  "updatedAt": 1788929087735,
   "unpublished": false
 }
 ---
