@@ -10,14 +10,18 @@
   "slug": "erasmus-s-wagon",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838333256,
-  "updatedAt": 1788838333256,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 29688,
+  "publishedAt": 1788929166811,
+  "updatedAt": 1788929166811,
   "unpublished": false
 }
 ---
