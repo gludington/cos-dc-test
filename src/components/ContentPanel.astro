@@ -9,6 +9,7 @@ interface Item {
   authorImage?: string;
   subLabels?: string[];
   dateLabel?: string;
+  frontImage?: string;
 }
 
 interface Props {
@@ -25,27 +26,30 @@ const { title, items } = Astro.props;
     <ul class="entry-list">
       {items.map((item) => (
         <li class="entry">
-          <a class="entry-title" href={item.href}>{item.title}</a>
-          
-          <div class="meta">
-            {/* 1. If it's a raw section label */}
-            {item.metaType === 'section' && <span>Section</span>}
+          {item.frontImage && <img class="entry-thumb" src={item.frontImage} alt="" />}
+          <div class="entry-body">
+            <a class="entry-title" href={item.href}>{item.title}</a>
 
-            {/* 2. If it contains author information */}
-            {item.authorName && (
-              <>
-                {item.authorImage && <img class="avatar" src={item.authorImage} alt="" />}
-                by <a href={item.authorHref}>{item.authorName}</a>
-              </>
-            )}
+            <div class="meta">
+              {/* 1. If it's a raw section label */}
+              {item.metaType === 'section' && <span>Section</span>}
 
-            {/* 3. If it contains category subpaths (like BlogsInSection) */}
-            {item.subLabels && item.subLabels.length > 0 && (
-              <> · in {item.subLabels.join(" / ")}</>
-            )}
+              {/* 2. If it contains author information */}
+              {item.authorName && (
+                <>
+                  {item.authorImage && <img class="avatar" src={item.authorImage} alt="" />}
+                  by <a href={item.authorHref}>{item.authorName}</a>
+                </>
+              )}
 
-            {/* 4. If it contains a publishing date stamp */}
-            {item.dateLabel && <> · <time>{item.dateLabel}</time></>}
+              {/* 3. If it contains category subpaths (like BlogsInSection) */}
+              {item.subLabels && item.subLabels.length > 0 && (
+                <> · in {item.subLabels.join(" / ")}</>
+              )}
+
+              {/* 4. If it contains a publishing date stamp */}
+              {item.dateLabel && <> · <time>{item.dateLabel}</time></>}
+            </div>
           </div>
         </li>
       ))}
@@ -72,8 +76,24 @@ const { title, items } = Astro.props;
 
   .entry {
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .entry-thumb {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: var(--card-border, none);
+  }
+
+  .entry-body {
+    display: flex;
     flex-direction: column;
     gap: 0.2rem;
+    min-width: 0;
   }
 
   .entry-title {

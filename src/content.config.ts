@@ -41,6 +41,12 @@ const postSchema = z.object({
   }),
   authorSlug: z.string(),
   tags: z.array(z.string()),
+  // This post's own explicit featured image, if it set one -- a URL,
+  // already resolved to absolute by the Foundry module's collector.js
+  // (resolveAssetUrl), same as author.image. "" (never null) when unset;
+  // never auto-derived from the post's own body content. .default("") so
+  // posts published before this field existed still validate.
+  frontImage: z.string().default(""),
   // This blog's own post-archive listing order -- every other listing
   // site-wide (recent posts, author/tag archives) always shows
   // newest-published-first regardless of this value. .default("newest")

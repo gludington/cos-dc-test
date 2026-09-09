@@ -58,17 +58,21 @@ function slugifyPath(rawPath) {
     .join("/");
 }
 
-/** Assigns two distinct slugs per blog, deliberately not conflated:
+/** Assigns distinct slugs, deliberately not conflated:
  *  - blog._slug: unique per journal entry (disambiguated by blog uuid on
  *    collision), built from the blog's root (a slugified "/"-path prefix,
  *    empty if none) followed by a slug of the blog's own title. Drives the
  *    single-blog archive URL/permalink and the content/ directory name --
  *    two different blogs must never collide here, even if they share a
  *    root.
- *  - blog._authorSlug: based on the displayed author name, NOT
- *    disambiguated on collision -- this is what lets several blogs sharing
- *    the same author name merge onto one cross-blog author archive page.
- *    Collision here is the intended behavior, not a bug.
+ *  - post._authorSlug: based on the displayed author name of that POST
+ *    specifically -- not a blog-wide value, since a post can override its
+ *    blog's author (see the Foundry module's collector.js's
+ *    resolvePostAuthor) and needs to land on its own author's archive
+ *    page, not its blog's default one. NOT disambiguated on collision --
+ *    this is what lets every post sharing the same author name merge onto
+ *    one cross-blog author archive page, whether that name comes from the
+ *    same blog or not. Collision here is the intended behavior, not a bug.
  * Also assigns a unique slug per post within each blog (disambiguated by
  * page uuid). */
 function assignSlugs(blogs) {
@@ -84,7 +88,6 @@ function assignSlugs(blogs) {
     }
     seenBlogSlugs.set(combined, blog.uuid);
     blog._slug = combined;
-    blog._authorSlug = slugify(blog.author.name);
 
     const seenPostSlugs = new Map();
     for (const post of blog.posts) {
@@ -95,6 +98,7 @@ function assignSlugs(blogs) {
       }
       seenPostSlugs.set(postSlug, post.uuid);
       post._slug = postSlug;
+      post._authorSlug = slugify(post.author.name);
     }
   }
 }
@@ -119,9 +123,15 @@ function postFrontmatter(worldSlug, blog, post) {
     root: blog.root ?? null,
     title: post.title,
     slug: post._slug,
-    author: blog.author,
-    authorSlug: blog._authorSlug,
-    tags: blog.tags ?? [],
+    // post.author/post.tags: already fully resolved by the Foundry
+    // module's collector.js with inheritance baked in (a post with no
+    // override of its own gets its blog's own author/tags verbatim; one
+    // with an override gets that instead) -- so this is always the right
+    // value to write, never blog.author/blog.tags directly.
+    author: post.author,
+    authorSlug: post._authorSlug,
+    tags: post.tags ?? [],
+    frontImage: post.frontImage ?? "",
     // This blog's own post-archive order ("newest"/"oldest"/"manual") --
     // every other listing site-wide (recent posts, author/tag archives)
     // always shows newest-published-first regardless of this value.

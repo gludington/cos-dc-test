@@ -60,7 +60,8 @@ const taggedItems = page.data.map((post) => ({
   title: post.data.title,
   href: postRoute(post.data),
   subLabels: [post.data.blogTitle],
-  dateLabel: formatDate(post.data.publishedAt)
+  dateLabel: formatDate(post.data.publishedAt),
+  frontImage: post.data.frontImage
 }));
 ---
 
