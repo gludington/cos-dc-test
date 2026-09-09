@@ -5,6 +5,7 @@ import { getSiteConfig } from "../../../lib/config";
 import { getPublishedPosts } from "../../../lib/posts";
 import {
   postRoute,
+  authorRoute,
   blogRoute,
   rootCrumbs,
   sectionRoute,
@@ -103,6 +104,13 @@ const nextUrl = props.kind === "blog" && props.pageNum < props.totalPages ? `${b
 const postItems = props.kind === "blog" ? props.pagePosts.map((post) => ({
   title: post.data.title,
   href: postRoute(post.data),
+  // Per-post author -- each post in this blog's own list can have a
+  // different one (Post Settings' override), so this can't be hoisted to
+  // a single line above the list the way it used to be. See lib/sections.ts's
+  // BlogInfo doc comment for why that blog-level line was removed.
+  authorName: post.data.author.name,
+  authorHref: authorRoute(post.data),
+  authorImage: post.data.author.image,
   dateLabel: formatDate(post.data.publishedAt),
   frontImage: post.data.frontImage
 })) : [];

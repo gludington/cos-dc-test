@@ -4,7 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import Layout from "../../../../layouts/Layout.astro";
 import { getSiteConfig } from "../../../../lib/config";
 import { getPublishedPosts } from "../../../../lib/posts";
-import { postRoute, blogRoute, formatDate } from "../../../../lib/routes";
+import { postRoute, authorRoute, blogRoute, formatDate } from "../../../../lib/routes";
 import { slugifyTag } from "../../../../lib/tags";
 import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
 import ContentPanel from "../../../../components/ContentPanel.astro";
@@ -59,6 +59,9 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
 const taggedItems = page.data.map((post) => ({
   title: post.data.title,
   href: postRoute(post.data),
+  authorName: post.data.author.name,
+  authorHref: authorRoute(post.data),
+  authorImage: post.data.author.image,
   subLabels: [post.data.blogTitle],
   dateLabel: formatDate(post.data.publishedAt),
   frontImage: post.data.frontImage
