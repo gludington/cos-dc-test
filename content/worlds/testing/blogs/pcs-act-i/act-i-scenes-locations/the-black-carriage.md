@@ -10,14 +10,18 @@
   "slug": "the-black-carriage",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838258338,
-  "updatedAt": 1788838258338,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2000000,
+  "publishedAt": 1788929114715,
+  "updatedAt": 1788929114715,
   "unpublished": false
 }
 ---
