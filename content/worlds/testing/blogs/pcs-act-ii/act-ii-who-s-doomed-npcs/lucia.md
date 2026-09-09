@@ -10,14 +10,18 @@
   "slug": "lucia",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838407149,
-  "updatedAt": 1788838407149,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1900000,
+  "publishedAt": 1788929222066,
+  "updatedAt": 1788929222066,
   "unpublished": false
 }
 ---
