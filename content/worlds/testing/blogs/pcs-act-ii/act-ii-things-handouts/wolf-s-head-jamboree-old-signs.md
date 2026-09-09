@@ -10,14 +10,18 @@
   "slug": "wolf-s-head-jamboree-old-signs",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838366453,
-  "updatedAt": 1788838366453,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 225000,
+  "publishedAt": 1788929192018,
+  "updatedAt": 1788929192018,
   "unpublished": false
 }
 ---
