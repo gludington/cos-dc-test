@@ -1,0 +1,82 @@
+---
+// ContentPanel.astro
+interface Item {
+  title: string;
+  href: string;
+  metaType?: 'section' | 'blog' | 'post';
+  authorName?: string;
+  authorHref?: string;
+  authorImage?: string;
+  subLabels?: string[];
+  dateLabel?: string;
+}
+
+interface Props {
+  title: string;
+  items: Item[];
+}
+
+const { title, items } = Astro.props;
+---
+
+{ items.length > 0 && (
+  <section class="panel">
+    <h2 class="panel-title">{title}</h2>
+    <ul class="entry-list">
+      {items.map((item) => (
+        <li class="entry">
+          <a class="entry-title" href={item.href}>{item.title}</a>
+          
+          <div class="meta">
+            {/* 1. If it's a raw section label */}
+            {item.metaType === 'section' && <span>Section</span>}
+
+            {/* 2. If it contains author information */}
+            {item.authorName && (
+              <>
+                {item.authorImage && <img class="avatar" src={item.authorImage} alt="" />}
+                by <a href={item.authorHref}>{item.authorName}</a>
+              </>
+            )}
+
+            {/* 3. If it contains category subpaths (like BlogsInSection) */}
+            {item.subLabels && item.subLabels.length > 0 && (
+              <> · in {item.subLabels.join(" / ")}</>
+            )}
+
+            {/* 4. If it contains a publishing date stamp */}
+            {item.dateLabel && <> · <time>{item.dateLabel}</time></>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+) }
+
+<style>
+  /* --- Fully Encapsulated Layout Skeleton --- */
+  .panel {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem; 
+  }
+
+  .entry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .entry-title {
+    text-decoration: none;
+  }
+</style>

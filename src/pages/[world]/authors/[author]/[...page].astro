@@ -5,6 +5,7 @@ import Layout from "../../../../layouts/Layout.astro";
 import { getSiteConfig } from "../../../../lib/config";
 import { getPublishedPosts } from "../../../../lib/posts";
 import { postRoute, blogRoute, formatDate } from "../../../../lib/routes";
+import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
 
 const siteName = getSiteConfig().siteName;
 
@@ -24,7 +25,10 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const PAGE_SIZE = 10;
   const posts = await getPublishedPosts();
 
-  const groups = new Map<string, { author: AuthorInfo; posts: CollectionEntry<"posts">[] }>();
+  const groups = new Map<
+    string,
+    { author: AuthorInfo; posts: CollectionEntry<"posts">[] }
+  >();
   for (const post of posts) {
     const key = `${post.data.world}/${post.data.authorSlug}`;
     if (!groups.has(key)) {
@@ -41,14 +45,18 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     groups.get(key)!.posts.push(post);
   }
 
-  return Array.from(groups.values()).flatMap(({ author, posts: authorPosts }) => {
-    const sorted = authorPosts.sort((a, b) => b.data.publishedAt - a.data.publishedAt);
-    return paginate(sorted, {
-      params: { world: author.world, author: author.authorSlug },
-      props: { author },
-      pageSize: PAGE_SIZE,
-    });
-  });
+  return Array.from(groups.values()).flatMap(
+    ({ author, posts: authorPosts }) => {
+      const sorted = authorPosts.sort(
+        (a, b) => b.data.publishedAt - a.data.publishedAt,
+      );
+      return paginate(sorted, {
+        params: { world: author.world, author: author.authorSlug },
+        props: { author },
+        pageSize: PAGE_SIZE,
+      });
+    },
+  );
 }
 
 const { author } = Astro.props as { author: AuthorInfo };
@@ -56,16 +64,19 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
 ---
 
 <Layout title={author.name}>
-  <nav class="crumbs"><a href="/">{siteName}</a></nav>
+  <Breadcrumbs siteName={siteName} crumbs={[]} />
   {author.image && <img class="avatar avatar-lg" src={author.image} alt="" />}
   <h1>{author.name}</h1>
   <ul class="entry-list">
     {
       page.data.map((post) => (
         <li class="entry">
-          <a class="entry-title" href={postRoute(post.data)}>{post.data.title}</a>
+          <a class="entry-title" href={postRoute(post.data)}>
+            {post.data.title}
+          </a>
           <div class="meta">
-            <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> · {formatDate(post.data.publishedAt)}
+            <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> ·{" "}
+            {formatDate(post.data.publishedAt)}
           </div>
         </li>
       ))
@@ -74,11 +85,19 @@ const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
   {
     page.lastPage > 1 && (
       <nav class="pagination">
-        {page.url.prev ? <a href={page.url.prev}>&larr; Newer</a> : <span class="disabled">&larr; Newer</span>}
+        {page.url.prev ? (
+          <a href={page.url.prev}>&larr; Newer</a>
+        ) : (
+          <span class="disabled">&larr; Newer</span>
+        )}
         <span class="pagination-status">
           Page {page.currentPage} of {page.lastPage}
         </span>
-        {page.url.next ? <a href={page.url.next}>Older &rarr;</a> : <span class="disabled">Older &rarr;</span>}
+        {page.url.next ? (
+          <a href={page.url.next}>Older &rarr;</a>
+        ) : (
+          <span class="disabled">Older &rarr;</span>
+        )}
       </nav>
     )
   }
