@@ -10,14 +10,18 @@
   "slug": "village-of-barovia-center",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838252206,
-  "updatedAt": 1788838252206,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1000000,
+  "publishedAt": 1788929109106,
+  "updatedAt": 1788929109106,
   "unpublished": false
 }
 ---
