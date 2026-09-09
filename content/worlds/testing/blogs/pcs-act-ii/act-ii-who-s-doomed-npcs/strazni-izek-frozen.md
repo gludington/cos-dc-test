@@ -10,14 +10,18 @@
   "slug": "strazni-izek-frozen",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838421644,
-  "updatedAt": 1788838421644,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 3000000,
+  "publishedAt": 1788929238138,
+  "updatedAt": 1788929238138,
   "unpublished": false
 }
 ---
