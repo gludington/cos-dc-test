@@ -18,28 +18,27 @@ Both shared files are imported once, in `layouts/Layout.astro`, and apply site-w
 
 ## How theming works
 
-`layouts/Layout.astro` loads a theme (configured via the Foundry module's site-wide settings →
-written to `content/site-config.json` → resolved to a URL by `lib/config.ts`'s
-`resolveThemeUrl()`) as a plain `<link rel="stylesheet">`, and a theme only needs to redeclare
-`:root` custom properties to reskin the site. There's no example theme file in this repo right
-now (the previous one, `themes/parchment.css`, targeted an older variable set and was removed
-rather than left broken) — see the token reference below for what a new one needs to target.
+The Foundry module's "Site Theme" setting is a plain name (or `default`/blank for none), resolved
+by `lib/config.ts`'s `resolveDataTheme()` and set by `layouts/Layout.astro` as
+`<html data-theme="midnight">`. This selects a `:root[data-theme="midnight"] { ... }` block
+already compiled into this repo's own `tokens.css` — see the block below the default `:root`
+there for the one built-in example (`midnight`). Adding another built-in theme means adding
+another block to that same file, not a new file elsewhere.
 
-**Change from an earlier version of this doc:** `base.css` no longer wraps its rules in
-`@layer base`. Previously that was deliberate — an unlayered stylesheet always beats a layered
-one regardless of specificity or document order, which is what let a theme reliably override the
-built-in default no matter where Astro placed either `<link>` in the output. With that wrapper
-gone, `base.css` and a theme's stylesheet are both plain unlayered CSS now, so whichever the
-browser considers as-if-later (by cascade order in the actual rendered `<head>`) wins on any rule
-that overlaps in specificity — no longer a guarantee. Themes that only set `:root` custom
-properties (the recommended, documented approach) are unaffected by this either way, since
-`var(--x)` always resolves to whatever the property currently is regardless of rule order.
+**Why built-in themes live in this repo instead of as separate files:** an earlier version of
+this project loaded themes as standalone files, fetched externally at runtime
+(`themes/parchment.css`). When `tokens.css`'s variable names were later renamed, nothing caught
+that file silently going stale; it kept "working" (loading successfully) while doing nothing at
+all, since every property it set no longer matched anything `base.css` read. It was removed
+rather than fixed, and named themes moved into `tokens.css` itself specifically so a future
+rename can't produce that failure mode again — a `--color-*` rename has to touch every
+`[data-theme]` block in the same commit, in the same file, reviewed together.
 
-If you're hosting a custom theme file yourself: it must be served with a real `text/css`
-Content-Type. `raw.githubusercontent.com` sends `text/plain` with
-`X-Content-Type-Options: nosniff`, which makes browsers silently refuse to apply it — confirmed
-live. jsDelivr's GitHub proxy (`cdn.jsdelivr.net/gh/<owner>/<repo>@<branch>/<path>`) serves the
-same file with the correct MIME type.
+There's deliberately no way to load a fully custom theme from an external URL right now (self-
+hosting your own CSS outside this repo's build, without a redeploy here) — that's aspirational,
+not something anything currently needs, and was cut rather than half-built. Straightforward to
+add back later (as a second, clearly-separate mechanism from built-in `[data-theme]` blocks) if a
+real need for it comes up.
 
 ## Token reference (`tokens.css`)
 
@@ -66,6 +65,9 @@ define them to opt into an effect the built-in default doesn't use:
 
 There's no spacing scale (no `--space-*` tokens) — each component's own scoped `<style>` picks
 plain rem values directly.
+
+One built-in named theme exists so far — `midnight`, a `:root[data-theme="midnight"]` block right
+below the table above's values in `tokens.css` — see "How theming works" below.
 
 ## Class reference
 
