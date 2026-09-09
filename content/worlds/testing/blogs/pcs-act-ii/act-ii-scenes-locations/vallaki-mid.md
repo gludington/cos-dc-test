@@ -10,14 +10,18 @@
   "slug": "vallaki-mid",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838325560,
-  "updatedAt": 1788838325560,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": -150000,
+  "publishedAt": 1788929159885,
+  "updatedAt": 1788929159885,
   "unpublished": false
 }
 ---
