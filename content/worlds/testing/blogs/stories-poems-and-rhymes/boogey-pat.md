@@ -10,18 +10,18 @@
   "slug": "boogey-pat",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788801495596,
-  "updatedAt": 1788801495596,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 87500,
+  "publishedAt": 1788883405065,
+  "updatedAt": 1788883405065,
   "unpublished": false
 }
 ---
