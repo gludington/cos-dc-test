@@ -10,14 +10,18 @@
   "slug": "coffin-maker-s-shop",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838332491,
-  "updatedAt": 1788838332491,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": -5468,
+  "publishedAt": 1788929166271,
+  "updatedAt": 1788929166271,
   "unpublished": false
 }
 ---
