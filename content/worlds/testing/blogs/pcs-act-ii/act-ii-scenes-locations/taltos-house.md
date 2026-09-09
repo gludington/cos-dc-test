@@ -10,14 +10,18 @@
   "slug": "taltos-house",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838335504,
-  "updatedAt": 1788838335504,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 114844,
+  "publishedAt": 1788929167378,
+  "updatedAt": 1788929167378,
   "unpublished": false
 }
 ---
