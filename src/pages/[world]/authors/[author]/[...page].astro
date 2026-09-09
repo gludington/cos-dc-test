@@ -21,6 +21,7 @@ interface AuthorInfo {
   authorSlug: string;
   name: string;
   image: string | null;
+  bio: string;
 }
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
@@ -35,11 +36,16 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const key = `${post.data.world}/${post.data.authorSlug}`;
     if (!groups.has(key)) {
       groups.set(key, {
+        // Taken from whichever post is encountered first for this author,
+        // same as name/image already were -- if the underlying Actor's
+        // bio changed between posts, this shows whatever the first-seen
+        // post happened to capture, not necessarily the latest.
         author: {
           world: post.data.world,
           authorSlug: post.data.authorSlug,
           name: post.data.author.name,
           image: post.data.author.image,
+          bio: post.data.author.bio,
         },
         posts: [],
       });
@@ -81,6 +87,8 @@ const authorItems = page.data.map((post) => ({
   {author.image && <img class="avatar avatar-lg" src={author.image} alt="" />}
   <h1>{author.name} <span class="header-count">({page.total})</span></h1>
 
+  {author.bio && <section class="prose author-bio" set:html={author.bio} />}
+
   <ContentPanel title="" items={authorItems} />
 
   {
@@ -114,6 +122,10 @@ const authorItems = page.data.map((post) => ({
     width: 64px;
     height: 64px;
     margin-bottom: 1rem;
+  }
+
+  .author-bio {
+    margin-bottom: 2.5rem;
   }
 
   /* Structural selector to mask double borders directly below the main page title */
