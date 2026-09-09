@@ -10,14 +10,18 @@
   "slug": "milivoj-deceased",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838415544,
-  "updatedAt": 1788838415544,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2500000,
+  "publishedAt": 1788929230990,
+  "updatedAt": 1788929230990,
   "unpublished": false
 }
 ---
