@@ -10,14 +10,18 @@
   "slug": "the-megaliths",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838259659,
-  "updatedAt": 1788838259659,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2300000,
+  "publishedAt": 1788929119118,
+  "updatedAt": 1788929119118,
   "unpublished": false
 }
 ---
