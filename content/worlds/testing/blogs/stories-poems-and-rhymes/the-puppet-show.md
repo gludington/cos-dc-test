@@ -10,18 +10,18 @@
   "slug": "the-puppet-show",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788795323238,
-  "updatedAt": 1788795323238,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 900000,
+  "publishedAt": 1788883416951,
+  "updatedAt": 1788883416951,
   "unpublished": false
 }
 ---
