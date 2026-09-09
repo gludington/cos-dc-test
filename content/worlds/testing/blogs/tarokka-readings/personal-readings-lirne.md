@@ -10,14 +10,21 @@
   "slug": "personal-readings-lirne",
   "author": {
     "userId": null,
-    "name": "Madame Eva",
+    "name": "dinge",
     "image": null,
-    "isGM": false
+    "isGM": false,
+    "bio": ""
   },
-  "authorSlug": "madame-eva",
-  "tags": [],
-  "publishedAt": 1788803440066,
-  "updatedAt": 1788803440066,
+  "authorSlug": "dinge",
+  "tags": [
+    "spooky",
+    "lore"
+  ],
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 200000,
+  "publishedAt": 1788912386132,
+  "updatedAt": 1788927853269,
   "unpublished": false
 }
 ---
