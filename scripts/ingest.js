@@ -187,11 +187,11 @@ async function main() {
   }
 
   // content/site-config.json: read by src/lib/config.ts at Astro build time
-  // (theme, site name, blogs URL segment). The direct-to-GitHub path
-  // (the Foundry module's main.js's publishToGitHub -> render.js's
-  // buildSiteConfigFile) writes this too; this is the equivalent for the
-  // local "Dev Sync" + ingest.js path, which only ever sees this
-  // downloaded JSON, never a live game.settings.
+  // (theme, site name, blogs URL segment, allowThemeOverride). The
+  // direct-to-GitHub path (the Foundry module's main.js's publishToGitHub
+  // -> render.js's buildSiteConfigFile) writes this too; this is the
+  // equivalent for the local "Dev Sync" + ingest.js path, which only ever
+  // sees this downloaded JSON, never a live game.settings.
   const siteConfig = payload.siteConfig ?? {};
   await writeFile(
     path.join(contentDir, "site-config.json"),
@@ -200,6 +200,7 @@ async function main() {
         theme: siteConfig.theme || "default",
         siteName: siteConfig.siteName || "World2Web",
         blogsSegment: siteConfig.blogsSegment || "journals",
+        allowThemeOverride: !!siteConfig.allowThemeOverride,
       },
       null,
       2,

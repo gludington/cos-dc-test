@@ -20,10 +20,19 @@ Both shared files are imported once, in `layouts/Layout.astro`, and apply site-w
 
 The Foundry module's "Site Theme" setting is a plain name (or `default`/blank for none), resolved
 by `lib/config.ts`'s `resolveDataTheme()` and set by `layouts/Layout.astro` as
-`<html data-theme="midnight">`. This selects a `:root[data-theme="midnight"] { ... }` block
-already compiled into this repo's own `tokens.css` — see the block below the default `:root`
-there for the one built-in example (`midnight`). Adding another built-in theme means adding
-another block to that same file, not a new file elsewhere.
+`<html data-theme="...">`. This selects a matching `:root[data-theme="..."] { ... }` (or, for the
+default look, a bare `html` selector) block already compiled into this repo's own `tokens.css` —
+see that file for the current set of built-in themes. Adding another means adding another block
+to that same file, not a new file elsewhere.
+
+A second, independent Foundry setting, "Allow Visitor Theme Override," controls whether a visitor
+can pick their own theme from a dropdown (`ThemeSelector.astro`, saved to their own browser's
+`localStorage`, applied via an inline `<head>` script before first paint to avoid a flash of the
+wrong theme). Off by default: `Layout.astro` skips rendering both the script and the picker
+entirely when the setting is off, not just hides them — the GM's Site Theme is then the only
+theme anyone sees. Keeping the picker's own list of options (`ThemeSelector.astro`) in sync with
+whatever blocks actually exist in `tokens.css` is a manual step — nothing currently derives one
+from the other.
 
 **Why built-in themes live in this repo instead of as separate files:** an earlier version of
 this project loaded themes as standalone files, fetched externally at runtime
@@ -66,8 +75,9 @@ define them to opt into an effect the built-in default doesn't use:
 There's no spacing scale (no `--space-*` tokens) — each component's own scoped `<style>` picks
 plain rem values directly.
 
-One built-in named theme exists so far — `midnight`, a `:root[data-theme="midnight"]` block right
-below the table above's values in `tokens.css` — see "How theming works" below.
+See `tokens.css` itself for the current set of built-in named themes (each its own
+`[data-theme="..."]` block below the values in the table above) — see "How theming works" below
+for how one gets selected.
 
 ## Class reference
 

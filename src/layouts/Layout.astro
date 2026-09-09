@@ -2,6 +2,7 @@
 import { getSiteConfig, resolveDataTheme } from "../lib/config";
 import "../styles/tokens.css";
 import "../styles/base.css";
+import ThemeSelector from "../components/ThemeSelector.astro";
 
 interface Props {
   title: string;
@@ -19,6 +20,23 @@ const dataTheme = resolveDataTheme(siteConfig.theme);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · {siteConfig.siteName}</title>
+    {/* Visitor override is opt-in (Foundry's "Allow Visitor Theme
+        Override" setting) -- when it's off, Site Theme is authoritative
+        for everyone and neither this script nor the picker below ships at
+        all, not just hidden. */}
+    {siteConfig.allowThemeOverride && (
+      <script is:inline>
+        try {
+          const savedTheme = localStorage.getItem("site-theme");
+          if (savedTheme) {
+            document.documentElement.setAttribute("data-theme", savedTheme);
+          }
+        } catch {
+          // Storage inaccessible (e.g. some private-browsing modes) -- fall
+          // back to whatever Site Theme baked into the page at build time.
+        }
+      </script>
+    )}
     {/* The built-in default look's two type families -- an inscriptional
         display face for headings, an old-style serif for body text. Both
         have a same-era system-font fallback in styles/tokens.css, so
@@ -34,6 +52,7 @@ const dataTheme = resolveDataTheme(siteConfig.theme);
   </head>
   <body>
     <main>
+      {siteConfig.allowThemeOverride && <ThemeSelector />}
       <slot />
     </main>
   </body>
