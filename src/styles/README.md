@@ -21,8 +21,9 @@ Both shared files are imported once, in `layouts/Layout.astro`, and apply site-w
 `layouts/Layout.astro` loads a theme (configured via the Foundry module's site-wide settings →
 written to `content/site-config.json` → resolved to a URL by `lib/config.ts`'s
 `resolveThemeUrl()`) as a plain `<link rel="stylesheet">`, and a theme only needs to redeclare
-`:root` custom properties to reskin the site (see `themes/parchment.css` in the repo root for an
-example — **note:** that file currently targets an older variable set, see "Known gaps" below).
+`:root` custom properties to reskin the site. There's no example theme file in this repo right
+now (the previous one, `themes/parchment.css`, targeted an older variable set and was removed
+rather than left broken) — see the token reference below for what a new one needs to target.
 
 **Change from an earlier version of this doc:** `base.css` no longer wraps its rules in
 `@layer base`. Previously that was deliberate — an unlayered stylesheet always beats a layered
@@ -76,7 +77,7 @@ plain rem values directly.
 | `.panel`, `.panel-title` | One grouped block of content (rendered generically by `ContentPanel.astro` now — see below) | `base.css` (colors/type) + `ContentPanel.astro`/`TagCloud.astro` (layout) |
 | `.entry-list`, `.entry`, `.entry-title` | A list of linked items inside a panel (or a full-page listing, e.g. `worlds/index.astro`) | `base.css` (colors/type) + `ContentPanel.astro` (layout) |
 | `.meta` | Secondary line under a title (author, date) | `base.css` |
-| `.avatar` | Small square (by default) author portrait, 24px | `base.css`. **Note:** `.avatar-lg` (a larger variant) is referenced in the author archive page but no longer defined anywhere — see "Known gaps" |
+| `.avatar` | Small square (by default) author portrait, 24px | `base.css`. `.avatar-lg` (64px, the author archive page's larger variant) is defined locally in that page instead, per the component/page-local-styling pattern above |
 | `.tag-container`, `.tag-item`, `.tag-name`, `.tag-count` | Tag cloud pills (replaces the old `.tag`/`.tag-cloud`/`.tag-count` names) | `base.css` + `TagCloud.astro`'s own `<style>` (both define overlapping rules — the component's scoped rules win within it) |
 | `.pagination`, `.pagination-status`, `.disabled` | Prev/status/next row, now also has a dedicated `Pagination.astro` component (not yet used everywhere — the author archive page still hand-rolls its own `nav.pagination` markup) | `base.css` (colors/type) + `Pagination.astro` (grid layout) where used |
 | `.empty-state` | Muted "nothing here yet" message, now a bordered/backgrounded card rather than plain italic text | `base.css` |
@@ -94,17 +95,4 @@ plain rem values directly.
 - **`Breadcrumbs.astro`** — `{siteName, crumbs[], currentLabel?}`, replacing the inline
   `<nav class="crumbs">...</nav>` markup previously duplicated in every page file.
 - **`Pagination.astro`** — `{prevUrl, nextUrl, pageNum, totalPages}`, replacing inline
-  `<nav class="pagination">` markup. Adopted in the blog archive and tag archive pages; the
-  author archive page has not been switched over yet and still has its own inline version.
-
-## Known gaps (as of this rewrite)
-
-- **`themes/parchment.css` (repo root) is stale.** It still sets `--fg`/`--bg`/`--muted`/
-  `--accent`/`--border` — the variable names from before this rewrite. None of those are read by
-  `base.css` anymore, so selecting that theme currently has no visible effect. A working theme
-  now needs to target the `--color-*` names in the table above instead.
-- **`.avatar-lg`** is used on the author archive page (`src/pages/[world]/authors/[author]/[...page].astro`)
-  but has no matching rule anywhere in `base.css` — the large author-page avatar renders at the
-  same small size as everywhere else.
-- **`.site`** (the `<main class="site">` wrapper in `Layout.astro`) is no longer styled anywhere
-  — page-width/margins now come from `body`'s own padding in `base.css` instead.
+  `<nav class="pagination">` markup. Adopted in the blog, tag, and author archive pages.
