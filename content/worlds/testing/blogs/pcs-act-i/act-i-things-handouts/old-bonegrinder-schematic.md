@@ -10,14 +10,18 @@
   "slug": "old-bonegrinder-schematic",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838270797,
-  "updatedAt": 1788838270797,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1675000,
+  "publishedAt": 1788929096292,
+  "updatedAt": 1788929096292,
   "unpublished": false
 }
 ---
