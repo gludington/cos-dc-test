@@ -10,14 +10,18 @@
   "slug": "jm-b-w3",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838383877,
-  "updatedAt": 1788838383877,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 2100000,
+  "publishedAt": 1788929211484,
+  "updatedAt": 1788929211484,
   "unpublished": false
 }
 ---
