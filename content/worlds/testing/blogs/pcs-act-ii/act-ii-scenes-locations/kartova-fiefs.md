@@ -10,14 +10,18 @@
   "slug": "kartova-fiefs",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838343266,
-  "updatedAt": 1788838343266,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1300000,
+  "publishedAt": 1788929175626,
+  "updatedAt": 1788929175626,
   "unpublished": false
 }
 ---
