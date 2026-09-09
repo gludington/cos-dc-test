@@ -10,14 +10,18 @@
   "slug": "mt-baratok-frozen-stag",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838345083,
-  "updatedAt": 1788838345083,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1500000,
+  "publishedAt": 1788929176721,
+  "updatedAt": 1788929176721,
   "unpublished": false
 }
 ---
