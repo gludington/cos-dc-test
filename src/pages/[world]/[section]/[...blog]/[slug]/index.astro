@@ -40,6 +40,8 @@ const crumbs = rootCrumbs(post.data).concat([
   <!-- 1. The Modular Breadcrumbs call -->
   <Breadcrumbs siteName={siteName} crumbs={crumbs} currentLabel={post.data.title} />
 
+  {post.data.frontImage && <img class="article-front-image" src={post.data.frontImage} alt="" />}
+
   <!-- 2. The Unified Article Entry Header -->
   <header class="article-header">
     <h1 class="article-title">{post.data.title}</h1>

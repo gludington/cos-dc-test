@@ -5,14 +5,19 @@ import type { CollectionEntry } from "astro:content";
 // deeper levels) so there's exactly one implementation of "walk every
 // blog's root path and figure out what lives at each level," not two
 // independently-maintained copies.
+// Deliberately no author fields here: a blog's posts can each have their
+// own author (Post Settings' author override, see the Foundry module's
+// collector.js), so there's no single reliable "the blog's author" to
+// aggregate -- and this used to pick one arbitrarily (whichever post
+// toBlogInfos() below happened to see first for a given blogUuid), which
+// silently stopped being representative once that override existed.
+// Author is shown per-post everywhere instead (already accurate); a blog
+// itself just isn't attributed to anyone in blog-level listings.
 export interface BlogInfo {
   blogUuid: string;
   world: string;
   blogSlug: string;
-  authorSlug: string;
   blogTitle: string;
-  authorName: string;
-  authorImage: string | null;
   root: string | null;
   postOrder: "newest" | "oldest" | "manual";
 }
@@ -39,10 +44,7 @@ export function toBlogInfos(posts: CollectionEntry<"posts">[]): BlogInfo[] {
       blogUuid: post.data.blogUuid,
       world: post.data.world,
       blogSlug: post.data.blogSlug,
-      authorSlug: post.data.authorSlug,
       blogTitle: post.data.blogTitle,
-      authorName: post.data.author.name,
-      authorImage: post.data.author.image,
       root: post.data.root,
       postOrder: post.data.postOrder,
     });

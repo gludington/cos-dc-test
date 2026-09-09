@@ -78,6 +78,7 @@ const authorItems = page.data.map((post) => ({
   href: postRoute(post.data),
   subLabels: [post.data.blogTitle],
   dateLabel: formatDate(post.data.publishedAt),
+  frontImage: post.data.frontImage,
 }));
 ---
 

@@ -23,7 +23,8 @@ const recentPostsItems = allPosts.slice(0, 5).map((post) => ({
   authorName: post.data.author?.name,
   authorHref: authorRoute(post.data),
   subLabels: [post.data.blogTitle],
-  dateLabel: formatDate ? formatDate(post.data.publishedAt) : post.data.publishedAt
+  dateLabel: formatDate ? formatDate(post.data.publishedAt) : post.data.publishedAt,
+  frontImage: post.data.frontImage
 }));
 
 // 2. Map Sections and Blogs into a single unified Browse panel array
@@ -35,10 +36,10 @@ const browseItems = [
   })),
   ...rootLevelBlogs.map((blog) => ({
     title: blog.blogTitle,
-    href: blogRoute(blog),
-    authorName: blog.authorName,
-    authorHref: authorRoute(blog),
-    authorImage: blog.authorImage
+    href: blogRoute(blog)
+    // No author here -- see BlogInfo's own doc comment (lib/sections.ts):
+    // a blog's posts can each have their own author now, so there's no
+    // single reliable one to show for the blog itself.
   }))
 ];
 ---

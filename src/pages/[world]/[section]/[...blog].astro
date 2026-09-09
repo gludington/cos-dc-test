@@ -5,7 +5,6 @@ import { getSiteConfig } from "../../../lib/config";
 import { getPublishedPosts } from "../../../lib/posts";
 import {
   postRoute,
-  authorRoute,
   blogRoute,
   rootCrumbs,
   sectionRoute,
@@ -104,7 +103,8 @@ const nextUrl = props.kind === "blog" && props.pageNum < props.totalPages ? `${b
 const postItems = props.kind === "blog" ? props.pagePosts.map((post) => ({
   title: post.data.title,
   href: postRoute(post.data),
-  dateLabel: formatDate(post.data.publishedAt)
+  dateLabel: formatDate(post.data.publishedAt),
+  frontImage: post.data.frontImage
 })) : [];
 
 // --- Mapping Data Sets for the "section" display branch ---
@@ -121,9 +121,6 @@ const sortedBlogEntries = props.kind === "section" ? [...props.blogEntries].sort
 const blogEntriesItems = props.kind === "section" ? sortedBlogEntries.map(({ blog, subPath }) => ({
   title: blog.blogTitle,
   href: blogRoute(blog),
-  authorName: blog.authorName,
-  authorHref: authorRoute(blog),
-  authorImage: blog.authorImage,
   subLabels: subPath
 })) : [];
 ---
@@ -136,11 +133,11 @@ const blogEntriesItems = props.kind === "section" ? sortedBlogEntries.map(({ blo
       currentLabel={props.blog.blogTitle} 
   />  
     <h1>{props.blog.blogTitle}</h1>
-    
-    <div class="meta">
-      {props.blog.authorImage && <img class="avatar" src={props.blog.authorImage} alt="" />}
-      by <a href={authorRoute(props.blog)}>{props.blog.authorName}</a>
-    </div>
+
+    {/* No blog-level author line here -- a blog's posts can each have their
+        own author (Post Settings' override), so there's no single reliable
+        author to attribute the blog itself to. See each post's own byline
+        in the list below instead. */}
 
     {/* Handled using ContentPanel — panel title is hidden/empty since h1 acts as the header */}
     <ContentPanel title="" items={postItems} />
@@ -178,9 +175,9 @@ const blogEntriesItems = props.kind === "section" ? sortedBlogEntries.map(({ blo
   /* Local adjustments keeping the visual architecture balanced */
   h1 {
     margin-top: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  .meta {
+    /* Was 0.5rem plus a separate .meta rule's 3rem when a blog-level
+       author line sat between the title and the post list -- carries that
+       same total gap alone now that the line is gone. */
     margin-bottom: 3rem;
   }
   /* Hides the duplicate header border when ContentPanel is used directly under an H1 */
