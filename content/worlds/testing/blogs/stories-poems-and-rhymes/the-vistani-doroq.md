@@ -10,18 +10,18 @@
   "slug": "the-vistani-doroq",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
-  "tags": [
-    "Lore",
-    "Stories",
-    "Spooky"
-  ],
-  "publishedAt": 1788794912039,
-  "updatedAt": 1788794912039,
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 200000,
+  "publishedAt": 1788883409877,
+  "updatedAt": 1788883409877,
   "unpublished": false
 }
 ---
