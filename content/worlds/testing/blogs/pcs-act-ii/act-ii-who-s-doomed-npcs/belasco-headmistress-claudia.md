@@ -10,14 +10,18 @@
   "slug": "belasco-headmistress-claudia",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838398644,
-  "updatedAt": 1788838398644,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 600000,
+  "publishedAt": 1788883686391,
+  "updatedAt": 1788883686391,
   "unpublished": false
 }
 ---
