@@ -42,11 +42,19 @@ export interface SiteConfig {
   theme: string;
   siteName: string;
   blogsSegment: string;
+  allowThemeOverride: boolean;
 }
+
+const DEFAULT_SITE_CONFIG: SiteConfig = {
+  theme: "default",
+  siteName: DEFAULT_SITE_NAME,
+  blogsSegment: DEFAULT_BLOGS_SEGMENT,
+  allowThemeOverride: false,
+};
 
 export function getSiteConfig(): SiteConfig {
   if (!existsSync(CONFIG_PATH)) {
-    return { theme: "default", siteName: DEFAULT_SITE_NAME, blogsSegment: DEFAULT_BLOGS_SEGMENT };
+    return DEFAULT_SITE_CONFIG;
   }
   try {
     const raw = JSON.parse(readFileSync(CONFIG_PATH, "utf-8"));
@@ -56,9 +64,10 @@ export function getSiteConfig(): SiteConfig {
       typeof raw.blogsSegment === "string" && raw.blogsSegment.trim()
         ? slugifySegment(raw.blogsSegment, DEFAULT_BLOGS_SEGMENT)
         : DEFAULT_BLOGS_SEGMENT;
-    return { theme, siteName, blogsSegment };
+    const allowThemeOverride = raw.allowThemeOverride === true;
+    return { theme, siteName, blogsSegment, allowThemeOverride };
   } catch {
-    return { theme: "default", siteName: DEFAULT_SITE_NAME, blogsSegment: DEFAULT_BLOGS_SEGMENT };
+    return DEFAULT_SITE_CONFIG;
   }
 }
 
