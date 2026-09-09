@@ -3,6 +3,7 @@ import { getPublishedPosts } from "../lib/posts";
 import { toBlogInfos, buildSectionTree, topLevelSections } from "../lib/sections";
 import ContentPanel from "./ContentPanel.astro";
 import TagCloud from "./TagCloud.astro";
+import AuthorCloud from "./AuthorCloud.astro";
 import { postRoute, sectionRoute, blogRoute, authorRoute, formatDate } from "../lib/routes"; // Added formatDate
 
 interface Props {
@@ -58,6 +59,7 @@ const browseItems = [
     {/* Right Column: Navigation & Indices */}
     <div class="sidebar-column">
       <ContentPanel title="Browse" items={browseItems} />
+      <AuthorCloud posts={allPosts} />
       <TagCloud posts={allPosts} />
     </div>
   </div>
