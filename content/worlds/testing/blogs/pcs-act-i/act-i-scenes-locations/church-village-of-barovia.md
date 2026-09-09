@@ -10,14 +10,18 @@
   "slug": "church-village-of-barovia",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838251008,
-  "updatedAt": 1788838251008,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1100000,
+  "publishedAt": 1788929109613,
+  "updatedAt": 1788929109613,
   "unpublished": false
 }
 ---
