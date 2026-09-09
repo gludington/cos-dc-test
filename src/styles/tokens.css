@@ -10,3 +10,23 @@
   --card-radius: 0px;
   --avatar-radius: 0px;
 }
+
+/* Built-in named themes -- selected by setting the "Site Theme" Foundry
+   setting to this block's name (e.g. "midnight"), which layouts/Layout.astro
+   turns into a `data-theme="midnight"` attribute on <html>. Living here
+   means a theme can never silently drift out of sync with a token rename
+   the way a separate external theme file could (and once did -- see git
+   history for themes/parchment.css, removed for exactly that reason): any
+   rename to a --color-* name in :root above has to be applied to every
+   block below in the same commit, or the site fails to look right in an
+   obvious, catchable way instead of a silent no-op months later. Add a new
+   built-in theme by adding another :root[data-theme="..."] block -- only
+   the properties that actually differ from the default need restating. */
+:root[data-theme="midnight"] {
+  --color-bg: #14100c;
+  --color-card-bg: #211a13;
+  --color-text-main: #e8ddc7;
+  --color-text-muted: #a89a82;
+  --color-accent: #c9a253;
+  --color-border: #4a3a26;
+}

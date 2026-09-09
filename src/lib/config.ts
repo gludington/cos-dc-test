@@ -62,23 +62,20 @@ export function getSiteConfig(): SiteConfig {
   }
 }
 
-const THEMES_BASE_URL = "https://world2web-themes.pages.dev/themes";
-
-/** null means "no external stylesheet at all -- use the site's built-in
- * look" (the "default" case, and the safe fallback for anything unset).
- * A theme value that's already a full URL is used as-is, for anyone who'd
- * rather host their own custom CSS than pick from the shared collection --
- * same publish mechanism either way, no code difference between "named
- * theme" and "custom URL" beyond this one check.
+/** A plain theme name (not "default", not blank) selects a built-in theme
+ * -- a `:root[data-theme="<name>"]` block already compiled into this
+ * site's own styles/tokens.css. This is deliberately NOT a separate file
+ * loaded externally (an earlier version of this project had exactly that,
+ * via themes/parchment.css, removed after it silently went stale following
+ * a token rename): baking named themes into this repo's own build means a
+ * rename has to touch every theme block in the same commit, so drift is
+ * caught immediately instead of silently, months later.
  *
- * Whatever hosts a custom URL's CSS must serve it with a real `text/css`
- * Content-Type. raw.githubusercontent.com does NOT (sends text/plain with
- * X-Content-Type-Options: nosniff), which makes browsers silently refuse to
- * apply it as a stylesheet at all -- confirmed live. jsDelivr's GitHub
- * proxy (cdn.jsdelivr.net/gh/<owner>/<repo>@<branch>/<path>) serves the
- * same file with the correct MIME type. */
-export function resolveThemeUrl(theme: string): string | null {
-  if (!theme || theme === "default") return null;
-  if (/^https?:\/\//i.test(theme)) return theme;
-  return `${THEMES_BASE_URL}/${encodeURIComponent(theme)}.css`;
+ * No external-URL escape hatch right now (self-hosting a fully custom
+ * theme outside this repo's build) -- deliberately deferred as aspirational
+ * until something actually needs it; straightforward to add back later
+ * alongside this if it comes up. Returns the name to set as
+ * `<html data-theme="...">` in Layout.astro, or null for "default"/unset. */
+export function resolveDataTheme(theme: string): string | null {
+  return theme && theme !== "default" ? theme : null;
 }
