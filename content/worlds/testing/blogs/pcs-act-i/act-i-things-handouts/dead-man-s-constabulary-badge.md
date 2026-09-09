@@ -10,14 +10,18 @@
   "slug": "dead-man-s-constabulary-badge",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838269757,
-  "updatedAt": 1788838269757,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1650000,
+  "publishedAt": 1788929094817,
+  "updatedAt": 1788929094817,
   "unpublished": false
 }
 ---
