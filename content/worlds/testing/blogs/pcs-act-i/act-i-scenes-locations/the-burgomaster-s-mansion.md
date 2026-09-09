@@ -10,14 +10,18 @@
   "slug": "the-burgomaster-s-mansion",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838250020,
-  "updatedAt": 1788838250020,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 900000,
+  "publishedAt": 1788929108518,
+  "updatedAt": 1788929108518,
   "unpublished": false
 }
 ---
