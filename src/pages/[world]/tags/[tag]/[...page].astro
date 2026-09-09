@@ -6,6 +6,9 @@ import { getSiteConfig } from "../../../../lib/config";
 import { getPublishedPosts } from "../../../../lib/posts";
 import { postRoute, blogRoute, formatDate } from "../../../../lib/routes";
 import { slugifyTag } from "../../../../lib/tags";
+import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
+import ContentPanel from "../../../../components/ContentPanel.astro";
+import Pagination from "../../../../components/Pagination.astro";
 
 const siteName = getSiteConfig().siteName;
 
@@ -24,8 +27,8 @@ interface TagInfo {
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const PAGE_SIZE = 10;
   const posts = await getPublishedPosts();
-
   const groups = new Map<string, { tag: TagInfo; posts: CollectionEntry<"posts">[] }>();
+
   for (const post of posts) {
     for (const tagName of post.data.tags) {
       const key = `${post.data.world}/${slugifyTag(tagName)}`;
@@ -51,33 +54,50 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
 const { tag } = Astro.props as { tag: TagInfo };
 const { page } = Astro.props as { page: Page<CollectionEntry<"posts">> };
+
+// Map data arrays cleanly without touching your original data objects above
+const taggedItems = page.data.map((post) => ({
+  title: post.data.title,
+  href: postRoute(post.data),
+  subLabels: [post.data.blogTitle],
+  dateLabel: formatDate(post.data.publishedAt)
+}));
 ---
 
 <Layout title={`Tag: ${tag.name}`}>
-  <nav class="crumbs"><a href="/">{siteName}</a></nav>
-  <span class="tag">Tag</span>
-  <h1>{tag.name}</h1>
-  <ul class="entry-list">
-    {
-      page.data.map((post) => (
-        <li class="entry">
-          <a class="entry-title" href={postRoute(post.data)}>{post.data.title}</a>
-          <div class="meta">
-            <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> · {formatDate(post.data.publishedAt)}
-          </div>
-        </li>
-      ))
-    }
-  </ul>
-  {
-    page.lastPage > 1 && (
-      <nav class="pagination">
-        {page.url.prev ? <a href={page.url.prev}>&larr; Newer</a> : <span class="disabled">&larr; Newer</span>}
-        <span class="pagination-status">
-          Page {page.currentPage} of {page.lastPage}
-        </span>
-        {page.url.next ? <a href={page.url.next}>Older &rarr;</a> : <span class="disabled">Older &rarr;</span>}
-      </nav>
-    )
-  }
+  <Breadcrumbs siteName={siteName} crumbs={[]} currentLabel={tag.name}/>
+  
+  <h1>{tag.name} <span class="header-count">({page.total})</span></h1>
+  
+  <ContentPanel title="" items={taggedItems} />
+
+  { page.lastPage > 1 && (
+    <Pagination 
+      prevUrl={page.url.prev ?? null} 
+      nextUrl={page.url.next ?? null} 
+      pageNum={page.currentPage} 
+      totalPages={page.lastPage} 
+    />
+  ) }
 </Layout>
+
+<style>
+  h1 {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .header-count {
+    font-family: var(--color-font-body);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  /* Structural selector to mask double borders directly below the main page title */
+  :global(h1 + .panel > .panel-title) {
+    display: none;
+  }
+</style>

@@ -5,6 +5,7 @@ import { getPublishedPosts } from "../../../../../lib/posts";
 import { blogRoute, authorRoute, tagRoute, rootCrumbs, formatDate } from "../../../../../lib/routes";
 import { slugifyTag } from "../../../../../lib/tags";
 import { buildContentLinkMap, resolveContentLinks } from "../../../../../lib/relationships";
+import Breadcrumbs from "../../../../../components/Breadcrumbs.astro";
 
 const siteName = getSiteConfig().siteName;
 
@@ -30,41 +31,41 @@ const { post, uuidToTarget } = Astro.props;
 // rewrite on the body before injecting it directly.
 const resolvedHtml = resolveContentLinks(post.body ?? "", post.data.world, uuidToTarget);
 const wasUpdated = post.data.updatedAt !== post.data.publishedAt;
-const crumbs = rootCrumbs(post.data);
+const crumbs = rootCrumbs(post.data).concat([
+  { label: post.data.blogTitle, href: blogRoute(post.data) },
+]);
 ---
 
 <Layout title={post.data.title}>
-  <nav class="crumbs">
-    <a href="/">{siteName}</a>
-    {
-      crumbs.map((c) => (
-        <>
-          {" / "}
-          <a href={c.href}>{c.label}</a>
-        </>
-      ))
-    }
-    {" / "}
-    <a href={blogRoute(post.data)}>{post.data.blogTitle}</a>
-  </nav>
-  <h1>{post.data.title}</h1>
-  <div class="meta">
-    {post.data.author.image && <img class="avatar" src={post.data.author.image} alt="" />}
-    by <a href={authorRoute(post.data)}>{post.data.author.name}</a> · published {formatDate(post.data.publishedAt)}
-    {wasUpdated && <> · updated {formatDate(post.data.updatedAt)}</>}
-  </div>
-  {
-    post.data.tags.length > 0 && (
-      <div class="meta">
-        In{" "}
+  <!-- 1. The Modular Breadcrumbs call -->
+  <Breadcrumbs siteName={siteName} crumbs={crumbs} currentLabel={post.data.title} />
+
+  <!-- 2. The Unified Article Entry Header -->
+  <header class="article-header">
+    <h1 class="article-title">{post.data.title}</h1>
+    
+    <div class="meta author-line">
+      {post.data.author.image && <img class="avatar" src={post.data.author.image} alt="" />}
+      <span>
+        by <a href={authorRoute(post.data)}>{post.data.author.name}</a> 
+        · published {formatDate(post.data.publishedAt)}
+        {wasUpdated && <> · updated {formatDate(post.data.updatedAt)}</>}
+      </span>
+    </div>
+
+    { post.data.tags.length > 0 && (
+      <div class="meta tag-line">
+        <span class="tag-label">Tags:</span>
         {post.data.tags.map((tagName, i) => (
           <>
-            <a href={tagRoute({ world: post.data.world, tagSlug: slugifyTag(tagName) })}>{tagName}</a>
-            {i < post.data.tags.length - 1 && ", "}
+            <a href={tagRoute({ world: post.data.world, tagSlug: slugifyTag(tagName) })} class="post-tag">{tagName}</a>
+            {i < post.data.tags.length - 1 && <span class="tag-sep">,</span>}
           </>
         ))}
       </div>
-    )
-  }
+    ) }
+  </header>
+
+  <!-- 3. The Protective HTML Prose Engine Container -->
   <section class="prose" set:html={resolvedHtml} />
 </Layout>

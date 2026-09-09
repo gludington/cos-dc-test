@@ -1,62 +1,12 @@
-/* Design tokens -- the entire theming surface. A theme stylesheet (loaded
-   unlayered via layouts/Layout.astro, so it always wins over @layer base
-   regardless of specificity) only needs to redeclare the custom properties
-   it cares about on :root; base.css never hardcodes a color, font, or
-   spacing value outside of this file.
-
-   --fg/--bg/--muted/--accent/--border are the original five (see
-   themes/parchment.css, the first theme built against this mechanism) --
-   kept stable so any theme written against just those five keeps working
-   untouched. Everything below them is new surface: a theme can override as
-   much or as little as it wants and still get a coherent result, since
-   base.css derives nothing that isn't itself a token. */
 :root {
-  color-scheme: light dark;
-
-  /* Core palette -- built-in default is a parchment/ink medieval look. */
-  --fg: #2b1d0f;
-  --bg: #f4ecd8;
-  --muted: #7a5c33;
-  --accent: #8b5a2b;
-  --border: #c9a876;
-
-  /* Secondary palette -- independently overridable, but derived to stay
-     coherent with the core five if a theme leaves them alone. */
-  --surface: #fbf4e2;
-  --accent-strong: #6b3f14;
-  --shadow-tint: 30 25% 15%;
-
-  /* Typography -- an inscriptional display face for headings, an old-style
-     serif for body text. Both fall back to fonts every OS ships before
-     reaching for the web fonts loaded in Layout.astro, so the page never
-     renders unstyled while they load. */
-  --font-heading: "Cinzel", Georgia, "Times New Roman", serif;
-  --font-body: "EB Garamond", Georgia, "Palatino Linotype", "Book Antiqua", serif;
-  --font-size-base: 1.0625rem;
-
-  /* Spacing scale */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 1rem;
-  --space-4: 1.5rem;
-  --space-5: 2.5rem;
-  --space-6: 4rem;
-
-  /* Shape */
-  --radius-sm: 4px;
-  --radius-md: 10px;
-  --border-width: 1px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fg: #e9dfc7;
-    --bg: #1b140c;
-    --muted: #b49a6c;
-    --accent: #c9a253;
-    --border: #4a3a26;
-    --surface: #241a10;
-    --accent-strong: #e0b25a;
-    --shadow-tint: 30 60% 1%;
-  }
+  --color-font-heading: 'Cinzel', 'Georgia', serif;
+  --color-font-body: 'EB Garamond', 'Garamond', serif;
+  --color-bg: #fdfaf2;
+  --color-card-bg: #f5eedc;
+  --color-text-main: #2b1f14;
+  --color-text-muted: #5c534c;
+  --color-accent: #5c1d16;
+  --color-border: #b89047;
+  --card-radius: 0px;
+  --avatar-radius: 0px;
 }
