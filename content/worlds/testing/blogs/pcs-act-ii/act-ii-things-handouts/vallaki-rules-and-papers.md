@@ -10,14 +10,18 @@
   "slug": "vallaki-rules-and-papers",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838364694,
-  "updatedAt": 1788838364694,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 200000,
+  "publishedAt": 1788929190647,
+  "updatedAt": 1788929190647,
   "unpublished": false
 }
 ---
