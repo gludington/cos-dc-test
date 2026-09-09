@@ -10,14 +10,18 @@
   "slug": "crest-on-the-megalith-chest",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838270267,
-  "updatedAt": 1788838270267,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1662500,
+  "publishedAt": 1788929095738,
+  "updatedAt": 1788929095738,
   "unpublished": false
 }
 ---
