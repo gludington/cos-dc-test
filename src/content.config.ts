@@ -18,7 +18,9 @@ const postSchema = z.object({
   // single-blog archive/permalink identity. authorSlug: shared across every
   // blog with the same displayed author name, deliberately NOT
   // disambiguated -- the cross-blog author archive identity. See
-  // render.js/sync/ingest.js's assignSlugs for why these are kept distinct.
+  // assignSlugs() in the Foundry module's render.js or this repo's
+  // scripts/ingest.js (both implement it identically) for why these are
+  // kept distinct.
   blogSlug: z.string(),
   // Raw (unslugified) root text, e.g. "PCs/Act 1" -- the slugified version
   // is already folded into blogSlug's prefix; this is kept separately for
@@ -31,9 +33,33 @@ const postSchema = z.object({
     name: z.string(),
     image: z.string().nullable(),
     isGM: z.boolean(),
+    // Raw HTML passthrough, same as post bodies -- pulled live from an
+    // Actor's own (system-specific) biography field when one is involved
+    // in resolving this author, empty otherwise. .default("") so posts
+    // published before this field existed still validate.
+    bio: z.string().default(""),
   }),
   authorSlug: z.string(),
   tags: z.array(z.string()),
+  // This post's own explicit featured image, if it set one -- a URL,
+  // already resolved to absolute by the Foundry module's collector.js
+  // (resolveAssetUrl), same as author.image. "" (never null) when unset;
+  // never auto-derived from the post's own body content. .default("") so
+  // posts published before this field existed still validate.
+  frontImage: z.string().default(""),
+  // This blog's own post-archive listing order -- every other listing
+  // site-wide (recent posts, author/tag archives) always shows
+  // newest-published-first regardless of this value. .default("newest")
+  // so posts published before this field existed still validate. "manual"
+  // means the exact order pages appear in Foundry's own page list --
+  // see sortIndex below.
+  postOrder: z.enum(["newest", "oldest", "manual"]).default("newest"),
+  // Foundry's own page.sort -- only meaningful when postOrder is "manual".
+  // .default(0) so posts published before this field existed still
+  // validate (they'll all tie at 0 under "manual", falling back to
+  // whatever order Array.sort leaves them in -- harmless, since "manual"
+  // has to be deliberately chosen per blog anyway).
+  sortIndex: z.number().default(0),
   publishedAt: z.number(),
   updatedAt: z.number(),
   // Soft-delete tombstone: true once a previously-published post is
@@ -54,8 +80,8 @@ export const collections = {
   posts: defineCollection({
     // Relative to the project root (this repo), not to this file's own
     // src/ directory -- content/ now lives inside this same repo
-    // (wikiworld-site-template), not as a sibling one level up like it did
-    // when the site was still developed inside the wikiworld dev repo.
+    // (world2web-site-template), not as a sibling one level up like it did
+    // when the site was still developed inside the world2web dev repo.
     loader: glob({ pattern: "*/blogs/**/*.md", base: "content/worlds", generateId }),
     schema: postSchema,
   }),

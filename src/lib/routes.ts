@@ -5,7 +5,8 @@ import { getSiteConfig } from "./config";
 //    collision) so it always maps to exactly one blog.
 //  - "author" = a displayed author name. authorSlug is NOT disambiguated --
 //    multiple blogs sharing the same author name are meant to merge onto
-//    one author page. See render.js/sync/ingest.js's assignSlugs.
+//    one author page. See assignSlugs() in the Foundry module's render.js
+//    or this repo's scripts/ingest.js -- both implement it identically.
 //
 // URLs are world-first: /<world>/<blogsSegment>/..., /<world>/authors/...,
 // /<world>/tags/.... blogsSegment is the one configurable piece (the
@@ -106,8 +107,9 @@ export function formatDate(ms: number): string {
 
 /** Best-effort display label for a world slug -- slugs are all we have per
  * world (Foundry's actual world title only survives as this already-
- * slugified form, see render.js/sync/ingest.js), so this is a guess, not a
- * preserved original title. */
+ * slugified form, see assignSlugs() in the Foundry module's render.js or
+ * this repo's scripts/ingest.js), so this is a guess, not a preserved
+ * original title. */
 export function worldLabel(world: string): string {
   return world.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
