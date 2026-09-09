@@ -10,14 +10,18 @@
   "slug": "arasek-gunther-deceased",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838396652,
-  "updatedAt": 1788838396652,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 300000,
+  "publishedAt": 1788883684749,
+  "updatedAt": 1788883684749,
   "unpublished": false
 }
 ---
