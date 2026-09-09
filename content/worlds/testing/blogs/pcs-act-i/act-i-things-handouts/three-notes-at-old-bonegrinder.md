@@ -10,14 +10,18 @@
   "slug": "three-notes-at-old-bonegrinder",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838272599,
-  "updatedAt": 1788838272599,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1800000,
+  "publishedAt": 1788929098290,
+  "updatedAt": 1788929098290,
   "unpublished": false
 }
 ---
