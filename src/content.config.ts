@@ -33,6 +33,11 @@ const postSchema = z.object({
     name: z.string(),
     image: z.string().nullable(),
     isGM: z.boolean(),
+    // Raw HTML passthrough, same as post bodies -- pulled live from an
+    // Actor's own (system-specific) biography field when one is involved
+    // in resolving this author, empty otherwise. .default("") so posts
+    // published before this field existed still validate.
+    bio: z.string().default(""),
   }),
   authorSlug: z.string(),
   tags: z.array(z.string()),
