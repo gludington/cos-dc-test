@@ -10,14 +10,18 @@
   "slug": "blue-water-inn-menu",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838367830,
-  "updatedAt": 1788838367830,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 362500,
+  "publishedAt": 1788929193355,
+  "updatedAt": 1788929193355,
   "unpublished": false
 }
 ---
