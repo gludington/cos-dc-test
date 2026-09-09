@@ -10,14 +10,18 @@
   "slug": "tser-falls",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838257581,
-  "updatedAt": 1788838257581,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1900000,
+  "publishedAt": 1788929114278,
+  "updatedAt": 1788929114278,
   "unpublished": false
 }
 ---
