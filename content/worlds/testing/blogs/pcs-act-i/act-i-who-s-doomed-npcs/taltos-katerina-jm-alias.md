@@ -10,14 +10,18 @@
   "slug": "taltos-katerina-jm-alias",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838308935,
-  "updatedAt": 1788838308935,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 750000,
+  "publishedAt": 1788929147382,
+  "updatedAt": 1788929147382,
   "unpublished": false
 }
 ---
