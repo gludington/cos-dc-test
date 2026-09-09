@@ -10,14 +10,18 @@
   "slug": "a-different-letter-a-different-plea-for-help",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788797667317,
-  "updatedAt": 1788797667317,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 1000000,
+  "publishedAt": 1788929089848,
+  "updatedAt": 1788929089848,
   "unpublished": false
 }
 ---
