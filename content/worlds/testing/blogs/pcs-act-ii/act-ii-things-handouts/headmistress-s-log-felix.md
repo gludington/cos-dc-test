@@ -10,14 +10,18 @@
   "slug": "headmistress-s-log-felix",
   "author": {
     "userId": null,
-    "name": "Talos",
+    "name": "Game Master",
     "image": null,
-    "isGM": false
+    "isGM": true,
+    "bio": ""
   },
-  "authorSlug": "talos",
+  "authorSlug": "game-master",
   "tags": [],
-  "publishedAt": 1788838373207,
-  "updatedAt": 1788838373207,
+  "frontImage": "",
+  "postOrder": "newest",
+  "sortIndex": 687500,
+  "publishedAt": 1788929197681,
+  "updatedAt": 1788929197681,
   "unpublished": false
 }
 ---
