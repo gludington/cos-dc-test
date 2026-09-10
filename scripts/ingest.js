@@ -132,10 +132,10 @@ function postFrontmatter(worldSlug, blog, post) {
     authorSlug: post._authorSlug,
     tags: post.tags ?? [],
     frontImage: post.frontImage ?? "",
-    // This blog's own post-archive order ("newest"/"oldest"/"manual") --
+    // This blog's own post-archive order ("manual"/"newest"/"oldest") --
     // every other listing site-wide (recent posts, author/tag archives)
     // always shows newest-published-first regardless of this value.
-    postOrder: ["oldest", "manual"].includes(blog.postOrder) ? blog.postOrder : "newest",
+    postOrder: ["newest", "oldest"].includes(blog.postOrder) ? blog.postOrder : "manual",
     // Foundry's own page.sort -- only consumed site-side when postOrder is
     // "manual". See the Foundry module's collector.js's collectPost() for
     // why this is always collected regardless of postOrder.
