@@ -88,20 +88,40 @@ const authorItems = page.data.map((post) => ({
   {author.image && <img class="avatar avatar-lg" src={author.image} alt="" />}
   <h1>{author.name} <span class="header-count">({page.total})</span></h1>
 
-  {author.bio && <section class="prose author-bio" set:html={author.bio} />}
-
-  <ContentPanel title="" items={authorItems} />
-
-  {
-    page.lastPage > 1 && (
-      <Pagination
-        prevUrl={page.url.prev ?? null}
-        nextUrl={page.url.next ?? null}
-        pageNum={page.currentPage}
-        totalPages={page.lastPage}
-      />
-    )
-  }
+  {author.bio ? (
+    <div class="world-dashboard">
+      <div class="main-column">
+        <ContentPanel title="" items={authorItems} />
+        {
+          page.lastPage > 1 && (
+            <Pagination
+              prevUrl={page.url.prev ?? null}
+              nextUrl={page.url.next ?? null}
+              pageNum={page.currentPage}
+              totalPages={page.lastPage}
+            />
+          )
+        }
+      </div>
+      <div class="sidebar-column">
+        <section class="prose author-bio" set:html={author.bio} />
+      </div>
+    </div>
+  ) : (
+    <>
+      <ContentPanel title="" items={authorItems} />
+      {
+        page.lastPage > 1 && (
+          <Pagination
+            prevUrl={page.url.prev ?? null}
+            nextUrl={page.url.next ?? null}
+            pageNum={page.currentPage}
+            totalPages={page.lastPage}
+          />
+        )
+      }
+    </>
+  )}
 </Layout>
 
 <style>

@@ -359,7 +359,7 @@ h1 {
   text-justify: inter-word;
 }
 
-.prose > p:first-of-type::first-letter {
+.prose p.has-dropcap::first-letter {
   font-family: var(--color-font-heading);
   float: left;
   font-size: 3.8rem;
