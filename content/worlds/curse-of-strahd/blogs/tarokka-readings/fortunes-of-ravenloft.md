@@ -16,7 +16,10 @@
     "bio": ""
   },
   "authorSlug": "madam-eva",
-  "tags": [],
+  "tags": [
+    "tarokka",
+    "reading"
+  ],
   "frontImage": "",
   "postOrder": "manual",
   "sortIndex": 100000,
