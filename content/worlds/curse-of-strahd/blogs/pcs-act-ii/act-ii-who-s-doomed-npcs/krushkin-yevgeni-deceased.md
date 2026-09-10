@@ -1,0 +1,29 @@
+---
+{
+  "foundryUuid": "JournalEntry.gtDA1CFZZ7YEmmkZ.JournalEntryPage.qdiEuqDiypSH2fMo",
+  "world": "curse-of-strahd",
+  "blogUuid": "JournalEntry.gtDA1CFZZ7YEmmkZ",
+  "blogTitle": "Act II - Who's Doomed (NPCs)",
+  "blogSlug": "pcs-act-ii/act-ii-who-s-doomed-npcs",
+  "root": "PCs - Act II",
+  "title": "Krushkin, Yevgeni-DECEASED",
+  "slug": "krushkin-yevgeni-deceased",
+  "author": {
+    "userId": null,
+    "name": "Game Master",
+    "image": null,
+    "isGM": true,
+    "bio": ""
+  },
+  "authorSlug": "game-master",
+  "tags": [],
+  "frontImage": "",
+  "postOrder": "manual",
+  "sortIndex": 1600000,
+  "publishedAt": 1789020572479,
+  "updatedAt": 1789020572479,
+  "unpublished": false
+}
+---
+
+<img src="/assets/dd2302444704ab2af4192e61000b78e785c28c31a8c775067b2ba500cd549058.webp" width="400" />
