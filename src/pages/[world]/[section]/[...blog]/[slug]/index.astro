@@ -30,6 +30,21 @@ const { post, uuidToTarget } = Astro.props;
 // pipeline, so resolving Foundry's @UUID[] content-links is a plain string
 // rewrite on the body before injecting it directly.
 const resolvedHtml = resolveContentLinks(post.body ?? "", post.data.world, uuidToTarget);
+let processedHtml = resolvedHtml;
+const firstParagraphMatch = resolvedHtml.match(/<p[^>]*>([\s\S]*?)<\/p>/);
+
+if (firstParagraphMatch && firstParagraphMatch[1]) {
+  const innerHtml = firstParagraphMatch[1];
+  
+  // 1. Strip all internal HTML tags to isolate plain raw text content
+  const rawText = innerHtml.replace(/<[^>]*>/g, "").trim();
+  
+  // 2. Validate bounds: check length and ensure the first visible character is alphanumeric
+  if (rawText.length > 60 && /^[a-zA-Z0-9]/.test(rawText)) {
+    // Only inject the layout trigger class if both rules match perfectly
+    processedHtml = resolvedHtml.replace('<p>', '<p class="has-dropcap">');
+  }
+}
 const wasUpdated = post.data.updatedAt !== post.data.publishedAt;
 const crumbs = rootCrumbs(post.data).concat([
   { label: post.data.blogTitle, href: blogRoute(post.data) },
@@ -69,5 +84,5 @@ const crumbs = rootCrumbs(post.data).concat([
   </header>
 
   <!-- 3. The Protective HTML Prose Engine Container -->
-  <section class="prose" set:html={resolvedHtml} />
+  <section class="prose" set:html={processedHtml} />
 </Layout>
