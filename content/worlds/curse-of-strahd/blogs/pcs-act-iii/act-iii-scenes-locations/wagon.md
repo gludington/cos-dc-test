@@ -21,9 +21,9 @@
   "postOrder": "manual",
   "sortIndex": 618750,
   "publishedAt": 1789020919492,
-  "updatedAt": 1789020919492,
-  "unpublished": false
+  "updatedAt": 1789082679434,
+  "unpublished": true
 }
 ---
 
-<img src="/assets/b64f43385dedc7912ce5fd9971568b927a677b96842b4e137301513fb4ea3f99.png" alt="">
+<img src="https://assets.forge-vtt.com/60576229e24a9f5eaebcd73f/ddb-images/adventures/Curse_of_Strahd/assets/cos11-02.png" alt="">
