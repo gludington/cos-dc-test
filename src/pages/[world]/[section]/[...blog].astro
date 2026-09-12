@@ -16,6 +16,7 @@ import {
   toBlogInfos,
   buildSectionTree,
   blogsInSubtree,
+  sortPostsForBlog,
   type BlogInfo,
   type SectionInfo,
   type BlogWithSubPath,
@@ -47,11 +48,7 @@ export async function getStaticPaths() {
 
   for (const [blogUuid, blogPosts] of postsByBlogUuid) {
     const blog = blogByUuid.get(blogUuid)!;
-    const sorted = blogPosts.sort((a, b) => {
-      if (blog.postOrder === "oldest") return a.data.publishedAt - b.data.publishedAt;
-      if (blog.postOrder === "manual") return a.data.sortIndex - b.data.sortIndex;
-      return b.data.publishedAt - a.data.publishedAt;
-    });
+    const sorted = sortPostsForBlog(blogPosts, blog.postOrder);
 
     const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
     for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
