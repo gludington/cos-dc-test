@@ -6,6 +6,25 @@ new posts here directly, and your host rebuilds the site automatically.
 
 ## First-time setup
 
+**Fastest path**: World2Web's own **Configure Settings → Deploy Your Site** button opens these
+same links for you, right from Foundry. Either way, clicking one generates your own copy of this
+repo under your GitHub account *and* deploys it, in one step — skipping step 1 and the "connect a
+host" half of step 3 below. You still need steps 2 and 4.
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gludington/world2web-site-template)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/gludington/world2web-site-template)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/gludington/world2web-site-template)
+
+**Known gotcha, confirmed live**: the very first automatic build right after using one of these
+buttons can fail with a missing-files error (e.g. `npm error ... Could not read package.json:
+ENOENT`), even though the new repo genuinely has everything in it. It's a real but harmless delay
+in GitHub finishing replication of the brand-new repo's content, not a problem with the site
+itself — and retrying that *exact same* build won't help, since it's stuck against the same
+not-yet-replicated commit. It resolves on its own the moment a new commit lands, which your first
+**Publish to Web** from Foundry (step 4 below) will do.
+
+Or do every step by hand:
+
 1. **Create your own copy of this repo**: click the green **"Use this template"** button at the
    top of this page (not "Fork" — that keeps you independent, no link back to the original).
    Name it whatever you like, e.g. `my-campaign-blog`.
@@ -13,9 +32,10 @@ new posts here directly, and your host rebuilds the site automatically.
    picture → **Settings → Developer settings → Personal access tokens → Fine-grained tokens →
    Generate new token**. Restrict it to just this repo, and under Permissions set **Contents** to
    **Read and write**. Copy the token — you won't see it again.
-3. **Connect a host** so the site actually goes live. Netlify is the more straightforward of the
-   two; Cloudflare works too but currently has one extra step (a second, unrelated token) that's
-   worth knowing about upfront.
+3. **Connect a host** so the site actually goes live. Netlify is the most straightforward of the
+   three; Cloudflare works too but has one extra step (a second, unrelated token) worth knowing
+   about upfront; Vercel isn't walked through in as much detail here yet but works the same way
+   (it auto-detects Astro, no extra config file needed).
    - **Netlify** (simpler): Add new site → Import an existing project → Deploy with GitHub → pick
      this repo → build command `npm run build`, publish directory `dist` → Deploy. Netlify handles
      its own deploy authentication behind the scenes — nothing further to configure.
@@ -28,6 +48,10 @@ new posts here directly, and your host rebuilds the site automatically.
      Workers" → Use template** → Continue to summary → Create Token → copy it. If Cloudflare
      offers you an existing token from another project instead, that's fine to reuse as long as
      it has Workers edit permission — no need to make a new one just for this.
+   - **Vercel**: dashboard → **Add New → Project** → import this repo from GitHub → Vercel
+     detects the Astro framework preset automatically (build command and output directory need no
+     changes) → Deploy. Like Netlify, Vercel handles its own deploy authentication itself —
+     nothing extra to configure.
 4. **Tell the Foundry module about this repo**: in Foundry, **Configure Settings → World2Web**,
    fill in your GitHub username, this repo's name, the branch your host builds from
    (usually `main`), and the token from step 2.
@@ -66,7 +90,7 @@ Full-text search is powered by [Pagefind](https://pagefind.app/) -- it indexes t
 HTML output after `astro build` runs, not anything live or server-side, so it fits this site's
 "no server of ours" approach exactly. `npm run build` already runs it automatically
 (`astro build && pagefind --site dist`), including on whatever host builds this repo for you
-(Netlify/Cloudflare, per the setup above) -- nothing extra to configure there.
+(Netlify/Cloudflare/Vercel, per the setup above) -- nothing extra to configure there.
 
 **It will *not* show up in `npm run dev`.** Pagefind crawls real HTML files already sitting in
 `dist/`; `astro dev` never writes anything to `dist/` at all (pages render on the fly), so there's
