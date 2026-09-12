@@ -1,5 +1,6 @@
 ---
 import { getSiteConfig, resolveDataTheme } from "../lib/config";
+import { searchRoute } from "../lib/routes";
 import "../styles/tokens.css";
 import "../styles/base.css";
 import ThemeSelector from "../components/ThemeSelector.astro";
@@ -27,7 +28,7 @@ const dataTheme = resolveDataTheme(siteConfig.theme);
 // required on this page -- src/pages/search/index.astro reads it back out
 // of location.search and calls PagefindUI's triggerSearch(). Hidden only on
 // that page itself, since it already has its own (bigger) search input.
-const isSearchPage = Astro.url.pathname === "/search/";
+const isSearchPage = Astro.url.pathname === searchRoute();
 ---
 
 <!doctype html>
@@ -71,7 +72,7 @@ const isSearchPage = Astro.url.pathname === "/search/";
       <div class="header-row">
         <div class="header-search">
           {!isSearchPage && (
-            <form class="site-search" action="/search/" method="get">
+            <form class="site-search" action={searchRoute()} method="get">
               <input type="search" name="q" placeholder="Search…" aria-label="Search" />
             </form>
           )}

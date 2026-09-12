@@ -4,7 +4,7 @@ import { toBlogInfos, buildSectionTree, topLevelSections } from "../lib/sections
 import ContentPanel from "./ContentPanel.astro";
 import TagCloud from "./TagCloud.astro";
 import AuthorCloud from "./AuthorCloud.astro";
-import { postRoute, sectionRoute, blogRoute, authorRoute, searchRoute, formatDate } from "../lib/routes"; // Added formatDate
+import { postRoute, sectionRoute, blogRoute, authorRoute, formatDate } from "../lib/routes"; // Added formatDate
 
 interface Props {
   world: string;
@@ -35,10 +35,9 @@ const recentPostsItems = allPosts.slice(0, 5).map((post) => ({
 }));
 
 // 2. Map Sections and Blogs into a single unified Browse panel array --
-// Search leads the list since it's the fastest way into everything else
-// here once a world has more than a handful of posts.
+// no separate Search entry here anymore: the persistent header search box
+// (Layout.astro) already covers that on every page, including this one.
 const browseItems = [
-  { title: "Search", href: searchRoute() },
   ...rootLevelSections.map((s) => ({
     title: s.label,
     href: sectionRoute(s.world, s.slug),
