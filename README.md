@@ -59,3 +59,48 @@ To test with real content without touching GitHub: in Foundry, check "Enable Dev
 module's settings, click **Dev Sync** instead of **Publish to Web**, then run
 `node scripts/ingest.js ~/Downloads/world2web-....json` here — `astro dev` picks up the result
 immediately.
+
+## Search
+
+Full-text search is powered by [Pagefind](https://pagefind.app/) -- it indexes the actual built
+HTML output after `astro build` runs, not anything live or server-side, so it fits this site's
+"no server of ours" approach exactly. `npm run build` already runs it automatically
+(`astro build && pagefind --site dist`), including on whatever host builds this repo for you
+(Netlify/Cloudflare, per the setup above) -- nothing extra to configure there.
+
+**It will *not* show up in `npm run dev`.** Pagefind crawls real HTML files already sitting in
+`dist/`; `astro dev` never writes anything to `dist/` at all (pages render on the fly), so there's
+nothing for it to index. To actually see search working locally:
+
+```sh
+npm run preview:search
+```
+
+This runs a real `npm run build` (Astro build + Pagefind indexing) and then serves that exact
+`dist/` output via `astro preview` -- open the URL it prints and try the search box in the header
+(present on every page, submits to `/search/`) or go straight to `/search/`. Re-run this command
+any time you change content and want to see it reflected in search results; there's no hot-reload
+for this the way `npm run dev` has for everything else.
+
+Every page's header carries a small search box (`Layout.astro`) that's plain HTML -- a GET form to
+`/search/?q=...` with no JS of its own -- so it costs nothing on pages that don't otherwise load
+Pagefind. There's one `/search/` page for the whole site, not one per world: Pagefind's index spans
+every world at once, so splitting it up would only have added a pointless extra click.
+
+**What's actually indexed**: only pages with genuinely unique prose of their own -- individual
+posts, and an author's own bio page if they have one. Every listing/navigation page (the
+homepage, blog archives, tag archives, section pages, the world picker) is deliberately excluded
+(`searchable` prop on `src/layouts/Layout.astro`, default `false`) -- indexing them too would
+flood every search with near-duplicate hits, since they're just links to the same posts that are
+already indexed on their own pages. Posts also carry `data-pagefind-filter` markers for author,
+tags, the blog they belong to, and world -- these turn into checkbox facets in the sidebar
+automatically, no extra configuration needed.
+
+**Component UI, not the all-in-one widget**: `src/pages/search/index.astro` is built from
+Pagefind's [Component UI](https://pagefind.app/docs/search-ui/) (`<pagefind-input>`,
+`<pagefind-results>`, `<pagefind-filter-pane>`, etc.) rather than the simpler `PagefindUI` class.
+The reason is the custom result template in that file: it renders each post's author as an actual
+link to that author's page (`meta.authorUrl`, captured via `data-pagefind-meta="author,
+authorUrl[href]"` on the author link in the post page) -- `PagefindUI` has no supported way to
+render any field as a link. If you're customizing what a result looks like, that template (inside
+the `<script type="text/pagefind-template">` block) is the place to do it.

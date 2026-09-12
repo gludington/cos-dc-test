@@ -50,6 +50,14 @@ export function tagRoute(tag: TagRef): string {
   return `/${tag.world}/tags/${tag.tagSlug}/`;
 }
 
+/** The site's one search page (pages/search/index.astro) -- not
+ * world-scoped, since Pagefind's index spans every world at once. See
+ * README.md's "Search" section for the Pagefind setup this page
+ * relies on. */
+export function searchRoute(): string {
+  return `/search/`;
+}
+
 export interface Crumb {
   label: string;
   href: string;
