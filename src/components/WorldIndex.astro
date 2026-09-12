@@ -12,7 +12,13 @@ interface Props {
 
 const { world } = Astro.props;
 
-const allPosts = (await getPublishedPosts()).filter((post) => post.data.world === world);
+// Sorted newest-first up front -- "Recent Posts" below depends on it, and
+// nothing else here cares about order (toBlogInfos groups by blogUuid;
+// AuthorCloud/TagCloud only aggregate counts), so one sort covers every
+// consumer rather than sorting again just for the slice(0, 5).
+const allPosts = (await getPublishedPosts())
+  .filter((post) => post.data.world === world)
+  .sort((a, b) => b.data.publishedAt - a.data.publishedAt);
 const blogInfos = toBlogInfos(allPosts);
 const rootLevelBlogs = blogInfos.filter((b) => !b.root);
 const rootLevelSections = topLevelSections(buildSectionTree(blogInfos));
