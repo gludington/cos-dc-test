@@ -15,9 +15,8 @@ import { fileURLToPath } from "node:url";
 // it was when the site was developed inside the world2web dev repo.
 const CONTENT_DIR = fileURLToPath(new URL("./content", import.meta.url));
 
-// Minimal config: static output only, no integrations yet. Pagefind search
-// and the eventual GM-vs-player build split (CLAUDE.md open question 4)
-// are later additions, not part of this scaffold.
+// Static output only -- the eventual GM-vs-player build split is still an
+// open question, not part of this scaffold.
 export default defineConfig({
   output: "static",
   // host: true -- listen on every network interface, not just localhost,

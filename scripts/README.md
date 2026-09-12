@@ -1,6 +1,6 @@
 # scripts/ingest.js
 
-Local stand-in for the Cloudflare Worker step described in the Foundry module's `CLAUDE.md`.
+Local stand-in for the Cloudflare Worker step described in the Foundry module's own design docs.
 Takes a `world2web` collector payload (the JSON downloaded from Foundry via the module's **Dev
 Sync** button, hidden unless "Enable Dev Mode" is checked in the module's settings) and writes it
 out as `content/` markdown here — one file per published post. No network calls, no git commit,

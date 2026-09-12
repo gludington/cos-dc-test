@@ -15,10 +15,6 @@ import { postRoute } from "./routes";
 // data-uuid="...">` anchor (e.g. from a drag-and-drop insert, or any future
 // Foundry behavior that does serialize one directly) is also handled, in
 // case both forms ever show up in the same content.
-//
-// Same underlying Foundry behavior this project's earlier Campaign Codex
-// work resolved (`resolveFoundryContentLinks`, parked on the
-// `campaign-codex` git branch) -- reused here, not Campaign-Codex-specific.
 const UUID_ENRICHER_RE = /@UUID\[([^\]]+)\](?:\{([^}]*)\})?/g;
 const ANCHOR_RE = /<a\b([^>]*)>([\s\S]*?)<\/a>/g;
 const CONTENT_LINK_CLASS_RE = /\bclass="[^"]*\bcontent-link\b[^"]*"/;

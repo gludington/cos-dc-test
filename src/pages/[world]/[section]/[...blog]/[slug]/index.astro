@@ -49,7 +49,7 @@ export async function getStaticPaths() {
 }
 
 const { post, uuidToTarget, prevPost, nextPost } = Astro.props;
-// post.html is raw HTML passthrough already (see repo-root CLAUDE.md) --
+// post.html is raw HTML passthrough already --
 // nothing here is really "markdown" needing Astro's render()/<Content />
 // pipeline, so resolving Foundry's @UUID[] content-links is a plain string
 // rewrite on the body before injecting it directly.

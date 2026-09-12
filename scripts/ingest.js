@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Local stand-in for the Cloudflare Worker step in the Foundry module's
- * CLAUDE.md: takes a world2web collector payload (downloaded from Foundry
+ * Local stand-in for the Cloudflare Worker step in the Foundry module's own
+ * design docs: takes a world2web collector payload (downloaded from Foundry
  * via the module's "Dev Sync" button, hidden unless "Enable Dev Mode" is
  * checked in the module's settings) and writes it out as content/ markdown,
  * matching this site's content model. No network calls, no git commit --

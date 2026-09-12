@@ -330,7 +330,7 @@ h1 {
   overflow-x: visible;
 }
 
-/* Post bodies are raw HTML passthrough (see repo-root CLAUDE.md) -- a
+/* Post bodies are raw HTML passthrough -- a
    paste from Google Docs bakes every span's *default* text color in as a
    literal inline color, always paired with background-color:transparent
    since there was never a real background, just Docs' own default black/

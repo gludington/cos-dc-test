@@ -5,8 +5,8 @@ import { glob } from "astro/loaders";
 // field and uses *only* that as the id, dropping the rest of the path. Our
 // frontmatter has exactly such a field (per-author-unique, not global), so
 // force ids to the full relative path instead -- otherwise routes silently
-// lose their world/author segments. (Bit us once already on the earlier
-// Campaign Codex content model; see project memory.)
+// lose their world/author segments. (Bit us once already on an earlier
+// content model; see project memory.)
 const generateId = ({ entry }: { entry: string }) => entry.replace(/\.md$/, "");
 
 const postSchema = z.object({
