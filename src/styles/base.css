@@ -327,7 +327,22 @@ h1 {
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-x: visible; 
+  overflow-x: visible;
+}
+
+/* Post bodies are raw HTML passthrough (see repo-root CLAUDE.md) -- a
+   paste from Google Docs bakes every span's *default* text color in as a
+   literal inline color, always paired with background-color:transparent
+   since there was never a real background, just Docs' own default black/
+   gray text. That combination is safe to identify and override: it beats
+   any theme's text color via inline-style specificity, and on a dark
+   theme (e.g. Ravenloft) reads as flat-invisible black-on-black. A
+   genuinely intentional inline color (e.g. a table header someone
+   deliberately styled) pairs its color with a *real* background instead,
+   so this selector -- matching only the "transparent" pairing -- leaves
+   that alone. */
+.prose [style*="background-color:transparent"] {
+  color: inherit !important;
 }
 
 .prose img, .prose video, .prose iframe {
