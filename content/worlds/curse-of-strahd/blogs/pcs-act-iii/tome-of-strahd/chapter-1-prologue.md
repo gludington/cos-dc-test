@@ -16,12 +16,15 @@
     "bio": ""
   },
   "authorSlug": "game-master",
-  "tags": [],
+  "tags": [
+    "lore",
+    "strahd"
+  ],
   "frontImage": "",
   "postOrder": "manual",
   "sortIndex": 175000,
-  "publishedAt": 1789021371414,
-  "updatedAt": 1789021371414,
+  "publishedAt": 1789226466069,
+  "updatedAt": 1789226466069,
   "unpublished": false
 }
 ---
