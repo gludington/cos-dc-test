@@ -16,7 +16,10 @@
     "bio": ""
   },
   "authorSlug": "arabelle",
-  "tags": [],
+  "tags": [
+    "tarokka",
+    "reading"
+  ],
   "frontImage": "",
   "postOrder": "manual",
   "sortIndex": 600000,
