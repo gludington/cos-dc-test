@@ -52,6 +52,18 @@ export function toBlogInfos(posts: CollectionEntry<"posts">[]): BlogInfo[] {
   return Array.from(byUuid.values());
 }
 
+/** A blog's posts in the same order its own archive page displays them --
+ * shared so that order (which drives that archive's pagination) and prev/
+ * next post navigation never silently disagree with each other. Mutates
+ * nothing; returns a new array. */
+export function sortPostsForBlog<T extends CollectionEntry<"posts">>(posts: T[], postOrder: BlogInfo["postOrder"]): T[] {
+  return [...posts].sort((a, b) => {
+    if (postOrder === "oldest") return a.data.publishedAt - b.data.publishedAt;
+    if (postOrder === "manual") return a.data.sortIndex - b.data.sortIndex;
+    return b.data.publishedAt - a.data.publishedAt;
+  });
+}
+
 /** Builds, per world, a map of every root-prefix slug -> {label, blogs,
  * childSlugs}, by walking every blog's root path. A blog with no root at
  * all contributes nothing here (it belongs at the root/depth-0 level,
