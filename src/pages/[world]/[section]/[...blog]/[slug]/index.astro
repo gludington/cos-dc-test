@@ -51,38 +51,53 @@ const crumbs = rootCrumbs(post.data).concat([
 ]);
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} searchable>
   <!-- 1. The Modular Breadcrumbs call -->
   <Breadcrumbs siteName={siteName} crumbs={crumbs} currentLabel={post.data.title} />
 
-  {post.data.frontImage && <img class="article-front-image" src={post.data.frontImage} alt="" />}
+  <!-- Pagefind indexing scope for this post -- see README.md's
+       "Search" section and Layout.astro's `searchable` prop doc comment.
+       Deliberately starts after Breadcrumbs (nav chrome, not content) and
+       covers everything a visitor would actually want matched: the front
+       image, title, author, tags, and prose body. blog/world have no
+       visible element of their own on this page worth reusing, so they're
+       hidden filter-only markers using Pagefind's explicit key:value
+       attribute syntax rather than anything relying on visible text. -->
+  <article data-pagefind-body>
+    <span hidden data-pagefind-filter={`blog:${post.data.blogTitle}`} />
+    <span hidden data-pagefind-filter={`world:${post.data.world}`} />
 
-  <!-- 2. The Unified Article Entry Header -->
-  <header class="article-header">
-    <h1 class="article-title">{post.data.title}</h1>
-    
-    <div class="meta author-line">
-      {post.data.author.image && <img class="avatar" src={post.data.author.image} alt="" />}
-      <span>
-        by <a href={authorRoute(post.data)}>{post.data.author.name}</a> 
-        · published {formatDate(post.data.publishedAt)}
-        {wasUpdated && <> · updated {formatDate(post.data.updatedAt)}</>}
-      </span>
-    </div>
+    {post.data.frontImage && (
+      <img class="article-front-image" src={post.data.frontImage} alt="" data-pagefind-meta="image" />
+    )}
 
-    { post.data.tags.length > 0 && (
-      <div class="meta tag-line">
-        <span class="tag-label">Tags:</span>
-        {post.data.tags.map((tagName, i) => (
-          <>
-            <a href={tagRoute({ world: post.data.world, tagSlug: slugifyTag(tagName) })} class="post-tag">{tagName}</a>
-            {i < post.data.tags.length - 1 && <span class="tag-sep">,</span>}
-          </>
-        ))}
+    <!-- 2. The Unified Article Entry Header -->
+    <header class="article-header">
+      <h1 class="article-title" data-pagefind-meta="title">{post.data.title}</h1>
+
+      <div class="meta author-line">
+        {post.data.author.image && <img class="avatar" src={post.data.author.image} alt="" />}
+        <span>
+          by <a href={authorRoute(post.data)} data-pagefind-filter="author" data-pagefind-meta="author, authorUrl[href]">{post.data.author.name}</a>
+          · published {formatDate(post.data.publishedAt)}
+          {wasUpdated && <> · updated {formatDate(post.data.updatedAt)}</>}
+        </span>
       </div>
-    ) }
-  </header>
 
-  <!-- 3. The Protective HTML Prose Engine Container -->
-  <section class="prose" set:html={processedHtml} />
+      { post.data.tags.length > 0 && (
+        <div class="meta tag-line">
+          <span class="tag-label">Tags:</span>
+          {post.data.tags.map((tagName, i) => (
+            <>
+              <a href={tagRoute({ world: post.data.world, tagSlug: slugifyTag(tagName) })} class="post-tag" data-pagefind-filter="tags">{tagName}</a>
+              {i < post.data.tags.length - 1 && <span class="tag-sep">,</span>}
+            </>
+          ))}
+        </div>
+      ) }
+    </header>
+
+    <!-- 3. The Protective HTML Prose Engine Container -->
+    <section class="prose" set:html={processedHtml} />
+  </article>
 </Layout>
