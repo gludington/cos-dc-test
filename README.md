@@ -6,10 +6,12 @@ new posts here directly, and your host rebuilds the site automatically.
 
 ## First-time setup
 
-**Fastest path**: World2Web's own **Configure Settings → Deploy Your Site** button opens these
+**Fastest path**: World2Web's own **Configure Settings → Setup Wizard** button opens these
 same links for you, right from Foundry. Either way, clicking one generates your own copy of this
 repo under your GitHub account *and* deploys it, in one step — skipping step 1 and the "connect a
 host" half of step 3 below. You still need steps 2 and 4.
+
+Deploy to:
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gludington/world2web-site-template)
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/gludington/world2web-site-template)
