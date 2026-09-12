@@ -2,10 +2,12 @@
 import Layout from "../../../../../layouts/Layout.astro";
 import { getSiteConfig } from "../../../../../lib/config";
 import { getPublishedPosts } from "../../../../../lib/posts";
-import { blogRoute, authorRoute, tagRoute, rootCrumbs, formatDate } from "../../../../../lib/routes";
+import { postRoute, blogRoute, authorRoute, tagRoute, rootCrumbs, formatDate } from "../../../../../lib/routes";
 import { slugifyTag } from "../../../../../lib/tags";
+import { sortPostsForBlog } from "../../../../../lib/sections";
 import { buildContentLinkMap, resolveContentLinks } from "../../../../../lib/relationships";
 import Breadcrumbs from "../../../../../components/Breadcrumbs.astro";
+import type { CollectionEntry } from "astro:content";
 
 const siteName = getSiteConfig().siteName;
 
@@ -18,13 +20,35 @@ export async function getStaticPaths() {
   // Built once here, not per post -- see buildContentLinkMap()'s doc
   // comment.
   const uuidToTarget = buildContentLinkMap(posts);
-  return posts.map((post) => ({
-    params: { world: post.data.world, section: blogsSegment, blog: post.data.blogSlug, slug: post.data.slug },
-    props: { post, uuidToTarget },
-  }));
+
+  const postsByBlogUuid = new Map<string, CollectionEntry<"posts">[]>();
+  for (const post of posts) {
+    if (!postsByBlogUuid.has(post.data.blogUuid)) postsByBlogUuid.set(post.data.blogUuid, []);
+    postsByBlogUuid.get(post.data.blogUuid)!.push(post);
+  }
+
+  return posts.map((post) => {
+    // Same order as this blog's own archive page (sortPostsForBlog is
+    // shared with pages/[world]/[section]/[...blog].astro precisely so
+    // "next" here always means the post appearing next there too) --
+    // every post in a blog shares that blog's postOrder, copied onto each
+    // post's own frontmatter at publish time, so no separate BlogInfo
+    // lookup is needed to sort correctly.
+    const siblings = sortPostsForBlog(postsByBlogUuid.get(post.data.blogUuid)!, post.data.postOrder);
+    const index = siblings.findIndex((p) => p.id === post.id);
+    return {
+      params: { world: post.data.world, section: blogsSegment, blog: post.data.blogSlug, slug: post.data.slug },
+      props: {
+        post,
+        uuidToTarget,
+        prevPost: index > 0 ? siblings[index - 1] : null,
+        nextPost: index < siblings.length - 1 ? siblings[index + 1] : null,
+      },
+    };
+  });
 }
 
-const { post, uuidToTarget } = Astro.props;
+const { post, uuidToTarget, prevPost, nextPost } = Astro.props;
 // post.html is raw HTML passthrough already (see repo-root CLAUDE.md) --
 // nothing here is really "markdown" needing Astro's render()/<Content />
 // pipeline, so resolving Foundry's @UUID[] content-links is a plain string
@@ -100,4 +124,78 @@ const crumbs = rootCrumbs(post.data).concat([
     <!-- 3. The Protective HTML Prose Engine Container -->
     <section class="prose" set:html={processedHtml} />
   </article>
+
+  <!-- Outside the indexed <article> above -- nav chrome, not unique
+       content, same reasoning as this file's other pagefind comments.
+       Order matches this blog's own archive page (sortPostsForBlog is
+       shared with that page precisely so the two never disagree). -->
+  <nav class="post-nav" aria-label="Post navigation">
+    {prevPost ? (
+      <a href={postRoute(prevPost.data)} class="post-nav-link prev">
+        <span class="post-nav-label">&larr; Previous</span>
+        <span class="post-nav-title">{prevPost.data.title}</span>
+      </a>
+    ) : (
+      <span class="post-nav-link prev disabled">
+        <span class="post-nav-label">&larr; Previous</span>
+        <span class="post-nav-title">Start of {post.data.blogTitle}</span>
+      </span>
+    )}
+    {nextPost ? (
+      <a href={postRoute(nextPost.data)} class="post-nav-link next">
+        <span class="post-nav-label">Next &rarr;</span>
+        <span class="post-nav-title">{nextPost.data.title}</span>
+      </a>
+    ) : (
+      <span class="post-nav-link next disabled">
+        <span class="post-nav-label">Next &rarr;</span>
+        <span class="post-nav-title">End of {post.data.blogTitle}</span>
+      </span>
+    )}
+  </nav>
 </Layout>
+
+<style>
+  .post-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius, 0px);
+    text-decoration: none;
+  }
+
+  .post-nav-link.disabled {
+    opacity: 0.5;
+  }
+
+  .post-nav-link.disabled .post-nav-title {
+    color: var(--color-text-muted);
+  }
+
+  .next {
+    text-align: right;
+  }
+
+  .post-nav-label {
+    font-family: var(--color-font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .post-nav-title {
+    color: var(--color-text-main);
+  }
+</style>
