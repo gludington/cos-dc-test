@@ -82,7 +82,7 @@ const authorItems = page.data.map((post) => ({
 }));
 ---
 
-<Layout title={author.name}>
+<Layout title={author.name} searchable={!!author.bio}>
   <Breadcrumbs siteName={siteName} crumbs={[]} currentLabel={author.name} />
 
   {author.image && <img class="avatar avatar-lg" src={author.image} alt="" />}
@@ -103,7 +103,16 @@ const authorItems = page.data.map((post) => ({
           )
         }
       </div>
-      <div class="sidebar-column">
+      <!-- Pagefind indexing scope for this author's bio -- see
+           README.md's "Search" section. Only the bio itself is
+           genuinely unique prose worth indexing (the post list is just
+           links already indexed on their own pages); title/image meta
+           are duplicated here as hidden markers, since they live outside
+           this element in the visible header above and Pagefind only
+           picks up meta/filter attributes within its indexed scope. -->
+      <div class="sidebar-column" data-pagefind-body>
+        <span hidden data-pagefind-meta="title">{author.name}</span>
+        {author.image && <img hidden src={author.image} alt="" data-pagefind-meta="image" />}
         <section class="prose author-bio" set:html={author.bio} />
       </div>
     </div>
