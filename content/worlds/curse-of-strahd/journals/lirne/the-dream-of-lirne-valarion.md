@@ -17,14 +17,14 @@
   },
   "authorSlug": "lirne-valarion",
   "tags": [
-    "super cool guy",
-    "dream"
+    "dream",
+    "player"
   ],
   "frontImage": "",
   "postOrder": "manual",
   "sortIndex": 525000,
-  "publishedAt": 1789022700634,
-  "updatedAt": 1789022784568,
+  "publishedAt": 1789314834561,
+  "updatedAt": 1789314834561,
   "unpublished": false
 }
 ---
