@@ -17,14 +17,14 @@
   },
   "authorSlug": "lirne-valarion",
   "tags": [
-    "super cool guy",
+    "player",
     "nightmare"
   ],
   "frontImage": "",
   "postOrder": "manual",
   "sortIndex": 850000,
   "publishedAt": 1789022704045,
-  "updatedAt": 1789022754277,
+  "updatedAt": 1789314821652,
   "unpublished": false
 }
 ---
