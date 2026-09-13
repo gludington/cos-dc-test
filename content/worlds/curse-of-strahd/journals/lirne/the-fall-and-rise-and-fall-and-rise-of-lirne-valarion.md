@@ -17,7 +17,7 @@
   },
   "authorSlug": "lirne-valarion",
   "tags": [
-    "super cool guy"
+    "player"
   ],
   "frontImage": "",
   "postOrder": "manual",
