@@ -16,9 +16,7 @@
     "bio": ""
   },
   "authorSlug": "lirne-valarion",
-  "tags": [
-    "player"
-  ],
+  "tags": [],
   "frontImage": "",
   "postOrder": "manual",
   "sortIndex": 300000,
