@@ -1,22 +1,22 @@
 ---
-import { blogRoute, authorRoute, sectionRoute } from "../lib/routes";
-import type { BlogInfo, SectionInfo } from "../lib/sections";
+import { journalRoute, authorRoute, sectionRoute } from "../lib/routes";
+import type { JournalInfo, SectionInfo } from "../lib/sections";
 
-// Merges what used to be two separate panels (blogs at this level, and
+// Merges what used to be two separate panels (journals at this level, and
 // sections one level down) into one -- sections first (they're categories,
-// i.e. browsing structure), then blogs living directly at this level. Kept
+// i.e. browsing structure), then journals living directly at this level. Kept
 // as a single panel/heading rather than two: on a page that's otherwise
 // just a recent-posts feed, two nearly-identical "here's a list of links"
 // panels back to back read as clutter, not structure.
 interface Props {
   sections: SectionInfo[];
-  blogs: BlogInfo[];
+  journals: JournalInfo[];
 }
-const { sections, blogs } = Astro.props;
+const { sections, journals } = Astro.props;
 ---
 
 {
-  (sections.length > 0 || blogs.length > 0) && (
+  (sections.length > 0 || journals.length > 0) && (
     <section class="panel">
       <h2 class="panel-title">Browse</h2>
       <ul class="entry-list">
@@ -28,14 +28,14 @@ const { sections, blogs } = Astro.props;
             <div class="meta">Section</div>
           </li>
         ))}
-        {blogs.map((blog) => (
+        {journals.map((journal) => (
           <li class="entry">
-            <a class="entry-title" href={blogRoute(blog)}>
-              {blog.blogTitle}
+            <a class="entry-title" href={journalRoute(journal)}>
+              {journal.journalTitle}
             </a>
             <div class="meta">
-              {blog.authorImage && <img class="avatar" src={blog.authorImage} alt="" />}
-              by <a href={authorRoute(blog)}>{blog.authorName}</a>
+              {journal.authorImage && <img class="avatar" src={journal.authorImage} alt="" />}
+              by <a href={authorRoute(journal)}>{journal.authorName}</a>
             </div>
           </li>
         ))}

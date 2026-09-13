@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { postRoute, authorRoute, blogRoute, formatDate } from "../lib/routes";
+import { postRoute, authorRoute, journalRoute, formatDate } from "../lib/routes";
 
 // The N most recently published posts within whatever scope the caller
-// hands in -- interleaved across every blog/author, not grouped. Deliberately
+// hands in -- interleaved across every journal/author, not grouped. Deliberately
 // takes posts as a prop rather than fetching its own: the caller decides the
 // scope (one world's posts for a per-world index, say), this just picks the
 // newest N and renders them.
@@ -29,7 +29,7 @@ const recent = posts
             <a class="entry-title" href={postRoute(post.data)}>{post.data.title}</a>
             <div class="meta">
               by <a href={authorRoute(post.data)}>{post.data.author.name}</a> in{" "}
-              <a href={blogRoute(post.data)}>{post.data.blogTitle}</a> · {formatDate(post.data.publishedAt)}
+              <a href={journalRoute(post.data)}>{post.data.journalTitle}</a> · {formatDate(post.data.publishedAt)}
             </div>
           </li>
         ))}
