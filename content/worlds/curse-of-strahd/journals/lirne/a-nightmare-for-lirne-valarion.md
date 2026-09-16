@@ -13,7 +13,7 @@
     "name": "Lirnë Valarion",
     "image": "/assets/cf800ea8417dc96247f3019a047679c507ed164dc13132c16c66519887cb0194.webp",
     "isGM": false,
-    "bio": "<p>Lirne's bio is <strong>here</strong></p>"
+    "bio": "<p>Lirne's bio is <strong>here and bold</strong></p>"
   },
   "authorSlug": "lirne-valarion",
   "tags": [
