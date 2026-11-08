@@ -20,6 +20,7 @@
   "frontImage": "",
   "postOrder": "manual",
   "sortIndex": 3200000,
+  "homepage": "none",
   "publishedAt": 1789020591765,
   "updatedAt": 1789020591765,
   "unpublished": false
