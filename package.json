@@ -1,21 +1,22 @@
 {
-  "name": "world2web-site",
+  "name": "cos-dc-test",
   "private": true,
-  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "dev:search": "astro build && astro dev",
+    "build": "astro build",
     "preview": "astro preview",
-    "preview:search": "npm run build && astro preview",
-    "sync": "astro sync",
-    "ingest": "node scripts/ingest.js"
+    "ingest": "world2web-ingest"
   },
   "dependencies": {
-    "astro": "^7.2.4"
+    "@world2web/site": "0.21.0",
+    "astro": "7.2.4"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2",
     "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }
