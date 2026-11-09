@@ -27,4 +27,4 @@
 }
 ---
 
-<img src="/assets/41bbd9c09462d1d00dc73ee030963160a97062f2b10fc7c9d6ac23f8843f507c.webp" width="400" /><p>@UUID[.kdsvO7xto8PFvuBj]{Ladies of Old Bonegrinder}</p>
+<img src="/assets/41bbd9c09462d1d00dc73ee030963160a97062f2b10fc7c9d6ac23f8843f507c.webp" width="400" /><p>@UUID[JournalEntry.f7f0C4GAu5pdeM7e.JournalEntryPage.kdsvO7xto8PFvuBj]{Ladies of Old Bonegrinder}</p>
